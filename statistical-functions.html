@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Statistical functions | Script Introduction to Data Analysis</title>
+  <meta name="description" content="Introduction to Data Analysis" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Statistical functions | Script Introduction to Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to Data Analysis" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Statistical functions | Script Introduction to Data Analysis" />
+  
+  <meta name="twitter:description" content="Introduction to Data Analysis" />
+  
+
+<meta name="author" content="Lena Janys" />
+
+
+<meta name="date" content="2019-10-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="exercises.html"/>
+<link rel="next" href="organizational-info-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Organizational Info:</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Course Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#list"><i class="fa fa-check"></i><b>2.1</b> List of Topics</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#method"><i class="fa fa-check"></i><b>2.2</b> Methods</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#data"><i class="fa fa-check"></i><b>2.2.1</b> Data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#tools"><i class="fa fa-check"></i><b>2.2.2</b> Tools</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#exam"><i class="fa fa-check"></i><b>2.3</b> Exam</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#timetable"><i class="fa fa-check"></i><b>2.4</b> Timetable</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-r-principle"><i class="fa fa-check"></i><b>3.1</b> The R-Principle</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assigments"><i class="fa fa-check"></i><b>3.2</b> Assigments</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-and-removing-objects"><i class="fa fa-check"></i><b>3.3</b> Saving and removing objects</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-help"><i class="fa fa-check"></i><b>3.4</b> R Help</a></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#using-the-editor"><i class="fa fa-check"></i><b>3.5</b> Using the editor</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#working-directory"><i class="fa fa-check"></i><b>3.6</b> Working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="operators.html"><a href="operators.html"><i class="fa fa-check"></i><b>4</b> Operators</a></li>
+<li class="chapter" data-level="5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html"><i class="fa fa-check"></i><b>5</b> Data structures: vectors, matrices, lists</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#numerical-and-non-numeric-objects"><i class="fa fa-check"></i><b>5.1</b> Numerical and non-numeric objects</a></li>
+<li class="chapter" data-level="5.2" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#vectors"><i class="fa fa-check"></i><b>5.2</b> Vectors</a></li>
+<li class="chapter" data-level="5.3" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#matrices"><i class="fa fa-check"></i><b>5.3</b> Matrices</a></li>
+<li class="chapter" data-level="5.4" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#lists"><i class="fa fa-check"></i><b>5.4</b> Lists</a></li>
+<li class="chapter" data-level="5.5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#data-frames"><i class="fa fa-check"></i><b>5.5</b> Data Frames</a></li>
+<li class="chapter" data-level="5.6" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#working-with-logical-operators"><i class="fa fa-check"></i><b>5.6</b> Working with logical operators</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>6</b> Exercises</a><ul>
+<li class="chapter" data-level="6.1" data-path="exercises.html"><a href="exercises.html#numerische-und-nichtnumerische-objekte"><i class="fa fa-check"></i><b>6.1</b> Numerische und nichtnumerische Objekte</a></li>
+<li class="chapter" data-level="6.2" data-path="exercises.html"><a href="exercises.html#vektoren"><i class="fa fa-check"></i><b>6.2</b> Vektoren</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-functions.html"><a href="statistical-functions.html"><i class="fa fa-check"></i><b>7</b> Statistical functions</a><ul>
+<li class="chapter" data-level="7.1" data-path="statistical-functions.html"><a href="statistical-functions.html#sums-and-frequencies"><i class="fa fa-check"></i><b>7.1</b> Sums and frequencies</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-functions.html"><a href="statistical-functions.html#frequencies"><i class="fa fa-check"></i><b>7.2</b> Frequencies</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-functions.html"><a href="statistical-functions.html#statistical-distributions"><i class="fa fa-check"></i><b>7.3</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-functions.html"><a href="statistical-functions.html#normal-distribution"><i class="fa fa-check"></i><b>7.3.1</b> Normal distribution</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-functions.html"><a href="statistical-functions.html#binomial-distribution"><i class="fa fa-check"></i><b>7.3.2</b> Binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-functions.html"><a href="statistical-functions.html#multiplication-of-a-random-variable-with-a-constant"><i class="fa fa-check"></i><b>7.4</b> Multiplication of a random variable with a constant</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="organizational-info-1.html"><a href="organizational-info-1.html"><i class="fa fa-check"></i><b>8</b> Organizational Info:</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Script Introduction to Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="statistical-functions" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Statistical functions</h1>
+<div id="sums-and-frequencies" class="section level2">
+<h2><span class="header-section-number">7.1</span> Sums and frequencies</h2>
+<p>The simple sum is given by sum(x) and the cumulative sum is calculated with cumsum.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#Sum functions</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">x=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">n=<span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">n</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">Y&lt;-<span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n),x)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">sum</span>(x)</a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">cumsum</span>(x)</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">colSums</span> (Y)<span class="co">##calculates collumn sums</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">rowSums</span> (Y)<span class="co">##calculates row sums</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">colMeans</span>(Y)<span class="co">##calculates collumn means</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="kw">rowMeans</span>(Y)<span class="co">##calculates row means</span></a></code></pre></div>
+</div>
+<div id="frequencies" class="section level2">
+<h2><span class="header-section-number">7.2</span> Frequencies</h2>
+<p>Frequency counts (absolute and relative) can be made using the functions</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">table</span>() und <span class="kw">hist</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">#Frequencies- one-dimensional</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">table</span>(x)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">x</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw">table</span>(x)<span class="op">/</span>n</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">klassen=<span class="kw">hist</span>(x,<span class="dt">breaks=</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>)))</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">klassen<span class="op">$</span>counts</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">klassen<span class="op">$</span>counts<span class="op">/</span>n</a></code></pre></div>
+<p>table() can also be used for analyzing multi-dimensional frequencies.%kann auch zur Analyse von mehrdimensionalen Häufigkeiten verwendet werden.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"> y=<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"> z=<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">data.frame</span>(x,y,z)</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">table</span>(x,y)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">table</span>(x,y,z)<span class="co">## generates two-dimensional tables for x and y, seperated for values of z.  %erzeugt zweidimensional K.tabelle fuer x und y </span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">%<span class="co">##getrennt nach Auspraegungen von z</span></a></code></pre></div>
+<p>prop.table() generates tables with the conditional distribution in the collumns/rows. %erstellt Kontingenztabellen mit den bedingten Verteilungen in den Spalten bzw. Zeilen.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">##Conditional Frequencies</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">m=<span class="kw">table</span>(x,y)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">m</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#calculates row </span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">prop.table</span>(m,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#Berechnet die Spaltenverteilung</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw">prop.table</span>(m,<span class="dv">2</span>)</a></code></pre></div>
+</div>
+<div id="statistical-distributions" class="section level2">
+<h2><span class="header-section-number">7.3</span> Statistical Distributions</h2>
+<p>In the context of statistical distributions of discrete or continuous random variables, four types of calculations/procedures are of particular interest, namely</p>
+<ul>
+<li>the calculation of values of the probability function or density function,</li>
+<li>the calculation of probabilities for certain events,</li>
+<li>the calculation of quantiles,</li>
+<li>Simulation, i.e. Drawing random numbers from a given distribution.</li>
+</ul>
+<p>In principle, the command syntax in R is uniformly regulated, i.e. they are similar for all distributions.</p>
+<div id="normal-distribution" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Normal distribution</h3>
+<p>The commands for the above calculation types and simulation for the normal distribution are</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">dnorm</span>(), <span class="kw">pnorm</span>() <span class="kw">qnorm</span>() und <span class="kw">rnorm</span>().</a></code></pre></div>
+<p>Where the “d” is the density and calculates values of the density function at a specified location, the “p” for probability and calculates the distribution function, and “q” for quantile and calculates values of the quantile function. “r” stands for random and draws random numbers from the normal distribution.</p>
+<p><span class="math inline">\(\mathcal{N}(1,4)\)</span></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">x=<span class="kw">seq</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">4</span>,<span class="dt">le=</span><span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">z=<span class="kw">dnorm</span>(x,<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">plot</span>(x,z,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Due to the symmetry of the normal distribution, the value of the distribution function at the expected value is always 0.5:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"> <span class="kw">pnorm</span>(<span class="dv">0</span>)</a></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.3085375</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.5</code></pre>
+<p>How to calculate the probability for the interval <span class="math inline">\([2,3]\)</span> for a <span class="math inline">\(\mathcal{N}(1,4)\)</span>- distributed random variable X, i.e. the probability <span class="math inline">\(P(2\leq X \leq 3 )\)</span>?</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)<span class="op">-</span><span class="kw">pnorm</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.1498823</code></pre>
+<p>What is the 0.6 quantile of the <span class="math inline">\(\mathcal{N}(1,4)\)</span> distribution?</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"> <span class="kw">qnorm</span>(<span class="fl">0.6</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 1.506694</code></pre>
+<p>What are the 0.25, 0.5, and 0.75 quantiles of the standard normal distribution?</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">qnorm</span>(<span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>))</a></code></pre></div>
+<p>Suppose we want to draw 1000 random numbers from <span class="math inline">\(\mathcal{N}(1,4)\)</span> and visualize the resulting density in a histogram:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">x=<span class="kw">rnorm</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">hist</span>(x,<span class="dt">prob=</span>T)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="binomial-distribution" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Binomial distribution</h3>
+<p>The basic commands are</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">dbinom</span>(), <span class="kw">pbinom</span>(), <span class="kw">qbinom</span>() und <span class="kw">rbinom</span>().</a></code></pre></div>
+<p>Let <span class="math inline">\(X\)</span> be binomial distributed with <span class="math inline">\(N = 10\)</span> and <span class="math inline">\(\pi = 0.5\)</span>. We know this just corresponds to throwing a fair coin 10 times. The random variable X specifies the number of “head” (“number”) in 10 throws.</p>
+
+<p>What is the probability for “exactly 8 times head”, i.e. <span class="math inline">\(P(X=8)\)</span>?</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">dbinom</span>(<span class="dv">8</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## [1] 0.04394531</code></pre>
+<p>What is the probability for <span class="math inline">\(P(2&lt;X\leq 6)\)</span>?</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">pbinom</span>(<span class="dv">10</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)<span class="op">-</span><span class="kw">pbinom</span>(<span class="dv">3</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## [1] 0.828125</code></pre>
+<p>In this case we have to differentiate between <span class="math inline">\(&lt;\)</span> und <span class="math inline">\(\leq\)</span>. Why?
+What are the 0.25- ,0.5- and the 0.75-quantiles of the <span class="math inline">\(\mathcal{B}(10,0.5)\)</span>-distribution?</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">qbinom</span>(<span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>),<span class="dv">10</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>## [1] 4 5 6</code></pre>
+<p>How can we simulate a 20-time coin toss?</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>##  [1] 1 0 1 0 1 0 0 1 1 1 0 1 0 0 1 1 0 0 1 1</code></pre>
+<p>This corresponds to the 20-fold repetition of a Bernoulli experiment, i.e. the 20-time draw from a <span class="math inline">\(\mathcal{B}(1.0.5)\)</span> distribution. The number of zeros/ones is then <span class="math inline">\(\mathcal{B}(20,0.5)\)</span>-distributed. The probability function of this distribution can be represented over</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">x=<span class="dv">0</span><span class="op">:</span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">y=<span class="kw">dbinom</span>(x,<span class="dv">20</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="kw">plot</span>(x,y,<span class="dt">type=</span><span class="st">&quot;h&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>In R, there are similar commands for many other distributions, e.g. dgamma(), dexp(), dpois(), dunif() etc.</p>
+</div>
+</div>
+<div id="multiplication-of-a-random-variable-with-a-constant" class="section level2">
+<h2><span class="header-section-number">7.4</span> Multiplication of a random variable with a constant</h2>
+<p>For a random variable X with <span class="math inline">\(\mathbb{E}[X] &lt;\infty\)</span> and <span class="math inline">\(\mathbb{E}[X^2] &lt;\infty\)</span>, the mean value, and the variance exist, all <span class="math inline">\(c \in \mathbb{R}: \mathbb{E}[c\cdot X]=c \cdot \mathbb{E}[X]\)</span> <span class="math inline">\(Var[c\cdot X]=c^2\cdot Var[X]\)</span>.</p>
+<p>Usually the “random generator” of R for each given sample draws new numbers, that is, usually the results are slightly different in the repetition of a draw.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">  <span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>##  [1] 5 3 6 7 4 5 5 8 3 4 8 3 4 5 5 4 4 5 5 6</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"> <span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>##  [1] 7 6 1 3 5 6 4 5 2 5 5 5 7 3 4 6 4 6 4 8</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"> <span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>##  [1] 4 5 5 7 6 4 2 4 6 5 5 0 7 6 8 6 2 5 5 3</code></pre>
+<p>With the command set.seed () the “location” at which the random generator starts to simulate can be manipulated so that a particular sample can be replicated.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">  <span class="kw">set.seed</span>(<span class="dv">32323</span>)</a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"> <span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb36-3" data-line-number="3">  <span class="kw">set.seed</span>(<span class="dv">32323</span>)</a>
+<a class="sourceLine" id="cb36-4" data-line-number="4"> <span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb36-5" data-line-number="5"> <span class="kw">set.seed</span>(<span class="dv">32323</span>)</a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"> <span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+<p>But: this is different than:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">  <span class="kw">set.seed</span>(<span class="dv">32323</span>)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">  <span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">   <span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb37-4" data-line-number="4">   <span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="exercises.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="organizational-info-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-references.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
