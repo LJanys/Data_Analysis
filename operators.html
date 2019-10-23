@@ -24,7 +24,7 @@
 <meta name="author" content="Lena Janys" />
 
 
-<meta name="date" content="2019-10-11" />
+<meta name="date" content="2019-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,8 +162,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="exercises.html"><a href="exercises.html#numerische-und-nichtnumerische-objekte"><i class="fa fa-check"></i><b>6.1</b> Numerische und nichtnumerische Objekte</a></li>
 <li class="chapter" data-level="6.2" data-path="exercises.html"><a href="exercises.html#vektoren"><i class="fa fa-check"></i><b>6.2</b> Vektoren</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="7" data-path="organizational-info-1.html"><a href="organizational-info-1.html"><i class="fa fa-check"></i><b>7</b> Organizational Info:</a></li>
+<li class="chapter" data-level="7" data-path="statistical-functions.html"><a href="statistical-functions.html"><i class="fa fa-check"></i><b>7</b> Statistical functions</a><ul>
+<li class="chapter" data-level="7.1" data-path="statistical-functions.html"><a href="statistical-functions.html#sums-and-frequencies"><i class="fa fa-check"></i><b>7.1</b> Sums and frequencies</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-functions.html"><a href="statistical-functions.html#frequencies"><i class="fa fa-check"></i><b>7.2</b> Frequencies</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-functions.html"><a href="statistical-functions.html#statistical-distributions"><i class="fa fa-check"></i><b>7.3</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-functions.html"><a href="statistical-functions.html#normal-distribution"><i class="fa fa-check"></i><b>7.3.1</b> Normal distribution</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-functions.html"><a href="statistical-functions.html#binomial-distribution"><i class="fa fa-check"></i><b>7.3.2</b> Binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-functions.html"><a href="statistical-functions.html#multiplication-of-a-random-variable-with-a-constant"><i class="fa fa-check"></i><b>7.4</b> Multiplication of a random variable with a constant</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="simple-programming.html"><a href="simple-programming.html"><i class="fa fa-check"></i><b>8</b> Simple programming</a><ul>
+<li class="chapter" data-level="8.1" data-path="simple-programming.html"><a href="simple-programming.html#using-for-loops"><i class="fa fa-check"></i><b>8.1</b> Using for-loops</a></li>
+<li class="chapter" data-level="8.2" data-path="simple-programming.html"><a href="simple-programming.html#the-if-condition"><i class="fa fa-check"></i><b>8.2</b> The if-Condition</a></li>
+<li class="chapter" data-level="8.3" data-path="simple-programming.html"><a href="simple-programming.html#the-while-loop"><i class="fa fa-check"></i><b>8.3</b> The while-loop</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="construction-of-functions.html"><a href="construction-of-functions.html"><i class="fa fa-check"></i><b>9</b> Construction of functions</a><ul>
+<li class="chapter" data-level="9.1" data-path="construction-of-functions.html"><a href="construction-of-functions.html#simple-functions"><i class="fa fa-check"></i><b>9.1</b> Simple functions</a></li>
+<li class="chapter" data-level="9.2" data-path="construction-of-functions.html"><a href="construction-of-functions.html#functions-with-multiple-output-objects"><i class="fa fa-check"></i><b>9.2</b> Functions with multiple output objects</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="organizational-info-1.html"><a href="organizational-info-1.html"><i class="fa fa-check"></i><b>10</b> Organizational Info:</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -192,53 +209,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="fl">1.8</span> not <span class="dv">1</span>,<span class="dv">8</span></a></code></pre></div>
 <p>Exponents are declared with ^, i.e. $2^3 $ is written as</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="dv">2</span><span class="op">^</span><span class="dv">3</span></a></code></pre></div>
+<pre><code>## [1] 8</code></pre>
 <p>For mathematical calculations, only parentheses can be used. ()</p>
 <p>Frequently used mathematical functions are</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">sqrt</span>()   square root</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">exp</span>() exponential <span class="cf">function</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">log</span>()  nat.  Logarithm</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">log</span>(...,<span class="dv">10</span>)  Logarithm with Base <span class="dv">10</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw">abs</span>()  absolute value</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="kw">round</span>(...,x)  rounding to x decimals.</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7">pi </a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="kw">exp</span>(<span class="dv">1</span>)  Eulers number</a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="kw">sin</span>(),<span class="kw">cos</span>(),<span class="kw">tan</span>() trigonemetric functions</a>
-<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="kw">min</span>(), <span class="kw">max</span>() returns the lowest<span class="op">/</span>highest value of a vector<span class="op">/</span>matrix</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">sqrt</span>()   square root</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">exp</span>() exponential <span class="cf">function</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">log</span>()  nat.  Logarithm</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">log</span>(...,<span class="dv">10</span>)  Logarithm with Base <span class="dv">10</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">abs</span>()  absolute value</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw">round</span>(...,x)  rounding to x decimals.</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">pi </a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">exp</span>(<span class="dv">1</span>)  Eulers number</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="kw">sin</span>(),<span class="kw">cos</span>(),<span class="kw">tan</span>() trigonemetric functions</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">min</span>(), <span class="kw">max</span>() returns the lowest<span class="op">/</span>highest value of a vector<span class="op">/</span>matrix</a></code></pre></div>
 <p>Enter the following calculations and understand the command</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"> <span class="fl">1.8</span><span class="op">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"> <span class="fl">1.8</span><span class="dv">-2</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"> <span class="fl">1.8</span><span class="op">*</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"> <span class="fl">1.8</span><span class="op">/</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"> <span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"> (<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"> <span class="dv">2</span><span class="op">^</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"> <span class="dv">8</span><span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"> <span class="dv">3</span><span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"> <span class="dv">9</span><span class="op">^</span><span class="fl">0.5</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"> <span class="dv">2</span><span class="op">^</span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"> <span class="dv">2</span><span class="op">^</span>(<span class="dv">2</span><span class="op">*</span>((<span class="fl">0.2+0.3</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span><span class="dv">2</span>)))<span class="op">+</span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"> <span class="kw">sqrt</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"> <span class="kw">exp</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"> <span class="kw">exp</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"> <span class="kw">log</span>(<span class="fl">7.389056</span>)</a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"> <span class="kw">log</span>(<span class="kw">exp</span>(<span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"> <span class="kw">log</span>(<span class="dv">100</span>,<span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"> <span class="kw">abs</span>(<span class="fl">1.8</span><span class="dv">-2</span>)</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20"> <span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>),<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"> <span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>),<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb5-22" data-line-number="22"> pi</a>
-<a class="sourceLine" id="cb5-23" data-line-number="23"> <span class="kw">sin</span>(pi<span class="op">/</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-24" data-line-number="24"> <span class="kw">sin</span>(pi<span class="op">/</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-25" data-line-number="25"> <span class="kw">sin</span>(pi)</a>
-<a class="sourceLine" id="cb5-26" data-line-number="26"> <span class="kw">tan</span>(pi)</a>
-<a class="sourceLine" id="cb5-27" data-line-number="27"> x=<span class="dv">2</span><span class="op">+</span>3i</a>
-<a class="sourceLine" id="cb5-28" data-line-number="28"> y=<span class="dv">4</span><span class="op">+</span>1i</a>
-<a class="sourceLine" id="cb5-29" data-line-number="29"> x</a>
-<a class="sourceLine" id="cb5-30" data-line-number="30"> y</a>
-<a class="sourceLine" id="cb5-31" data-line-number="31"> x<span class="op">+</span>y</a>
-<a class="sourceLine" id="cb5-32" data-line-number="32"> x<span class="op">*</span>y</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"> <span class="fl">1.8</span><span class="op">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"> <span class="fl">1.8</span><span class="dv">-2</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"> <span class="fl">1.8</span><span class="op">*</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"> <span class="fl">1.8</span><span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"> <span class="dv">2</span><span class="op">+</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"> (<span class="dv">2</span><span class="op">+</span><span class="dv">2</span>)<span class="op">*</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"> <span class="dv">2</span><span class="op">^</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"> <span class="dv">8</span><span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"> <span class="dv">3</span><span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"> <span class="dv">9</span><span class="op">^</span><span class="fl">0.5</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"> <span class="dv">2</span><span class="op">^</span><span class="dv">2</span><span class="op">*</span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"> <span class="dv">2</span><span class="op">^</span>(<span class="dv">2</span><span class="op">*</span>((<span class="fl">0.2+0.3</span>)<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span><span class="dv">2</span>)))<span class="op">+</span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"> <span class="kw">sqrt</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"> <span class="kw">exp</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"> <span class="kw">exp</span>(<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"> <span class="kw">log</span>(<span class="fl">7.389056</span>)</a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"> <span class="kw">log</span>(<span class="kw">exp</span>(<span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"> <span class="kw">log</span>(<span class="dv">100</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"> <span class="kw">abs</span>(<span class="fl">1.8</span><span class="dv">-2</span>)</a>
+<a class="sourceLine" id="cb6-20" data-line-number="20"> <span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>),<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-21" data-line-number="21"> <span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>),<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb6-22" data-line-number="22"> pi</a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"> <span class="kw">sin</span>(pi<span class="op">/</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"> <span class="kw">sin</span>(pi<span class="op">/</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"> <span class="kw">sin</span>(pi)</a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"> <span class="kw">tan</span>(pi)</a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"> x=<span class="dv">2</span><span class="op">+</span>3i</a>
+<a class="sourceLine" id="cb6-28" data-line-number="28"> y=<span class="dv">4</span><span class="op">+</span>1i</a>
+<a class="sourceLine" id="cb6-29" data-line-number="29"> x</a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"> y</a>
+<a class="sourceLine" id="cb6-31" data-line-number="31"> x<span class="op">+</span>y</a>
+<a class="sourceLine" id="cb6-32" data-line-number="32"> x<span class="op">*</span>y</a></code></pre></div>
 <p>Attention:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"> <span class="fl">1.224606e-16</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"> <span class="fl">1.224606e-16</span></a></code></pre></div>
 <p>is interpreted as <span class="math inline">\(1.224606 \times 10^{-16}\)</span>. This is often exactly zero, but for internal memory purposes (R only has up to 16 decimals), can be a rounding mistake.</p>
 
 </div>
