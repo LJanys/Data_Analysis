@@ -24,7 +24,7 @@
 <meta name="author" content="Lena Janys" />
 
 
-<meta name="date" content="2019-10-11" />
+<meta name="date" content="2019-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="statistical-functions.html"/>
-<link rel="next" href="organizational-info-1.html"/>
+<link rel="next" href="construction-of-functions.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -176,7 +176,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="simple-programming.html"><a href="simple-programming.html#the-if-condition"><i class="fa fa-check"></i><b>8.2</b> The if-Condition</a></li>
 <li class="chapter" data-level="8.3" data-path="simple-programming.html"><a href="simple-programming.html#the-while-loop"><i class="fa fa-check"></i><b>8.3</b> The while-loop</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="organizational-info-1.html"><a href="organizational-info-1.html"><i class="fa fa-check"></i><b>9</b> Organizational Info:</a></li>
+<li class="chapter" data-level="9" data-path="construction-of-functions.html"><a href="construction-of-functions.html"><i class="fa fa-check"></i><b>9</b> Construction of functions</a><ul>
+<li class="chapter" data-level="9.1" data-path="construction-of-functions.html"><a href="construction-of-functions.html#simple-functions"><i class="fa fa-check"></i><b>9.1</b> Simple functions</a></li>
+<li class="chapter" data-level="9.2" data-path="construction-of-functions.html"><a href="construction-of-functions.html#functions-with-multiple-output-objects"><i class="fa fa-check"></i><b>9.2</b> Functions with multiple output objects</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="organizational-info-1.html"><a href="organizational-info-1.html"><i class="fa fa-check"></i><b>10</b> Organizational Info:</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -204,73 +208,92 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.1</span> Using for-loops</h2>
 <p>A for-loop is a procedure in which a variable repeats a particular routine, changing its value according to the values of a given data set (usually numeric).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">x=<span class="dv">0</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) { x=x<span class="op">+</span>i}</a></code></pre></div>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) { </a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">  x</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">   x=x<span class="op">+</span>i}</a></code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">x</a></code></pre></div>
+<pre><code>## [1] 6</code></pre>
 <p>We create a scalar x with the value 0 and then begin a for loop where the variable i passes through the values 1, 2 and 3. In the run of the first loop, i has the value 1, i. x is overwritten and is given the value 1 = 0 + 1. In the run of the second loop, i the value 2, i. x is overwritten and has the value 3 = 1 + 2. In the run of the third loop, i the value 3, i. x is overwritten and has the value 6 = 3 + 3.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x=<span class="dv">0</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">   {</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">     x=x<span class="op">+</span>i</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">     z=x<span class="op">*</span>i</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">     }</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">z</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">x=<span class="dv">0</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">   {</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">     x=x<span class="op">+</span>i</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">     z=x<span class="op">*</span>i</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">     }</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">z</a></code></pre></div>
+<pre><code>## [1] 18</code></pre>
 <p>In the next example, we carry out a simulation study on the law of large numbers. This means that “large” deviations of the sample mean from the expectation for increasing sample size become increasingly improbable. We are now repeating samples from a Bernoulli distribution, that is, from <span class="math inline">\(\mathcal{B}(1.0.5)\)</span>-distribution that simulates the tossing of a fair coin. The sample mean, which results from zeros and ones, corresponds in this case to the relative proportion of the ones. This relative fraction would converge stochastically to 0.5, the expectation value of a <span class="math inline">\(\mathcal{B}(1.0.5)\)</span> distribution for larger samples.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">#Simulationsstudy: law of large numbers</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co"># Example: Law of large numbers</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"> RelAnteil=<span class="kw">c</span>() <span class="co">###we initialize an &quot;empty vector&quot;</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"> N=<span class="dv">500</span><span class="co">#Number of draws</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"> <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)<span class="co">#initialize the loop</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">   {</a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">     Stichprobe=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,<span class="fl">0.5</span>)<span class="co">#draw a vector with sample size n</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9">     RelAnteil[n]=<span class="kw">mean</span>(Stichprobe)<span class="co">#calculate the proportion of the ones</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10">     }</a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>N,RelAnteil,<span class="co">#plot the results of all samples</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">        <span class="dt">main=</span><span class="st">&quot;B(1,0.5)-Distribution: Law of the large numbers&quot;</span>,</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">        <span class="dt">xlab=</span><span class="st">&quot;n&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Relative proportion&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14">        <span class="dt">cex.axis=</span><span class="fl">1.5</span>,<span class="dt">cex.lab=</span><span class="fl">1.5</span>,<span class="dt">cex.main=</span><span class="fl">1.5</span>)</a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"> <span class="kw">abline</span>(<span class="dt">h=</span><span class="fl">0.5</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)<span class="co">#We add a line for the expected value</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co">#Simulationsstudy: law of large numbers</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co"># Example: Law of large numbers</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"> RelAnteil=<span class="kw">c</span>() <span class="co">###we initialize an &quot;empty vector&quot;</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"> N=<span class="dv">500</span><span class="co">#Number of draws</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"> <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)<span class="co">#initialize the loop</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">   {</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">     Stichprobe=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,<span class="fl">0.5</span>)<span class="co">#draw a vector with sample size n</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">     RelAnteil[n]=<span class="kw">mean</span>(Stichprobe)<span class="co">#calculate the proportion of the ones</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">     }</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>N,RelAnteil,<span class="co">#plot the results of all samples</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">        <span class="dt">main=</span><span class="st">&quot;B(1,0.5)-Distribution: Law of the large numbers&quot;</span>,</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">        <span class="dt">xlab=</span><span class="st">&quot;n&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Relative proportion&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">        <span class="dt">cex.axis=</span><span class="fl">1.5</span>,<span class="dt">cex.lab=</span><span class="fl">1.5</span>,<span class="dt">cex.main=</span><span class="fl">1.5</span>)</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15"> <span class="kw">abline</span>(<span class="dt">h=</span><span class="fl">0.5</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)<span class="co">#We add a line for the expected value</span></a></code></pre></div>
 </div>
 <div id="the-if-condition" class="section level2">
 <h2><span class="header-section-number">8.2</span> The if-Condition</h2>
 <p>Within a for-loop, it may be useful to perform arithmetic operations only under certain conditions. The basic syntax for this is</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"> <span class="cf">if</span> (condition){</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">     statement  </a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">     } </a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"> <span class="cf">else</span>{</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">     alternative</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">     }</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"> <span class="cf">if</span> (condition){</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">     statement  </a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">     } </a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"> <span class="cf">else</span>{</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5">     alternative</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">     }</a></code></pre></div>
 <p>where else can remain unspecified.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">###If-condition###</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">y&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">N &lt;-<span class="st"> </span><span class="kw">length</span>(y)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="dv">1</span><span class="op">:</span>N</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">## </span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">y.sq &lt;-<span class="st"> </span><span class="kw">numeric</span>(N)<span class="co">#creates an empty numeric vector of length N</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N){ <span class="co">#initializing the for-loop</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">  y.sq[i] &lt;-<span class="st"> </span>y[i]<span class="op">^</span><span class="dv">2</span><span class="co">#every element of y.sq is replaced by the respective squared value.</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">  <span class="cf">if</span>(i <span class="op">==</span><span class="st"> </span>N){<span class="co">#only when this condition is met, i.e. in the last iteration of the loop </span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">    <span class="kw">print</span>(y.sq)<span class="co">#is the vector printed</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">  }</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co">###If-condition###</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">y&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">N &lt;-<span class="st"> </span><span class="kw">length</span>(y)</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="dv">1</span><span class="op">:</span>N</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">## </span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6">y.sq &lt;-<span class="st"> </span><span class="kw">numeric</span>(N)<span class="co">#creates an empty numeric vector of length N</span></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N){ <span class="co">#initializing the for-loop</span></a>
+<a class="sourceLine" id="cb9-9" data-line-number="9">  y.sq[i] &lt;-<span class="st"> </span>y[i]<span class="op">^</span><span class="dv">2</span><span class="co">#every element of y.sq is replaced by the respective squared value.</span></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10">  <span class="co">#if(i == N){#only when this condition is met, i.e. in the last iteration of the loop </span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11">    <span class="kw">print</span>(y.sq)<span class="co">#is the vector printed</span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12">  <span class="co">#}</span></a>
+<a class="sourceLine" id="cb9-13" data-line-number="13">}</a></code></pre></div>
 <p>In shorter form the ifelse() command is an alternative.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">ifelse</span>(test, yes, no)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">ifelse</span>(test, yes, no)</a></code></pre></div>
 </div>
 <div id="the-while-loop" class="section level2">
 <h2><span class="header-section-number">8.3</span> The while-loop</h2>
 <p>The while-loop performs a program (“statement”) as long as certain data conditions (“test expression”) are met. The basic syntax is</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"> <span class="cf">while</span> (testexpression)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">{</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">   <span class="co">#increment (i+1);</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">    statement</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"> <span class="cf">while</span> (testexpression)</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">{</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">   <span class="co">#increment (i+1);</span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4">    statement</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">}</a></code></pre></div>
 <p>Here, test_expression is evaluated and the body of the loop is entered if the result is TRUE.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="cf">while</span> (i <span class="op">&lt;</span><span class="st"> </span><span class="dv">6</span>) {</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">   <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">   i =<span class="st"> </span>i<span class="op">+</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6">}</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">results&lt;-<span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="cf">while</span> (i <span class="op">&lt;</span><span class="st"> </span><span class="dv">6</span>) {</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">   <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">  x=i</a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">  results[i]&lt;-i</a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">   i =<span class="st"> </span>i<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8">}</a></code></pre></div>
+<pre><code>## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">x</a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">results</a></code></pre></div>
+<pre><code>## [1] NA  2  3  4  5</code></pre>
 <p>In the above example, i is initially initialized to 1.</p>
 <p>Here, the test_expression is i &lt; 6 which evaluates to TRUE since 1 is less than 6. So, the body of the loop is entered and i is printed and incremented.</p>
 <p>Incrementing i is important as this will eventually meet the exit condition. Failing to do so will result into an infinite loop.</p>
@@ -286,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="statistical-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="organizational-info-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="construction-of-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -24,7 +24,7 @@
 <meta name="author" content="Lena Janys" />
 
 
-<meta name="date" content="2019-10-11" />
+<meta name="date" content="2019-10-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -246,46 +246,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb4-14" data-line-number="14">       <span class="dt">cex.axis=</span><span class="dv">1</span>,<span class="dt">cex.lab=</span><span class="dv">1</span>,<span class="dt">cex.main=</span><span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb4-15" data-line-number="15">  <span class="kw">abline</span>(<span class="dt">h=</span>pi,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb4-16" data-line-number="16">}</a>
-<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="kw">GGZGraph</span>()</a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#Simulation without default values</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="kw">GGZGraph</span>(<span class="dv">100</span>,<span class="fl">0.4</span>)</a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="kw">GGZGraph</span>(<span class="dv">100</span>,<span class="fl">0.4</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="kw">GGZGraph</span>()</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">#Simulation without default values</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">GGZGraph</span>(<span class="dv">100</span>,<span class="fl">0.4</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">GGZGraph</span>(<span class="dv">100</span>,<span class="fl">0.4</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
 </div>
 <div id="functions-with-multiple-output-objects" class="section level2">
 <h2><span class="header-section-number">9.2</span> Functions with multiple output objects</h2>
 <p>If the function is to return an object at the end, which can also be assigned (list, vector, matrix), this object must be printed as an expression at the end of the
 function text (of the program). Suppose we want the previous simulation program to output all calculated relative frequencies, as well as the fraction of all sample means in a specified interval (a, b).</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"> <span class="co">##Return multiple values</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">GGZSim=<span class="cf">function</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,a,b)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">{</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4">  RelAnteil=<span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">  {</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7">    Stichprobe=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,pi)</a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">    RelAnteil[n]=<span class="kw">mean</span>(Stichprobe)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9">  }</a>
-<a class="sourceLine" id="cb5-10" data-line-number="10">  IntervallAnt=<span class="kw">sum</span>(a<span class="op">&lt;</span>RelAnteil<span class="op">&amp;</span>RelAnteil<span class="op">&lt;</span>b)<span class="op">/</span>N</a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">  <span class="kw">list</span>(RelAnteil,IntervallAnt)</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12">}</a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">ergebnis=<span class="kw">GGZSim</span>(<span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,<span class="dt">a=</span><span class="fl">0.4</span>,<span class="dt">b=</span><span class="fl">0.6</span>)</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15">ergebnis[[<span class="dv">2</span>]]</a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">###Or###</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18">GGZSim2=<span class="cf">function</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,a,b)</a>
-<a class="sourceLine" id="cb5-19" data-line-number="19">{</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">  RelAnteil=<span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21">  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)</a>
-<a class="sourceLine" id="cb5-22" data-line-number="22">  {</a>
-<a class="sourceLine" id="cb5-23" data-line-number="23">    Stichprobe=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,pi)</a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">    RelAnteil[n]=<span class="kw">mean</span>(Stichprobe)</a>
-<a class="sourceLine" id="cb5-25" data-line-number="25">  }</a>
-<a class="sourceLine" id="cb5-26" data-line-number="26">  IntervallAnt=<span class="kw">sum</span>(a<span class="op">&lt;</span>RelAnteil<span class="op">&amp;</span>RelAnteil<span class="op">&lt;</span>b)<span class="op">/</span>N</a>
-<a class="sourceLine" id="cb5-27" data-line-number="27">  return=<span class="kw">list</span>(<span class="dt">RelAnteil=</span>RelAnteil,<span class="dt">IntervallAnt=</span>IntervallAnt)</a>
-<a class="sourceLine" id="cb5-28" data-line-number="28">}</a>
-<a class="sourceLine" id="cb5-29" data-line-number="29">ergebnis2=<span class="kw">GGZSim2</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,<span class="dt">a=</span><span class="fl">0.4</span>,<span class="fl">0.6</span>)</a>
-<a class="sourceLine" id="cb5-30" data-line-number="30">ergebnis2<span class="op">$</span>IntervallAnt <span class="op">$</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"> <span class="co">##Return multiple values</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">GGZSim=<span class="cf">function</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,a,b)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">{</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">  RelAnteil=<span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">  {</a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">    Stichprobe=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,pi)</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">    RelAnteil[n]=<span class="kw">mean</span>(Stichprobe)</a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">  }</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">  IntervallAnt=<span class="kw">sum</span>(a<span class="op">&lt;</span>RelAnteil<span class="op">&amp;</span>RelAnteil<span class="op">&lt;</span>b)<span class="op">/</span>N</a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">  <span class="kw">list</span>(RelAnteil,IntervallAnt)</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb7-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb7-14" data-line-number="14">ergebnis=<span class="kw">GGZSim</span>(<span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,<span class="dt">a=</span><span class="fl">0.4</span>,<span class="dt">b=</span><span class="fl">0.6</span>)</a>
+<a class="sourceLine" id="cb7-15" data-line-number="15">ergebnis[[<span class="dv">2</span>]]</a>
+<a class="sourceLine" id="cb7-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb7-17" data-line-number="17"><span class="co">###Or###</span></a>
+<a class="sourceLine" id="cb7-18" data-line-number="18">GGZSim2=<span class="cf">function</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,a,b)</a>
+<a class="sourceLine" id="cb7-19" data-line-number="19">{</a>
+<a class="sourceLine" id="cb7-20" data-line-number="20">  RelAnteil=<span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb7-21" data-line-number="21">  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)</a>
+<a class="sourceLine" id="cb7-22" data-line-number="22">  {</a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">    Stichprobe=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,pi)</a>
+<a class="sourceLine" id="cb7-24" data-line-number="24">    RelAnteil[n]=<span class="kw">mean</span>(Stichprobe)</a>
+<a class="sourceLine" id="cb7-25" data-line-number="25">  }</a>
+<a class="sourceLine" id="cb7-26" data-line-number="26">  IntervallAnt=<span class="kw">sum</span>(a<span class="op">&lt;</span>RelAnteil<span class="op">&amp;</span>RelAnteil<span class="op">&lt;</span>b)<span class="op">/</span>N</a>
+<a class="sourceLine" id="cb7-27" data-line-number="27">  return=<span class="kw">list</span>(<span class="dt">RelAnteil=</span>RelAnteil,<span class="dt">IntervallAnt=</span>IntervallAnt)</a>
+<a class="sourceLine" id="cb7-28" data-line-number="28">}</a>
+<a class="sourceLine" id="cb7-29" data-line-number="29">ergebnis2=<span class="kw">GGZSim2</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,<span class="dt">a=</span><span class="fl">0.4</span>,<span class="fl">0.6</span>)</a>
+<a class="sourceLine" id="cb7-30" data-line-number="30">ergebnis2<span class="op">$</span>IntervallAnt <span class="op">$</span></a></code></pre></div>
 <p>Functions can also be arguments to a function itself.</p>
 
 </div>
