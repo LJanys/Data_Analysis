@@ -14,9 +14,3 @@ description: "Introduction to Data Analysis"
 
 
 
-This course is an introduction to data analysis using the programming language **R**. 
-
-
-
-
-
