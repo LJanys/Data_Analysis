@@ -1,0 +1,380 @@
+# Data structures: vectors, matrices, lists
+
+## Numerical and non-numeric objects
+
+Non-numeric data in R is often preceded by an asterisk "" and can also be identified by these in the output.
+
+Enter the following
+
+```{r, error = TRUE,eval=F }
+x=2
+x
+x+1
+x="2"
+x
+x+2
+x=z
+x="z"
+x
+x+2
+```
+
+
+```{r, error = TRUE,eval=T }
+x=2
+x
+x+1
+x="2"
+x
+x+2
+x=z
+x="z"
+x
+x+2
+```
+
+
+## Vectors
+
+If you want to store several numbers or names (string) under an object name, the construction of a vector is a good idea. Vectors are created using the command c() where "c" stands for "combine". Compute the following commands for vectors:
+
+%Möchte man mehrere Zahlen oder Namen (Zeichenketten) unter einem Objektnamen speichern, bietet sich hierfür die Konstruktion eines Vektors an. Vektoren werden über den Befehl c() konstruiert, wobei das "c" für "combine" steht. Vollziehen Sie die nachfolgenden Eingaben zum Arbeten mit Vekotren nach. 
+
+
+```{r, error = TRUE,eval=T }
+ #Skalars
+s1<-0.8
+s2<-2.4
+s3<-c(-3.4)
+s1
+s2
+s3
+```
+
+```{r, error = TRUE,eval=T }
+#Construction of vectors
+v1<-c(s1,s2,s3)
+v1
+v2<-c(1,2,3)
+v2
+v3=c(v1,4,5)
+v3
+v4=c(c(4,2,3),v3,c(3,8),s3,1,2,c(v1,v2,v3))
+v4
+Name=c("Anton","Berta","Caesar","Dora","Emil")
+Gender=c("m","w","m","w","m")
+Height=c(182,174,189,165,180)
+Weight=c(80,68,92,55,78)
+Name 
+Gender
+Height
+Weight
+```
+
+
+
+
+In practice, it often happens that the values of a data vector follow a particular basic pattern. For example, individual values follow each other at fixed intervals or they repeat continuously. Here the commands seq() and rep are very helpful. With the operator : shortened sequences with step size 1 can be generated. If the end value does not fit into the sequence of the generated sequence, the next lower (or next larger) value is aborted. Follow the following calculations
+
+
+
+```{r, error = TRUE,eval=T }
+#Creating special vectors
+seq(2,30,by=4)
+seq(2,30,le=4)
+seq(2,30,4)
+seq(2,30,5)
+seq(2,30,10)
+seq(10,3,-2)
+rep(1,3)
+rep(3,1)
+rep(2,4)
+rep(4,2)
+v1
+rep(v1,3)
+1:4
+2:7
+10:3
+1.5:4.8
+```
+
+ 
+
+The individual components of a vector x are numbered from 1 to n, where n is the total number (vector length) of the components. The vector length can be queried with length (x). With the help of square brackets, specific parts of a vector can be accessed.
+
+
+```{r, error = TRUE,eval=T }
+#Accessing vector components
+Name
+length(Name)
+Name[1]
+Name[2]
+Name[c(1,2)]
+Name[1:3]
+Name[-2]
+Name[-c(1,2)]
+length(Height)
+Height[1]
+Height[1:3]
+Height[-(1:3)]
+```
+
+
+
+
+When performing calculations with vectors, it is important to note that a vector is commonly used
+either with a scalar or with a vector of the same length. In the first
+case, each individual component is linked to the scalar in the same way.
+For example, the same value is added to each component. In the second case, computations are performed component-wise.
+For example, all peer-to-peer components are added.
+If two vectors of unequal length, each with at least 2 components, are added, a warning message is usually issued. R will still perform the operation, though!
+
+
+
+```{r, error = TRUE,eval=T }
+c(1,2,3,4,5)+c(1,2,3)
+```
+
+
+
+How does this result come about? R proceeds here according to the principle of cyclic extension, i. with two objects of different lengths, the shorter object is extended to the length of the longer object. The existing components at the end of the vector are simply added again. This is repeated until the lengths of the two vectors correspond. In this example, c (1,2,3) thus again the numbers 1 and 2 attached, so that in effect the two vectors
+
+
+```{r, error = TRUE,eval=T }
+ c(1,2,3,4,5)+c(1,2,3,1,2)
+```
+ 
+ 
+```{r, error = TRUE,eval=F }
+ #Calculations with vectors
+c(1,2,3)+1
+c(1,2,3)+c(3,2,1)
+c(1,2,3,4,5)+c(1,2,3)
+c(1,2,3)*2
+c(1,2,3)*c(3,2,1)
+c(1,2,3)/2
+c(1,2,3)/c(3,2,1)
+```
+
+
+## Matrices
+
+In the following, we will discuss how matrices in R are constructed and how these can be worked with.
+
+The basic command for constructing matrices is matrix()
+
+In most cases, the input of three arguments is sufficient:
+
+- a data vector from which a matrix is constructed,
+- the number of rows,
+- the number of collumns.
+
+
+
+As a rule, the product of row and column numbers should correspond to the vector length. If more numbers fit into the matrix than the vector components, the cyclic extension principle is again used. If the vector contains more components than in the matrix, the operation at the corresponding point is simply aborted. The matrix is filled from top to bottom and from left to right with the values of the vector. The filling principle can be changed using the options byrow=F or byrow=T. In the case of the second setting, the matrix would be filled line by line from left to right and from top to bottom. With the commands
+
+```{r, error = TRUE,eval=F }
+cbind() und rbind()
+```
+ 
+
+ 
+we can combine vectors into a matrix, either by ("c" for "column" or "r" for "row").
+```{r, error = TRUE,eval=F }
+ #Construction of matrices
+v=1:12
+v
+m1=matrix(v,3,4)
+m1
+m2=matrix(v,4,3)
+m2
+matrix(v,3,4,byrow=T)
+matrix(v,4,4)
+matrix(v,5,5)
+matrix(v,2,2)
+m3=cbind(m1,c(13,14,15))
+m3
+cbind(c(1,2,3),c(4,5,6))
+m4=rbind(m2,c(5,9,13))
+m4
+rbind(c(1,2,3),c(4,5,6))
+```
+
+
+
+As with vectors, access to individual components is obtained by using square brackets. Two arguments are given:
+
+- a scalar/vector for the row(s) of interest
+- a scalar/vector for the collumns(s) of interest
+
+A comma without a number value represents all rows or all column values. Negative signs cause all rows / columns except the specified ones to be returned. dim() queries the dimensions of a matrix (rows, columns).
+
+
+```{r, error = TRUE,eval=F }
+ #Accessing matrix components
+m1
+m1[1,]
+m1[2,]
+m1[,4]
+m1[1,1]
+m1[2,2]
+m1[c(1,3),2:3]
+m1[,-4]
+dim(m1)
+```
+With the command solve(), matrices can be inverted. In the mathematical sense, the multiplication of a matrix with its inverse results in the unit matrix.
+```{r, error = TRUE,eval=F }
+#Performing calculations with matrices
+m1=matrix(c(1,4,3,0),2,2)
+m2=matrix(c(1,2,3,2),2,2)
+m1
+m2
+m1+1
+m1+m2
+m1-m2
+m1*2
+m1*m2
+m1/2
+m1/m2
+m1%*%m2
+t(m1)
+solve(m1)
+m1%*%solve(m1)
+\end{lstlisting}
+\subsection{Lists}
+ list()
+ \begin{lstlisting}
+#Construction of lists
+v=c("Hallo","Tag","Hi","Guten Tag")
+m=matrix(1:9,3,3)
+v
+m
+objects=list(v,m)
+objects
+```
+
+
+As with vectors, matrices can be linked to each other elementally by a computational operation (by +,-,/ ). Alternatively, a matrix multiplication can be performed using %*%. An example  
+
+
+$$
+ \left(\begin{matrix}1&3\\ 4&0 \end{matrix} \right)\left(\begin{matrix}1&3\\ 2&2 
+\end{matrix} \right)=\left(\begin{matrix}1\cdot 1 +3 \cdot 2&1 \cdot 3+3 \cdot 2\\ 4\cdot 1+0\cdot 2&4\cdot 3+0\cdot 2 \end{matrix} \right)=\left(\begin{matrix}7&9\\ 4&12 \end{matrix} \right)
+$$
+
+## Lists 
+
+Lists are the most general object form in R. A list is almost an object of objects. This means that within this data structure, objects of a very different kind and scale can be organized (numerically and non-numerically). These different objects then form the components of a list. Lists are very useful in functions, since functions can only output one object at the end. The basic command for constructing lists is list.
+
+For lists, access to individual components via square brackets [[]]. The number of components in a list can be queried by length(). The access to components of list components is hierachical, i.e objects[[1]] [2] asks the second component of the first list component.
+
+```{r, error = TRUE,eval=F }
+#Accessing list components
+objects[[1]]
+objects[[2]]
+length(objects)
+objects[[1]][2]
+objects[[2]][,2]
+names(objects)
+objects=list(Greetings=v,Datamatrix=m)
+objects$Greetings
+objects$Datamatrix
+names(objects)
+```
+
+## Data Frames
+
+In R, data sets are usually stored as "data frames". These are similar to matrices but have certain additional properties. A matrix cannot contain both numeric and non-numeric content. The basic command is data.frame(), then the names of the vectors are entered by comma:
+```{r, error = TRUE,eval=F }
+#Data Frames
+Name 
+Gender
+Height
+Weight
+cbind(Name, Gender, Height, Weight)
+Personen=data.frame(Name, Gender, Height, Weight)
+summary(Personen)
+```
+
+
+
+Usually the calculations of the summary() function are adapted to the type of the vector. Component access to a data frame can be performed as with a list or a matrix.
+```{r, error = TRUE,eval=F }
+#Component access in data frames
+length(Personen)
+Personen[[1]]
+Personen[[4]]
+names(Personen)
+Personen$Name
+Personen$Gewicht
+dim(Personen)
+Personen[1,1]
+Personen[5,4]
+Personen[1,1]
+Personen[5,4]
+```
+
+## Working with logical operators
+
+```{r, error = TRUE,eval=F }
+TRUE and FALSE
+```
+These types of values are generated in the context of logical operations. These are computing operations which check whether individual data fulfill a particular property. The numerical value 1 is assigned to the result TRUE, so that a logical command adds up the number of TRUE results. == checks for equality, != checks for inequality. 
+
+
+```{r, error = TRUE,eval=F }
+#Checks with logical operators
+x=c(8,5,5,1,6,9,7,4)
+x<6
+x>3
+x==5
+x!=5
+2<x&x<8
+x<4|x>6
+sum(x>3)
+sum(x<4|x>6)
+```
+
+If we only want to view/process part of the data frame, we can use subset().
+```{r, error = TRUE,eval=F }
+#Partially accessing a data frame
+Personen
+subset(Personen,Gender=="m")
+subset(Personen,Height>180)
+subset(Personen,Gender=="m",select=Name)
+subset(Personen,Height>180,select=c(Height,Weight))
+Men=subset(Personen,Gender=="m")
+```
+
+# Ordering of data sets
+
+Data can be ordered by size or alphabetically (ascending or descending).
+sort(), rank() und order().
+
+
+With sort() the values are sorted by size, default is ascending. rank() specifies the ranks of the values in the ordered order. order() has the practically reversed function, i. the first element is the smallest value of the component x, etc.
+
+
+#Ordering of data
+
+```{r, error = TRUE,eval=T }
+x=c(4,6,2,7,9,1,5,4)
+x
+sort(x)
+x
+sort(x,decreasing=T)
+rank(x)
+order(x)
+```
+
+
+
+
+
+
+
+
+
+
+
+

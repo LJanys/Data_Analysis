@@ -1,0 +1,456 @@
+# Exercises: Simple Data structures
+
+## R as a calculator
+```{r, error = TRUE,eval=F }
+1.8+2
+ 1.8-2
+ 1.8*2
+ 1.8/2
+ 2+2*3
+ (2+2)*3
+ 2^3
+ 8^(1/3)
+ 3^2
+ 9^0.5
+ 2^2*2+2
+ 2^(2*((0.2+0.3)*(1+2)))+4
+ sqrt(2)
+ exp(1)
+ exp(2)
+ log(7.389056)
+ log(exp(3))
+ log(100,10)
+ abs(1.8-2)
+ round(sqrt(2),2)
+ round(sqrt(2),4)
+ pi
+ sin(pi/2)
+ sin(pi/2)
+ sin(pi)
+ tan(pi)
+ x=2+3i
+ y=4+1i
+ x
+ y
+ x+y
+ x*y
+```
+ 
+## Numerical and Nonnumerical Objects
+
+```{r, error = TRUE,eval=F }
+x=2
+x
+x+1
+x="Hallo Welt"
+x
+x+2
+x=z
+x="z"
+x
+x+2
+```
+## Vectors
+```{r, error = TRUE,eval=F }
+#Scalars
+s1<-0.8
+s2<-2.4
+s3<-c(-3.4)
+s1
+s2
+
+#Construction of vectors
+v1<-c(s1,s2,s3)
+v1
+v2<-c(1,2,3)
+v2
+v3=c(v1,4,5)
+v3
+v4=c(c(4,2,3),v3,c(3,8),s3,1,2,c(v1,v2,v3))
+v4
+
+Name=c("Anton","Berta","Caesar","Dora","Emil")
+Geschlecht=c("m","w","m","w","m")
+Groesse=c(182,174,189,165,180)
+Gewicht=c(80,68,92,55,78)
+Name 
+Geschlecht
+Groesse
+Gewicht
+
+#Construction of special vectors
+seq(2,30,by=0.1)
+seq(2,30,le=4)
+seq(2,30,4)
+seq(2,30,5)
+seq(2,30,10)
+seq(10,3,-2)
+
+rep(1,3)
+rep(3,1)
+rep(2,4)
+rep(4,2)
+v1
+rep(v1,3)
+1:4
+2:7
+10:3
+1.5:4.8
+
+
+
+#Accessing vector components
+Name
+length(Name)
+Name[1]
+Name[2]
+Name[c(1,2)]
+Name[1:3]
+Name[-2]
+Name[-c(1,2)]
+length(Groesse)
+Groesse[1]
+Groesse[1:3]
+Groesse[-(1:3)]
+
+#Calculating with vectors
+c(1,2,3)+1
+c(1,2,3)+c(3,2,1)
+c(1,2,3,4,5)+c(1,2,3)
+c(1,2,3)*2
+c(1,2,3)*c(3,2,1)
+c(1,2,3)%*%c(3,2,1)
+c(1,2,3)/2
+c(1,2,3)/c(3,2,1)
+
+```
+# Construction of matrices
+```{r, error = TRUE,eval=F }
+v=1:12
+v
+m1=matrix(v,3,4)
+m1
+m2=matrix(v,4,3)
+m2
+matrix(v,3,4,byrow=T)
+matrix(v,4,4)
+matrix(v,5,5)
+matrix(v,2,2)
+m3=cbind(m1,c(13,14,15))
+m3
+cbind(c(1,2,3),c(4,5,6))
+m4=rbind(m2,c(5,9,13))
+m4
+cbind(c(1,2,3),c(4,5,6))
+
+#Accessing matrix components
+m1
+m1[1,]
+m1[2,]
+m1[,4]
+m1[1,1]
+m1[2,2]
+m1[c(1,3),2:3]
+m1[,-4]
+c=dim(m1)
+#Calculating with matrices
+m1=matrix(c(1,4,3,0),2,2)
+m2=matrix(c(1,2,3,2),2,2)
+m1
+m2
+m1+1
+m1+m2
+m1-m2
+m1*2
+m1*m2
+m1/2
+m1/m2
+m1%*%m2
+t(m1)
+solve(m1)
+m1%*%solve(m1)
+
+```
+# Construction of Lists
+```{r, error = TRUE,eval=F }
+
+
+v=c("Hallo","Tag","Hi","Guten Tag")
+m=matrix(1:9,3,3)
+v
+m
+objekte=list(v,m)
+objekte
+#Accessing list components
+objekte[[1]]
+objekte[[2]]
+length(objekte)
+objekte[[1]][2]
+objekte[[2]][,2]
+objekte=list(Begruessungen=v,Zahlenmatrix=m)
+objekte$Begruessungen
+objekte$Zahlenmatrix
+names(objekte)
+#Data Frames
+Name 
+Geschlecht
+Groesse
+Gewicht
+cbind(Name, Geschlecht, Groesse, Gewicht)
+Personen=data.frame(Name, Geschlecht, Groesse, Gewicht)
+summary(Personen)
+
+#Accessing data frame coomponents
+length(Personen)
+Personen[[1]]
+Personen[[4]]
+names(Personen)
+Personen$Name
+Personen$Gewicht
+dim(Personen)
+Personen[1,1]
+Personen[5,4]
+Personen[1,1]
+Personen[5,4]
+
+#Logical Expressions
+x=c(8,5,5,1,6,9,7,4)
+c=x<6
+x>3
+x==5
+x!=5
+2<x&x<8
+x<4|x>6
+sum(x>3)
+sum(x<4|x>6)
+x[]>2###Returns a logical vector
+## 
+y<-seq(1,8,by=1)
+y[x>4]#returns all elements for which a logical expression is fulfilled
+#Subsetting data frames
+Personen
+subset(Personen,Geschlecht=="m")
+subset(Personen,Groesse>180)
+subset(Personen,Geschlecht=="m",select=Name)
+subset(Personen,Groesse>180,select=c(Groesse,Gewicht))
+Maenner=subset(Personen,Geschlecht=="m")
+
+#Ordering data
+x=c(4,6,2,7,9,1,5,4)
+x
+sort(x)
+x
+sort(x,decreasing=T)
+rank(x)
+order(x)
+
+
+#Summing data
+x=c(1,1,5,2,1,5,2,3,10,2)
+n=length(x)
+n
+Y<-cbind(rep(1,n),x)
+sum(x)
+cumsum(x)
+colSums (Y)
+rowSums (Y)
+colMeans(Y)
+rowMeans(Y)
+
+```
+
+
+```{r, error = TRUE,eval=F }
+#Frequencies - onedimensional
+table(x)
+x
+table(x)/n
+klassen=hist(x,breaks=(c(0,2,5,10)))
+klassen$counts
+klassen$counts/n
+#Mehrdimensional
+ x=c(1,1,1,2,1,3,3,2,1,3)
+ y=c(0,0,0,1,0,0,1,1,0,1)
+ z=c("a","b","b","a","b","b","a","b","a","a")
+data.frame(x,y,z)
+table(x,y)
+table(x,y,z)## two-dimensional frequency table
+
+
+
+
+##Conditional frequencies 
+m=table(x,y)
+m
+#Calculates row frequencies
+prop.table(m,1)
+#Calculates column frequencies
+prop.table(m,2)
+##Statistical distribution 
+#Normal distribution 
+x=seq(-5,4,le=1000)
+y=dnorm(x)
+plot(x,y)
+plot(x,y,type="l")
+z=dnorm(x,1,2)
+plot(x,z,type="l")
+pnorm(0)
+pnorm(0,1,2)
+pnorm(1,1,2)
+##Calculations
+pnorm(3,1,2)-pnorm(2,1,2)
+qnorm(0.6,1,2)
+x=rnorm(1000,1,2)
+hist(x,prob=T)
+##Binomial distribution
+dbinom(8,10,0.5)
+pbinom(6,10,0.5)-pbinom(2,10,0.5)
+qbinom(c(0.25,0.5,0.75),10,0.5)
+rbinom(20,1,0.5)
+x=0:20
+y=dbinom(x,20,0.5)
+plot(x,y,type="h")
+#Repeated random draws#
+rbinom(20,10,0.5)
+set.seed(32323)
+rbinom(20,10,0.5)
+set.seed(32323)
+rbinom(20,10,0.5)
+set.seed(32323)
+rbinom(20,10,0.5)
+
+#For-Loops
+#Example 1
+x=0
+for (i in 1:3) { x=x+i }
+x
+
+# Example 2
+ x=0
+ for (i in 1:3)
+   {
+     x=x+i
+     z=x*i
+     }
+z
+
+#Simulationstudy: Law of large numbers
+
+# 
+ RelShare=c() ###initialize an empty vector"
+ N=500#Number of draws
+ for (n in 1:N)#initialize the loop
+   {
+     Sample=rbinom(n,1,0.5)#draw a vector with 
+     RelShare[n]=mean(Sample)#calculate the number of ones
+     }
+plot(1:N,RelShare,#plot the results
+        main="B(1,0.5)-Distribution-Law of large numbers",
+        xlab="n",ylab="Relative Share",pch=16,
+        cex.axis=1,cex.lab=1,cex.main=1)
+ abline(h=0.5,lwd=2,col=2)#We add a line with the expected value
+
+###If-condition###
+y<-c(1,4,5,2,7,8,2,4)
+N <- length(y)
+1:N
+## 
+y.sq <- numeric(N)#initialize an empty vector of length N
+y.sq#print
+## 
+for(i in 1:N){ # initialize the for-loop
+  y.sq[i] <- y[i]^2#every element of y is squared and replaces the i'th element in the empty vector with the result
+  if(i == N){# only when condition is fulfilled , i.e. only in the last run of the loop
+    print(y.sq)#print y.sq in the console
+  }
+}
+
+##Variation###
+y<-c(1,4,5,2,7,8,2,4)
+N <- length(y)
+1:N
+## 
+y.sq <- numeric(N)#initialize an empty vector of length N
+y.sq#print
+## 
+for(i in 1:N){ # # initialize the for-loop
+  if(y[i] > 4){ ##if condition is fulfilled, i.e. if y[i] is larger than 4
+  y.sq[i] <- y[i]^2#every element of y is squared and replaces the i'th element in the empty vector with the result
+  }
+else{ ##if elements of y are smaller or equal to 4: 
+  y.sq[i]<-0## replace the elements with zero
+}
+  }
+y.sq
+
+
+
+#Functions: write a function that calculates the (biased) variance
+vartilde=function(x)
+{
+  mean(x^2)-mean(x)^2
+}
+
+
+y<-rnorm(100)
+vartilde(x=y)#Call the function vartilde
+var(y)
+
+##functions with many arguments
+
+GGZGraph=function(N=100,pi=0.5)
+{
+  RelShare=c()
+  for (n in 1:N)
+  {
+    Sample=rbinom(n,1,pi)
+    RelShare[n]=mean(Sample)
+  }
+  plot(1:N, RelShare,
+       main="LLN",
+       xlab="n",ylab="Relative Share",pch=16,
+       cex.axis=1,cex.lab=1,cex.main=1)
+  abline(h=pi,lwd=2,col=2)
+}
+GGZGraph()
+
+#Simulation 
+GGZGraph(100,0.4)
+GGZGraph(1000,0.4)
+
+##Return of several values
+GGZSim=function(N=100,pi=0.5,a,b)
+{
+   RelShare=c()
+  for (n in 1:N)
+  {
+    Sample=rbinom(n,1,pi)
+     RelShare[n]=mean(Sample)
+  }
+  IntervallAnt=sum(a< RelShare& RelShare<b)/N
+  list( RelShare,IntervallAnt)
+}
+
+result=GGZSim(100,pi=0.5,a=0.4,b=0.6)
+result[[2]]
+
+###Or###
+GGZSim2=function(N=100,pi=0.5,a,b)
+{
+  RelShare=c()
+  for (n in 1:N)
+  {
+    Sample=rbinom(n,1,pi)
+    RelShare[n]=mean(Sample)
+  }
+  IntervallAnt=sum(a<RelShare&RelShare<b)/N
+  return=list(RelShare=RelShare,IntervallAnt=IntervallAnt)
+}
+result2=GGZSim2(N=100,pi=0.5,a=0.4,0.6)
+result2$IntervallAnt
+
+```
+
+
+
+
