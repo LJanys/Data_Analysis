@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Data structures: vectors, matrices, lists | Script Introduction to Data Analysis</title>
+  <meta name="description" content="Introduction to Data Analysis" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Data structures: vectors, matrices, lists | Script Introduction to Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to Data Analysis" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Data structures: vectors, matrices, lists | Script Introduction to Data Analysis" />
+  
+  <meta name="twitter:description" content="Introduction to Data Analysis" />
+  
+
+<meta name="author" content="Lena Janys" />
+
+
+<meta name="date" content="2019-10-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="operators.html"/>
+<link rel="next" href="ordering-of-data-sets.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Organizational Info:</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Course Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#list"><i class="fa fa-check"></i><b>2.1</b> List of Topics</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#method"><i class="fa fa-check"></i><b>2.2</b> Methods</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#data"><i class="fa fa-check"></i><b>2.2.1</b> Data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#tools"><i class="fa fa-check"></i><b>2.2.2</b> Tools</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#exam"><i class="fa fa-check"></i><b>2.3</b> Exam</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#timetable"><i class="fa fa-check"></i><b>2.4</b> Timetable</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-r-principle"><i class="fa fa-check"></i><b>3.1</b> The R-Principle</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assigments"><i class="fa fa-check"></i><b>3.2</b> Assigments</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-and-removing-objects"><i class="fa fa-check"></i><b>3.3</b> Saving and removing objects</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-help"><i class="fa fa-check"></i><b>3.4</b> R Help</a></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#using-the-editor"><i class="fa fa-check"></i><b>3.5</b> Using the editor</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#working-directory"><i class="fa fa-check"></i><b>3.6</b> Working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="operators.html"><a href="operators.html"><i class="fa fa-check"></i><b>4</b> Operators</a></li>
+<li class="chapter" data-level="5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html"><i class="fa fa-check"></i><b>5</b> Data structures: vectors, matrices, lists</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#numerical-and-non-numeric-objects"><i class="fa fa-check"></i><b>5.1</b> Numerical and non-numeric objects</a></li>
+<li class="chapter" data-level="5.2" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#vectors"><i class="fa fa-check"></i><b>5.2</b> Vectors</a></li>
+<li class="chapter" data-level="5.3" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#matrices"><i class="fa fa-check"></i><b>5.3</b> Matrices</a></li>
+<li class="chapter" data-level="5.4" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#lists"><i class="fa fa-check"></i><b>5.4</b> Lists</a></li>
+<li class="chapter" data-level="5.5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#data-frames"><i class="fa fa-check"></i><b>5.5</b> Data Frames</a></li>
+<li class="chapter" data-level="5.6" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#working-with-logical-operators"><i class="fa fa-check"></i><b>5.6</b> Working with logical operators</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ordering-of-data-sets.html"><a href="ordering-of-data-sets.html"><i class="fa fa-check"></i><b>6</b> Ordering of data sets</a></li>
+<li class="chapter" data-level="7" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>7</b> Exercises</a><ul>
+<li class="chapter" data-level="7.1" data-path="exercises.html"><a href="exercises.html#numerische-und-nichtnumerische-objekte"><i class="fa fa-check"></i><b>7.1</b> Numerische und nichtnumerische Objekte</a></li>
+<li class="chapter" data-level="7.2" data-path="exercises.html"><a href="exercises.html#vektoren"><i class="fa fa-check"></i><b>7.2</b> Vektoren</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="statistical-functions.html"><a href="statistical-functions.html"><i class="fa fa-check"></i><b>8</b> Statistical functions</a><ul>
+<li class="chapter" data-level="8.1" data-path="statistical-functions.html"><a href="statistical-functions.html#sums-and-frequencies"><i class="fa fa-check"></i><b>8.1</b> Sums and frequencies</a></li>
+<li class="chapter" data-level="8.2" data-path="statistical-functions.html"><a href="statistical-functions.html#frequencies"><i class="fa fa-check"></i><b>8.2</b> Frequencies</a></li>
+<li class="chapter" data-level="8.3" data-path="statistical-functions.html"><a href="statistical-functions.html#statistical-distributions"><i class="fa fa-check"></i><b>8.3</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="statistical-functions.html"><a href="statistical-functions.html#normal-distribution"><i class="fa fa-check"></i><b>8.3.1</b> Normal distribution</a></li>
+<li class="chapter" data-level="8.3.2" data-path="statistical-functions.html"><a href="statistical-functions.html#binomial-distribution"><i class="fa fa-check"></i><b>8.3.2</b> Binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="statistical-functions.html"><a href="statistical-functions.html#multiplication-of-a-random-variable-with-a-constant"><i class="fa fa-check"></i><b>8.4</b> Multiplication of a random variable with a constant</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="simple-programming.html"><a href="simple-programming.html"><i class="fa fa-check"></i><b>9</b> Simple programming</a><ul>
+<li class="chapter" data-level="9.1" data-path="simple-programming.html"><a href="simple-programming.html#using-for-loops"><i class="fa fa-check"></i><b>9.1</b> Using for-loops</a></li>
+<li class="chapter" data-level="9.2" data-path="simple-programming.html"><a href="simple-programming.html#the-if-condition"><i class="fa fa-check"></i><b>9.2</b> The if-Condition</a></li>
+<li class="chapter" data-level="9.3" data-path="simple-programming.html"><a href="simple-programming.html#the-while-loop"><i class="fa fa-check"></i><b>9.3</b> The while-loop</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="construction-of-functions.html"><a href="construction-of-functions.html"><i class="fa fa-check"></i><b>10</b> Construction of functions</a><ul>
+<li class="chapter" data-level="10.1" data-path="construction-of-functions.html"><a href="construction-of-functions.html#simple-functions"><i class="fa fa-check"></i><b>10.1</b> Simple functions</a></li>
+<li class="chapter" data-level="10.2" data-path="construction-of-functions.html"><a href="construction-of-functions.html#functions-with-multiple-output-objects"><i class="fa fa-check"></i><b>10.2</b> Functions with multiple output objects</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="organizational-info-1.html"><a href="organizational-info-1.html"><i class="fa fa-check"></i><b>11</b> Organizational Info:</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Script Introduction to Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-structures-vectors-matrices-lists" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> Data structures: vectors, matrices, lists</h1>
+<div id="numerical-and-non-numeric-objects" class="section level2">
+<h2><span class="header-section-number">5.1</span> Numerical and non-numeric objects</h2>
+<p>Non-numeric data in R is often preceded by an asterisk &quot;&quot; and can also be identified by these in the output.</p>
+<p>Enter the following</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">x=<span class="dv">2</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">x</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">x<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">x=<span class="st">&quot;2&quot;</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">x</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">x<span class="op">+</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7">x=z</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">x=<span class="st">&quot;z&quot;</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9">x</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">x<span class="op">+</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x=<span class="dv">2</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">x</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x<span class="op">+</span><span class="dv">1</span></a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">x=<span class="st">&quot;2&quot;</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">x</a></code></pre></div>
+<pre><code>## [1] &quot;2&quot;</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">x<span class="op">+</span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## Error in x + 2: non-numeric argument to binary operator</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">x=z</a></code></pre></div>
+<pre><code>## Error in eval(expr, envir, enclos): object &#39;z&#39; not found</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">x=<span class="st">&quot;z&quot;</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">x</a></code></pre></div>
+<pre><code>## [1] &quot;z&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">x<span class="op">+</span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## Error in x + 2: non-numeric argument to binary operator</code></pre>
+</div>
+<div id="vectors" class="section level2">
+<h2><span class="header-section-number">5.2</span> Vectors</h2>
+<p>If you want to store several numbers or names (string) under an object name, the construction of a vector is a good idea. Vectors are created using the command c() where “c” stands for “combine”. Compute the following commands for vectors:</p>
+<p>%Möchte man mehrere Zahlen oder Namen (Zeichenketten) unter einem Objektnamen speichern, bietet sich hierfür die Konstruktion eines Vektors an. Vektoren werden über den Befehl c() konstruiert, wobei das “c” für “combine” steht. Vollziehen Sie die nachfolgenden Eingaben zum Arbeten mit Vekotren nach.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"> <span class="co">#Skalars</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">s1&lt;-<span class="fl">0.8</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">s2&lt;-<span class="fl">2.4</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">s3&lt;-<span class="kw">c</span>(<span class="op">-</span><span class="fl">3.4</span>)</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">s1</a></code></pre></div>
+<pre><code>## [1] 0.8</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">s2</a></code></pre></div>
+<pre><code>## [1] 2.4</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">s3</a></code></pre></div>
+<pre><code>## [1] -3.4</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co">#Construction of vectors</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">v1&lt;-<span class="kw">c</span>(s1,s2,s3)</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">v1</a></code></pre></div>
+<pre><code>## [1]  0.8  2.4 -3.4</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">v2&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">v2</a></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">v3=<span class="kw">c</span>(v1,<span class="dv">4</span>,<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">v3</a></code></pre></div>
+<pre><code>## [1]  0.8  2.4 -3.4  4.0  5.0</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">v4=<span class="kw">c</span>(<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>),v3,<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">8</span>),s3,<span class="dv">1</span>,<span class="dv">2</span>,<span class="kw">c</span>(v1,v2,v3))</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">v4</a></code></pre></div>
+<pre><code>##  [1]  4.0  2.0  3.0  0.8  2.4 -3.4  4.0  5.0  3.0  8.0 -3.4  1.0  2.0  0.8
+## [15]  2.4 -3.4  1.0  2.0  3.0  0.8  2.4 -3.4  4.0  5.0</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">Name=<span class="kw">c</span>(<span class="st">&quot;Anton&quot;</span>,<span class="st">&quot;Berta&quot;</span>,<span class="st">&quot;Caesar&quot;</span>,<span class="st">&quot;Dora&quot;</span>,<span class="st">&quot;Emil&quot;</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2">Gender=<span class="kw">c</span>(<span class="st">&quot;m&quot;</span>,<span class="st">&quot;w&quot;</span>,<span class="st">&quot;m&quot;</span>,<span class="st">&quot;w&quot;</span>,<span class="st">&quot;m&quot;</span>)</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">Height=<span class="kw">c</span>(<span class="dv">182</span>,<span class="dv">174</span>,<span class="dv">189</span>,<span class="dv">165</span>,<span class="dv">180</span>)</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">Weight=<span class="kw">c</span>(<span class="dv">80</span>,<span class="dv">68</span>,<span class="dv">92</span>,<span class="dv">55</span>,<span class="dv">78</span>)</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">Name </a></code></pre></div>
+<pre><code>## [1] &quot;Anton&quot;  &quot;Berta&quot;  &quot;Caesar&quot; &quot;Dora&quot;   &quot;Emil&quot;</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">Gender</a></code></pre></div>
+<pre><code>## [1] &quot;m&quot; &quot;w&quot; &quot;m&quot; &quot;w&quot; &quot;m&quot;</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">Height</a></code></pre></div>
+<pre><code>## [1] 182 174 189 165 180</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">Weight</a></code></pre></div>
+<pre><code>## [1] 80 68 92 55 78</code></pre>
+<p>In practice, it often happens that the values of a data vector follow a particular basic pattern. For example, individual values follow each other at fixed intervals or they repeat continuously. Here the commands seq() and rep are very helpful. With the operator : shortened sequences with step size 1 can be generated. If the end value does not fit into the sequence of the generated sequence, the next lower (or next larger) value is aborted. Follow the following calculations</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="co">#Creating special vectors</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">30</span>,<span class="dt">by=</span><span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1]  2  6 10 14 18 22 26 30</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">30</span>,<span class="dt">le=</span><span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1]  2.00000 11.33333 20.66667 30.00000</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">30</span>,<span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1]  2  6 10 14 18 22 26 30</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">30</span>,<span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## [1]  2  7 12 17 22 27</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">30</span>,<span class="dv">10</span>)</a></code></pre></div>
+<pre><code>## [1]  2 12 22</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">seq</span>(<span class="dv">10</span>,<span class="dv">3</span>,<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 10  8  6  4</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] 1 1 1</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">3</span>,<span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">2</span>,<span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## [1] 2 2 2 2</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">rep</span>(<span class="dv">4</span>,<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 4 4</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">v1</a></code></pre></div>
+<pre><code>## [1]  0.8  2.4 -3.4</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">rep</span>(v1,<span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1]  0.8  2.4 -3.4  0.8  2.4 -3.4  0.8  2.4 -3.4</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="dv">1</span><span class="op">:</span><span class="dv">4</span></a></code></pre></div>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="dv">2</span><span class="op">:</span><span class="dv">7</span></a></code></pre></div>
+<pre><code>## [1] 2 3 4 5 6 7</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="dv">10</span><span class="op">:</span><span class="dv">3</span></a></code></pre></div>
+<pre><code>## [1] 10  9  8  7  6  5  4  3</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="fl">1.5</span><span class="op">:</span><span class="fl">4.8</span></a></code></pre></div>
+<pre><code>## [1] 1.5 2.5 3.5 4.5</code></pre>
+<p>The individual components of a vector x are numbered from 1 to n, where n is the total number (vector length) of the components. The vector length can be queried with length (x). With the help of square brackets, specific parts of a vector can be accessed.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co">#Accessing vector components</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">Name</a></code></pre></div>
+<pre><code>## [1] &quot;Anton&quot;  &quot;Berta&quot;  &quot;Caesar&quot; &quot;Dora&quot;   &quot;Emil&quot;</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">length</span>(Name)</a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">Name[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Anton&quot;</code></pre>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">Name[<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Berta&quot;</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">Name[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</a></code></pre></div>
+<pre><code>## [1] &quot;Anton&quot; &quot;Berta&quot;</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">Name[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Anton&quot;  &quot;Berta&quot;  &quot;Caesar&quot;</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">Name[<span class="op">-</span><span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;Anton&quot;  &quot;Caesar&quot; &quot;Dora&quot;   &quot;Emil&quot;</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">Name[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</a></code></pre></div>
+<pre><code>## [1] &quot;Caesar&quot; &quot;Dora&quot;   &quot;Emil&quot;</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">length</span>(Height)</a></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">Height[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] 182</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">Height[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] 182 174 189</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">Height[<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)]</a></code></pre></div>
+<pre><code>## [1] 165 180</code></pre>
+<p>When performing calculations with vectors, it is important to note that a vector is commonly used
+either with a scalar or with a vector of the same length. In the first
+case, each individual component is linked to the scalar in the same way.
+For example, the same value is added to each component. In the second case, computations are performed component-wise.
+For example, all peer-to-peer components are added.
+If two vectors of unequal length, each with at least 2 components, are added, a warning message is usually issued. R will still perform the operation, though!</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)<span class="op">+</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## Warning in c(1, 2, 3, 4, 5) + c(1, 2, 3): longer object length is not a
+## multiple of shorter object length</code></pre>
+<pre><code>## [1] 2 4 6 5 7</code></pre>
+<p>How does this result come about? R proceeds here according to the principle of cyclic extension, i. with two objects of different lengths, the shorter object is extended to the length of the longer object. The existing components at the end of the vector are simply added again. This is repeated until the lengths of the two vectors correspond. In this example, c (1,2,3) thus again the numbers 1 and 2 attached, so that in effect the two vectors</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1"> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)<span class="op">+</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 2 4 6 5 7</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"> <span class="co">#Calculations with vectors</span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)<span class="op">+</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)<span class="op">+</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb99-5" data-line-number="5"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)<span class="op">*</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb99-6" data-line-number="6"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)<span class="op">*</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb99-7" data-line-number="7"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb99-8" data-line-number="8"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)<span class="op">/</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)</a></code></pre></div>
+</div>
+<div id="matrices" class="section level2">
+<h2><span class="header-section-number">5.3</span> Matrices</h2>
+<p>In the following, we will discuss how matrices in R are constructed and how these can be worked with.</p>
+<p>The basic command for constructing matrices is matrix()</p>
+<p>In most cases, the input of three arguments is sufficient:</p>
+<ul>
+<li>a data vector from which a matrix is constructed,</li>
+<li>the number of rows,</li>
+<li>the number of collumns.</li>
+</ul>
+<p>As a rule, the product of row and column numbers should correspond to the vector length. If more numbers fit into the matrix than the vector components, the cyclic extension principle is again used. If the vector contains more components than in the matrix, the operation at the corresponding point is simply aborted. The matrix is filled from top to bottom and from left to right with the values of the vector. The filling principle can be changed using the options byrow=F or byrow=T. In the case of the second setting, the matrix would be filled line by line from left to right and from top to bottom. With the commands</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">cbind</span>() und <span class="kw">rbind</span>()</a></code></pre></div>
+<p>we can combine vectors into a matrix, either by (“c” for “column” or “r” for “row”).</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1"> <span class="co">#Construction of matrices</span></a>
+<a class="sourceLine" id="cb101-2" data-line-number="2">v=<span class="dv">1</span><span class="op">:</span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3">v</a>
+<a class="sourceLine" id="cb101-4" data-line-number="4">m1=<span class="kw">matrix</span>(v,<span class="dv">3</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb101-5" data-line-number="5">m1</a>
+<a class="sourceLine" id="cb101-6" data-line-number="6">m2=<span class="kw">matrix</span>(v,<span class="dv">4</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb101-7" data-line-number="7">m2</a>
+<a class="sourceLine" id="cb101-8" data-line-number="8"><span class="kw">matrix</span>(v,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dt">byrow=</span>T)</a>
+<a class="sourceLine" id="cb101-9" data-line-number="9"><span class="kw">matrix</span>(v,<span class="dv">4</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb101-10" data-line-number="10"><span class="kw">matrix</span>(v,<span class="dv">5</span>,<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb101-11" data-line-number="11"><span class="kw">matrix</span>(v,<span class="dv">2</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb101-12" data-line-number="12">m3=<span class="kw">cbind</span>(m1,<span class="kw">c</span>(<span class="dv">13</span>,<span class="dv">14</span>,<span class="dv">15</span>))</a>
+<a class="sourceLine" id="cb101-13" data-line-number="13">m3</a>
+<a class="sourceLine" id="cb101-14" data-line-number="14"><span class="kw">cbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>))</a>
+<a class="sourceLine" id="cb101-15" data-line-number="15">m4=<span class="kw">rbind</span>(m2,<span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">9</span>,<span class="dv">13</span>))</a>
+<a class="sourceLine" id="cb101-16" data-line-number="16">m4</a>
+<a class="sourceLine" id="cb101-17" data-line-number="17"><span class="kw">rbind</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>))</a></code></pre></div>
+<p>As with vectors, access to individual components is obtained by using square brackets. Two arguments are given:</p>
+<ul>
+<li>a scalar/vector for the row(s) of interest</li>
+<li>a scalar/vector for the collumns(s) of interest</li>
+</ul>
+<p>A comma without a number value represents all rows or all column values. Negative signs cause all rows / columns except the specified ones to be returned. dim() queries the dimensions of a matrix (rows, columns).</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1"> <span class="co">#Accessing matrix components</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2">m1</a>
+<a class="sourceLine" id="cb102-3" data-line-number="3">m1[<span class="dv">1</span>,]</a>
+<a class="sourceLine" id="cb102-4" data-line-number="4">m1[<span class="dv">2</span>,]</a>
+<a class="sourceLine" id="cb102-5" data-line-number="5">m1[,<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb102-6" data-line-number="6">m1[<span class="dv">1</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb102-7" data-line-number="7">m1[<span class="dv">2</span>,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb102-8" data-line-number="8">m1[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>),<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb102-9" data-line-number="9">m1[,<span class="op">-</span><span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb102-10" data-line-number="10"><span class="kw">dim</span>(m1)</a></code></pre></div>
+<p>With the command solve(), matrices can be inverted. In the mathematical sense, the multiplication of a matrix with its inverse results in the unit matrix.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="co">#Performing calculations with matrices</span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2">m1=<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">0</span>),<span class="dv">2</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb103-3" data-line-number="3">m2=<span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>),<span class="dv">2</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb103-4" data-line-number="4">m1</a>
+<a class="sourceLine" id="cb103-5" data-line-number="5">m2</a>
+<a class="sourceLine" id="cb103-6" data-line-number="6">m1<span class="op">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb103-7" data-line-number="7">m1<span class="op">+</span>m2</a>
+<a class="sourceLine" id="cb103-8" data-line-number="8">m1<span class="op">-</span>m2</a>
+<a class="sourceLine" id="cb103-9" data-line-number="9">m1<span class="op">*</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb103-10" data-line-number="10">m1<span class="op">*</span>m2</a>
+<a class="sourceLine" id="cb103-11" data-line-number="11">m1<span class="op">/</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb103-12" data-line-number="12">m1<span class="op">/</span>m2</a>
+<a class="sourceLine" id="cb103-13" data-line-number="13">m1<span class="op">%*%</span>m2</a>
+<a class="sourceLine" id="cb103-14" data-line-number="14"><span class="kw">t</span>(m1)</a>
+<a class="sourceLine" id="cb103-15" data-line-number="15"><span class="kw">solve</span>(m1)</a>
+<a class="sourceLine" id="cb103-16" data-line-number="16">m1<span class="op">%*%</span><span class="kw">solve</span>(m1)</a>
+<a class="sourceLine" id="cb103-17" data-line-number="17">\end{lstlisting}</a>
+<a class="sourceLine" id="cb103-18" data-line-number="18">\subsection{Lists}</a>
+<a class="sourceLine" id="cb103-19" data-line-number="19"> <span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb103-20" data-line-number="20"> \begin{lstlisting}</a>
+<a class="sourceLine" id="cb103-21" data-line-number="21"><span class="co">#Construction of lists</span></a>
+<a class="sourceLine" id="cb103-22" data-line-number="22">v=<span class="kw">c</span>(<span class="st">&quot;Hallo&quot;</span>,<span class="st">&quot;Tag&quot;</span>,<span class="st">&quot;Hi&quot;</span>,<span class="st">&quot;Guten Tag&quot;</span>)</a>
+<a class="sourceLine" id="cb103-23" data-line-number="23">m=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb103-24" data-line-number="24">v</a>
+<a class="sourceLine" id="cb103-25" data-line-number="25">m</a>
+<a class="sourceLine" id="cb103-26" data-line-number="26">objects=<span class="kw">list</span>(v,m)</a>
+<a class="sourceLine" id="cb103-27" data-line-number="27">objects</a></code></pre></div>
+<p>As with vectors, matrices can be linked to each other elementally by a computational operation (by +,-,/ ). Alternatively, a matrix multiplication can be performed using %*%. An example</p>
+<p><span class="math display">\[
+ \left(\begin{matrix}1&amp;3\\ 4&amp;0 \end{matrix} \right)\left(\begin{matrix}1&amp;3\\ 2&amp;2 
+\end{matrix} \right)=\left(\begin{matrix}1\cdot 1 +3 \cdot 2&amp;1 \cdot 3+3 \cdot 2\\ 4\cdot 1+0\cdot 2&amp;4\cdot 3+0\cdot 2 \end{matrix} \right)=\left(\begin{matrix}7&amp;9\\ 4&amp;12 \end{matrix} \right)
+\]</span></p>
+</div>
+<div id="lists" class="section level2">
+<h2><span class="header-section-number">5.4</span> Lists</h2>
+<p>Lists are the most general object form in R. A list is almost an object of objects. This means that within this data structure, objects of a very different kind and scale can be organized (numerically and non-numerically). These different objects then form the components of a list. Lists are very useful in functions, since functions can only output one object at the end. The basic command for constructing lists is list.</p>
+<p>For lists, access to individual components via square brackets [[]]. The number of components in a list can be queried by length(). The access to components of list components is hierachical, i.e objects[[1]] [2] asks the second component of the first list component.</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="co">#Accessing list components</span></a>
+<a class="sourceLine" id="cb104-2" data-line-number="2">objects[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb104-3" data-line-number="3">objects[[<span class="dv">2</span>]]</a>
+<a class="sourceLine" id="cb104-4" data-line-number="4"><span class="kw">length</span>(objects)</a>
+<a class="sourceLine" id="cb104-5" data-line-number="5">objects[[<span class="dv">1</span>]][<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb104-6" data-line-number="6">objects[[<span class="dv">2</span>]][,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb104-7" data-line-number="7"><span class="kw">names</span>(objects)</a>
+<a class="sourceLine" id="cb104-8" data-line-number="8">objects=<span class="kw">list</span>(<span class="dt">Greetings=</span>v,<span class="dt">Datamatrix=</span>m)</a>
+<a class="sourceLine" id="cb104-9" data-line-number="9">objects<span class="op">$</span>Greetings</a>
+<a class="sourceLine" id="cb104-10" data-line-number="10">objects<span class="op">$</span>Datamatrix</a>
+<a class="sourceLine" id="cb104-11" data-line-number="11"><span class="kw">names</span>(objects)</a></code></pre></div>
+</div>
+<div id="data-frames" class="section level2">
+<h2><span class="header-section-number">5.5</span> Data Frames</h2>
+<p>In R, data sets are usually stored as “data frames”. These are similar to matrices but have certain additional properties. A matrix cannot contain both numeric and non-numeric content. The basic command is data.frame(), then the names of the vectors are entered by comma:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="co">#Data Frames</span></a>
+<a class="sourceLine" id="cb105-2" data-line-number="2">Name </a>
+<a class="sourceLine" id="cb105-3" data-line-number="3">Gender</a>
+<a class="sourceLine" id="cb105-4" data-line-number="4">Height</a>
+<a class="sourceLine" id="cb105-5" data-line-number="5">Weight</a>
+<a class="sourceLine" id="cb105-6" data-line-number="6"><span class="kw">cbind</span>(Name, Gender, Height, Weight)</a>
+<a class="sourceLine" id="cb105-7" data-line-number="7">Personen=<span class="kw">data.frame</span>(Name, Gender, Height, Weight)</a>
+<a class="sourceLine" id="cb105-8" data-line-number="8"><span class="kw">summary</span>(Personen)</a></code></pre></div>
+<p>Usually the calculations of the summary() function are adapted to the type of the vector. Component access to a data frame can be performed as with a list or a matrix.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1"><span class="co">#Component access in data frames</span></a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="kw">length</span>(Personen)</a>
+<a class="sourceLine" id="cb106-3" data-line-number="3">Personen[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb106-4" data-line-number="4">Personen[[<span class="dv">4</span>]]</a>
+<a class="sourceLine" id="cb106-5" data-line-number="5"><span class="kw">names</span>(Personen)</a>
+<a class="sourceLine" id="cb106-6" data-line-number="6">Personen<span class="op">$</span>Name</a>
+<a class="sourceLine" id="cb106-7" data-line-number="7">Personen<span class="op">$</span>Gewicht</a>
+<a class="sourceLine" id="cb106-8" data-line-number="8"><span class="kw">dim</span>(Personen)</a>
+<a class="sourceLine" id="cb106-9" data-line-number="9">Personen[<span class="dv">1</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb106-10" data-line-number="10">Personen[<span class="dv">5</span>,<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb106-11" data-line-number="11">Personen[<span class="dv">1</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb106-12" data-line-number="12">Personen[<span class="dv">5</span>,<span class="dv">4</span>]</a></code></pre></div>
+</div>
+<div id="working-with-logical-operators" class="section level2">
+<h2><span class="header-section-number">5.6</span> Working with logical operators</h2>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="ot">TRUE</span> and <span class="ot">FALSE</span></a></code></pre></div>
+<p>These types of values are generated in the context of logical operations. These are computing operations which check whether individual data fulfill a particular property. The numerical value 1 is assigned to the result TRUE, so that a logical command adds up the number of TRUE results. == checks for equality, != checks for inequality.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="co">#Checks with logical operators</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2">x=<span class="kw">c</span>(<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">7</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb108-3" data-line-number="3">x<span class="op">&lt;</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb108-4" data-line-number="4">x<span class="op">&gt;</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb108-5" data-line-number="5">x<span class="op">==</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb108-6" data-line-number="6">x<span class="op">!=</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb108-7" data-line-number="7"><span class="dv">2</span><span class="op">&lt;</span>x<span class="op">&amp;</span>x<span class="op">&lt;</span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb108-8" data-line-number="8">x<span class="op">&lt;</span><span class="dv">4</span><span class="op">|</span>x<span class="op">&gt;</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb108-9" data-line-number="9"><span class="kw">sum</span>(x<span class="op">&gt;</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb108-10" data-line-number="10"><span class="kw">sum</span>(x<span class="op">&lt;</span><span class="dv">4</span><span class="op">|</span>x<span class="op">&gt;</span><span class="dv">6</span>)</a></code></pre></div>
+<p>If we only want to view/process part of the data frame, we can use subset().</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="co">#Partially accessing a data frame</span></a>
+<a class="sourceLine" id="cb109-2" data-line-number="2">Personen</a>
+<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="kw">subset</span>(Personen,Gender<span class="op">==</span><span class="st">&quot;m&quot;</span>)</a>
+<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="kw">subset</span>(Personen,Height<span class="op">&gt;</span><span class="dv">180</span>)</a>
+<a class="sourceLine" id="cb109-5" data-line-number="5"><span class="kw">subset</span>(Personen,Gender<span class="op">==</span><span class="st">&quot;m&quot;</span>,<span class="dt">select=</span>Name)</a>
+<a class="sourceLine" id="cb109-6" data-line-number="6"><span class="kw">subset</span>(Personen,Height<span class="op">&gt;</span><span class="dv">180</span>,<span class="dt">select=</span><span class="kw">c</span>(Height,Weight))</a>
+<a class="sourceLine" id="cb109-7" data-line-number="7">Men=<span class="kw">subset</span>(Personen,Gender<span class="op">==</span><span class="st">&quot;m&quot;</span>)</a></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="operators.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ordering-of-data-sets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-application.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
