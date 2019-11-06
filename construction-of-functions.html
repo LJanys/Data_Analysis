@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Construction of functions | Script Introduction to Data Analysis</title>
+  <title>Chapter 8 Construction of functions | Script Introduction to Data Analysis</title>
   <meta name="description" content="Introduction to Data Analysis" />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Construction of functions | Script Introduction to Data Analysis" />
+  <meta property="og:title" content="Chapter 8 Construction of functions | Script Introduction to Data Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Construction of functions | Script Introduction to Data Analysis" />
+  <meta name="twitter:title" content="Chapter 8 Construction of functions | Script Introduction to Data Analysis" />
   
   <meta name="twitter:description" content="Introduction to Data Analysis" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Lena Janys" />
 
 
-<meta name="date" content="2019-10-18" />
+<meta name="date" content="2019-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="simple-programming.html"/>
-<link rel="next" href="organizational-info-1.html"/>
+<link rel="next" href="r-exercises.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -131,56 +131,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Organizational Info:</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Course Overview</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#list"><i class="fa fa-check"></i><b>2.1</b> List of Topics</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#method"><i class="fa fa-check"></i><b>2.2</b> Methods</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#data"><i class="fa fa-check"></i><b>2.2.1</b> Data</a></li>
-<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#tools"><i class="fa fa-check"></i><b>2.2.2</b> Tools</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Course Overview</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#list"><i class="fa fa-check"></i><b>1.1</b> List of Topics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#method"><i class="fa fa-check"></i><b>1.2</b> Methods</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#data"><i class="fa fa-check"></i><b>1.2.1</b> Data</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#tools"><i class="fa fa-check"></i><b>1.2.2</b> Tools</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#exam"><i class="fa fa-check"></i><b>2.3</b> Exam</a></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#timetable"><i class="fa fa-check"></i><b>2.4</b> Timetable</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#exam"><i class="fa fa-check"></i><b>1.3</b> Exam</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#timetable"><i class="fa fa-check"></i><b>1.4</b> Timetable</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
-<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-r-principle"><i class="fa fa-check"></i><b>3.1</b> The R-Principle</a></li>
-<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assigments"><i class="fa fa-check"></i><b>3.2</b> Assigments</a></li>
-<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-and-removing-objects"><i class="fa fa-check"></i><b>3.3</b> Saving and removing objects</a></li>
-<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-help"><i class="fa fa-check"></i><b>3.4</b> R Help</a></li>
-<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#using-the-editor"><i class="fa fa-check"></i><b>3.5</b> Using the editor</a></li>
-<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#working-directory"><i class="fa fa-check"></i><b>3.6</b> Working directory</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-r-principle"><i class="fa fa-check"></i><b>2.1</b> The R-Principle</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assigments"><i class="fa fa-check"></i><b>2.2</b> Assigments</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-and-removing-objects"><i class="fa fa-check"></i><b>2.3</b> Saving and removing objects</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-help"><i class="fa fa-check"></i><b>2.4</b> R Help</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#using-the-editor"><i class="fa fa-check"></i><b>2.5</b> Using the editor</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#working-directory"><i class="fa fa-check"></i><b>2.6</b> Working directory</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="operators.html"><a href="operators.html"><i class="fa fa-check"></i><b>4</b> Operators</a></li>
-<li class="chapter" data-level="5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html"><i class="fa fa-check"></i><b>5</b> Data structures: vectors, matrices, lists</a><ul>
-<li class="chapter" data-level="5.1" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#numerical-and-non-numeric-objects"><i class="fa fa-check"></i><b>5.1</b> Numerical and non-numeric objects</a></li>
-<li class="chapter" data-level="5.2" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#vectors"><i class="fa fa-check"></i><b>5.2</b> Vectors</a></li>
-<li class="chapter" data-level="5.3" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#matrices"><i class="fa fa-check"></i><b>5.3</b> Matrices</a></li>
-<li class="chapter" data-level="5.4" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#lists"><i class="fa fa-check"></i><b>5.4</b> Lists</a></li>
-<li class="chapter" data-level="5.5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#data-frames"><i class="fa fa-check"></i><b>5.5</b> Data Frames</a></li>
-<li class="chapter" data-level="5.6" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#working-with-logical-operators"><i class="fa fa-check"></i><b>5.6</b> Working with logical operators</a></li>
+<li class="chapter" data-level="3" data-path="operators.html"><a href="operators.html"><i class="fa fa-check"></i><b>3</b> Operators</a></li>
+<li class="chapter" data-level="4" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html"><i class="fa fa-check"></i><b>4</b> Data structures: vectors, matrices, lists</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#numerical-and-non-numeric-objects"><i class="fa fa-check"></i><b>4.1</b> Numerical and non-numeric objects</a></li>
+<li class="chapter" data-level="4.2" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#vectors"><i class="fa fa-check"></i><b>4.2</b> Vectors</a></li>
+<li class="chapter" data-level="4.3" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#matrices"><i class="fa fa-check"></i><b>4.3</b> Matrices</a></li>
+<li class="chapter" data-level="4.4" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#lists"><i class="fa fa-check"></i><b>4.4</b> Lists</a></li>
+<li class="chapter" data-level="4.5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#data-frames"><i class="fa fa-check"></i><b>4.5</b> Data Frames</a></li>
+<li class="chapter" data-level="4.6" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#working-with-logical-operators"><i class="fa fa-check"></i><b>4.6</b> Working with logical operators</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>6</b> Exercises</a><ul>
-<li class="chapter" data-level="6.1" data-path="exercises.html"><a href="exercises.html#numerische-und-nichtnumerische-objekte"><i class="fa fa-check"></i><b>6.1</b> Numerische und nichtnumerische Objekte</a></li>
-<li class="chapter" data-level="6.2" data-path="exercises.html"><a href="exercises.html#vektoren"><i class="fa fa-check"></i><b>6.2</b> Vektoren</a></li>
+<li class="chapter" data-level="5" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html"><i class="fa fa-check"></i><b>5</b> Exercises: Simple Data structures</a><ul>
+<li class="chapter" data-level="5.1" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html#r-as-a-calculator"><i class="fa fa-check"></i><b>5.1</b> R as a calculator</a></li>
+<li class="chapter" data-level="5.2" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html#numerical-and-nonnumerical-objects"><i class="fa fa-check"></i><b>5.2</b> Numerical and Nonnumerical Objects</a></li>
+<li class="chapter" data-level="5.3" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html#vectors-1"><i class="fa fa-check"></i><b>5.3</b> Vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="statistical-functions.html"><a href="statistical-functions.html"><i class="fa fa-check"></i><b>7</b> Statistical functions</a><ul>
-<li class="chapter" data-level="7.1" data-path="statistical-functions.html"><a href="statistical-functions.html#sums-and-frequencies"><i class="fa fa-check"></i><b>7.1</b> Sums and frequencies</a></li>
-<li class="chapter" data-level="7.2" data-path="statistical-functions.html"><a href="statistical-functions.html#frequencies"><i class="fa fa-check"></i><b>7.2</b> Frequencies</a></li>
-<li class="chapter" data-level="7.3" data-path="statistical-functions.html"><a href="statistical-functions.html#statistical-distributions"><i class="fa fa-check"></i><b>7.3</b> Statistical Distributions</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="statistical-functions.html"><a href="statistical-functions.html#normal-distribution"><i class="fa fa-check"></i><b>7.3.1</b> Normal distribution</a></li>
-<li class="chapter" data-level="7.3.2" data-path="statistical-functions.html"><a href="statistical-functions.html#binomial-distribution"><i class="fa fa-check"></i><b>7.3.2</b> Binomial distribution</a></li>
+<li class="chapter" data-level="6" data-path="statistical-functions.html"><a href="statistical-functions.html"><i class="fa fa-check"></i><b>6</b> Statistical functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="statistical-functions.html"><a href="statistical-functions.html#sums-and-frequencies"><i class="fa fa-check"></i><b>6.1</b> Sums and frequencies</a></li>
+<li class="chapter" data-level="6.2" data-path="statistical-functions.html"><a href="statistical-functions.html#frequencies"><i class="fa fa-check"></i><b>6.2</b> Frequencies</a></li>
+<li class="chapter" data-level="6.3" data-path="statistical-functions.html"><a href="statistical-functions.html#statistical-distributions"><i class="fa fa-check"></i><b>6.3</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="statistical-functions.html"><a href="statistical-functions.html#normal-distribution"><i class="fa fa-check"></i><b>6.3.1</b> Normal distribution</a></li>
+<li class="chapter" data-level="6.3.2" data-path="statistical-functions.html"><a href="statistical-functions.html#binomial-distribution"><i class="fa fa-check"></i><b>6.3.2</b> Binomial distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="statistical-functions.html"><a href="statistical-functions.html#multiplication-of-a-random-variable-with-a-constant"><i class="fa fa-check"></i><b>7.4</b> Multiplication of a random variable with a constant</a></li>
+<li class="chapter" data-level="6.4" data-path="statistical-functions.html"><a href="statistical-functions.html#multiplication-of-a-random-variable-with-a-constant"><i class="fa fa-check"></i><b>6.4</b> Multiplication of a random variable with a constant</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="simple-programming.html"><a href="simple-programming.html"><i class="fa fa-check"></i><b>8</b> Simple programming</a><ul>
-<li class="chapter" data-level="8.1" data-path="simple-programming.html"><a href="simple-programming.html#using-for-loops"><i class="fa fa-check"></i><b>8.1</b> Using for-loops</a></li>
-<li class="chapter" data-level="8.2" data-path="simple-programming.html"><a href="simple-programming.html#the-if-condition"><i class="fa fa-check"></i><b>8.2</b> The if-Condition</a></li>
-<li class="chapter" data-level="8.3" data-path="simple-programming.html"><a href="simple-programming.html#the-while-loop"><i class="fa fa-check"></i><b>8.3</b> The while-loop</a></li>
+<li class="chapter" data-level="7" data-path="simple-programming.html"><a href="simple-programming.html"><i class="fa fa-check"></i><b>7</b> Simple programming</a><ul>
+<li class="chapter" data-level="7.1" data-path="simple-programming.html"><a href="simple-programming.html#using-for-loops"><i class="fa fa-check"></i><b>7.1</b> Using for-loops</a></li>
+<li class="chapter" data-level="7.2" data-path="simple-programming.html"><a href="simple-programming.html#the-if-condition"><i class="fa fa-check"></i><b>7.2</b> The if-Condition</a></li>
+<li class="chapter" data-level="7.3" data-path="simple-programming.html"><a href="simple-programming.html#the-while-loop"><i class="fa fa-check"></i><b>7.3</b> The while-loop</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="construction-of-functions.html"><a href="construction-of-functions.html"><i class="fa fa-check"></i><b>9</b> Construction of functions</a><ul>
-<li class="chapter" data-level="9.1" data-path="construction-of-functions.html"><a href="construction-of-functions.html#simple-functions"><i class="fa fa-check"></i><b>9.1</b> Simple functions</a></li>
-<li class="chapter" data-level="9.2" data-path="construction-of-functions.html"><a href="construction-of-functions.html#functions-with-multiple-output-objects"><i class="fa fa-check"></i><b>9.2</b> Functions with multiple output objects</a></li>
+<li class="chapter" data-level="8" data-path="construction-of-functions.html"><a href="construction-of-functions.html"><i class="fa fa-check"></i><b>8</b> Construction of functions</a><ul>
+<li class="chapter" data-level="8.1" data-path="construction-of-functions.html"><a href="construction-of-functions.html#simple-functions"><i class="fa fa-check"></i><b>8.1</b> Simple functions</a></li>
+<li class="chapter" data-level="8.2" data-path="construction-of-functions.html"><a href="construction-of-functions.html#functions-with-multiple-output-objects"><i class="fa fa-check"></i><b>8.2</b> Functions with multiple output objects</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="organizational-info-1.html"><a href="organizational-info-1.html"><i class="fa fa-check"></i><b>10</b> Organizational Info:</a></li>
+<li class="chapter" data-level="9" data-path="r-exercises.html"><a href="r-exercises.html"><i class="fa fa-check"></i><b>9</b> R Exercises</a><ul>
+<li class="chapter" data-level="9.1" data-path="r-exercises.html"><a href="r-exercises.html#matrices-1"><i class="fa fa-check"></i><b>9.1</b> Matrices</a></li>
+<li class="chapter" data-level="9.2" data-path="r-exercises.html"><a href="r-exercises.html#sums-and-frequencies-1"><i class="fa fa-check"></i><b>9.2</b> Sums and frequencies</a></li>
+<li class="chapter" data-level="9.3" data-path="r-exercises.html"><a href="r-exercises.html#logical-operators"><i class="fa fa-check"></i><b>9.3</b> Logical Operators</a></li>
+<li class="chapter" data-level="9.4" data-path="r-exercises.html"><a href="r-exercises.html#statistical-distributions-1"><i class="fa fa-check"></i><b>9.4</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="r-exercises.html"><a href="r-exercises.html#exercise-1"><i class="fa fa-check"></i><b>9.4.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.4.2" data-path="r-exercises.html"><a href="r-exercises.html#exercise-2"><i class="fa fa-check"></i><b>9.4.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="9.4.3" data-path="r-exercises.html"><a href="r-exercises.html#exercise-3"><i class="fa fa-check"></i><b>9.4.3</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="r-exercises.html"><a href="r-exercises.html#loops-and-functions"><i class="fa fa-check"></i><b>9.5</b> Loops and functions</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="r-exercises.html"><a href="r-exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>9.5.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="9.5.2" data-path="r-exercises.html"><a href="r-exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>9.5.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="9.5.3" data-path="r-exercises.html"><a href="r-exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>9.5.3</b> Exercise 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="problem-set-1.html"><a href="problem-set-1.html"><i class="fa fa-check"></i><b>10</b> Problem Set 1</a><ul>
+<li class="chapter" data-level="10.1" data-path="problem-set-1.html"><a href="problem-set-1.html#estimating-model-parameters"><i class="fa fa-check"></i><b>10.1</b> Estimating model parameters</a></li>
+<li class="chapter" data-level="10.2" data-path="problem-set-1.html"><a href="problem-set-1.html#estimate-r2-and-barr2"><i class="fa fa-check"></i><b>10.2</b> Estimate <span class="math inline">\(R^2\)</span> and <span class="math inline">\(\bar{R^2}\)</span></a></li>
+<li class="chapter" data-level="10.3" data-path="problem-set-1.html"><a href="problem-set-1.html#simulation-study"><i class="fa fa-check"></i><b>10.3</b> Simulation study</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="problem-set-2.html"><a href="problem-set-2.html"><i class="fa fa-check"></i><b>11</b> Problem Set 2</a><ul>
+<li class="chapter" data-level="11.1" data-path="problem-set-2.html"><a href="problem-set-2.html#implementing-the-f-statistic"><i class="fa fa-check"></i><b>11.1</b> Implementing the F-statistic</a></li>
+<li class="chapter" data-level="11.2" data-path="problem-set-2.html"><a href="problem-set-2.html#simulation-study-1"><i class="fa fa-check"></i><b>11.2</b> Simulation Study</a></li>
+<li class="chapter" data-level="11.3" data-path="problem-set-2.html"><a href="problem-set-2.html#simulation-study-violating-model-assumptions"><i class="fa fa-check"></i><b>11.3</b> Simulation study: Violating model assumptions</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -202,9 +226,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="construction-of-functions" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Construction of functions</h1>
+<h1><span class="header-section-number">Chapter 8</span> Construction of functions</h1>
 <div id="simple-functions" class="section level2">
-<h2><span class="header-section-number">9.1</span> Simple functions</h2>
+<h2><span class="header-section-number">8.1</span> Simple functions</h2>
 <p>Functions allow us to bundle certain computing operations and then only call them when needed.</p>
 <p>The basic syntax is</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">fun_name&lt;-<span class="cf">function</span>(<span class="op">&lt;</span>arguments<span class="op">&gt;</span>)</a>
@@ -255,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
 </div>
 <div id="functions-with-multiple-output-objects" class="section level2">
-<h2><span class="header-section-number">9.2</span> Functions with multiple output objects</h2>
+<h2><span class="header-section-number">8.2</span> Functions with multiple output objects</h2>
 <p>If the function is to return an object at the end, which can also be assigned (list, vector, matrix), this object must be printed as an expression at the end of the
 function text (of the program). Suppose we want the previous simulation program to output all calculated relative frequencies, as well as the fraction of all sample means in a specified interval (a, b).</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"> <span class="co">##Return multiple values</span></a>
@@ -298,7 +322,7 @@ function text (of the program). Suppose we want the previous simulation program 
         </div>
       </div>
 <a href="simple-programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="organizational-info-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
