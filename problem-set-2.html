@@ -24,7 +24,7 @@
 <meta name="author" content="Lena Janys" />
 
 
-<meta name="date" content="2019-11-13" />
+<meta name="date" content="2019-11-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,6 +52,68 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -178,14 +240,112 @@ Assume througout that <span class="math inline">\(n=10000\)</span>. The aim of t
 <h2><span class="header-section-number">11.1</span> Implementing the F-statistic</h2>
 <p>Assume initially that <span class="math inline">\(\boldsymbol{\beta}=\left(\begin{matrix}1&amp;0&amp;0\end{matrix}\right)\)</span> and that <span class="math inline">\(\varepsilon_i\sim\mathcal{N}(0,10)\)</span>.</p>
 <p>Calculate the OLS estimator <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>, implement the F-Statistic and compare the value of the F-Statistic with the relevant quantile from the F-distribution. Does the global Null hold?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">k1&lt;-<span class="kw">rep</span>(<span class="dv">1</span>, N)<span class="co">##generating the constant.</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># We will use the command mvrnorm to draw a matrix of variables </span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">mu &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,M)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">####beta vector###</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">het&lt;-<span class="dv">0</span><span class="co">###if equal to one: simulate a heteroskedastic model</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6">beta.vec&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>)<span class="co">#</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">###We specify the correlation among the variables</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">###if there is correlation, right now no correlation#######################</span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#Sigma &lt;- matrix(1.4, nrow=M, ncol=M) + diag(M)*.3</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">Sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow=</span>M, <span class="dt">ncol=</span>M) <span class="op">+</span><span class="st"> </span><span class="kw">diag</span>(M)</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">###We draw normally distributed variables from a joint normal distribution###</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">rawvars &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(N, <span class="dt">mu=</span>mu, <span class="dt">Sigma=</span>Sigma)</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="co">###Let&#39;s see if they look normally distributed###</span></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">plot</span>(<span class="kw">density</span>(rawvars[,<span class="dv">1</span>]))</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">lines</span>(<span class="kw">density</span>(rawvars[,<span class="dv">2</span>]),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="kw">mean</span>(rawvars[,<span class="dv">1</span>]);<span class="kw">sd</span>(rawvars[,<span class="dv">1</span>]);<span class="kw">mean</span>(rawvars[,<span class="dv">2</span>]);<span class="kw">sd</span>(rawvars[,<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">##Display the correlation matrix###</span></a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="kw">cov</span>(rawvars);<span class="kw">cor</span>(rawvars)</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19">Sigma </a>
+<a class="sourceLine" id="cb1-20" data-line-number="20">X         &lt;-<span class="st"> </span><span class="kw">cbind</span>(k1,rawvars)</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="cf">if</span>(het<span class="op">==</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb1-22" data-line-number="22">{</a>
+<a class="sourceLine" id="cb1-23" data-line-number="23">  eps       &lt;-X[,<span class="dv">2</span>]<span class="op">^</span><span class="dv">2</span><span class="op">*</span><span class="kw">rnorm</span>(N, <span class="dv">0</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb1-24" data-line-number="24">}<span class="cf">else</span>{ eps       &lt;-<span class="kw">rnorm</span>(N, <span class="dv">0</span>,<span class="dv">10</span>)}</a>
+<a class="sourceLine" id="cb1-25" data-line-number="25"><span class="co">###generate the model####</span></a>
+<a class="sourceLine" id="cb1-26" data-line-number="26">y         &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>beta.vec <span class="op">+</span><span class="st"> </span>eps</a>
+<a class="sourceLine" id="cb1-27" data-line-number="27"><span class="co">##Solving for beta hat###</span></a>
+<a class="sourceLine" id="cb1-28" data-line-number="28">beta.hat &lt;-<span class="st"> </span><span class="kw">solve</span>(<span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>X) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb1-29" data-line-number="29">beta.hat</a>
+<a class="sourceLine" id="cb1-30" data-line-number="30"><span class="co"># ####Now, let&#39;s calculate the  value for the t-test####</span></a>
+<a class="sourceLine" id="cb1-31" data-line-number="31"> xx&lt;-<span class="kw">dim</span>(X)</a>
+<a class="sourceLine" id="cb1-32" data-line-number="32"> length.x&lt;-xx[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb1-33" data-line-number="33"> y.hat&lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>beta.hat</a>
+<a class="sourceLine" id="cb1-34" data-line-number="34"> eps.hat&lt;-y<span class="op">-</span>X <span class="op">%*%</span><span class="st"> </span>beta.hat</a>
+<a class="sourceLine" id="cb1-35" data-line-number="35"> se&lt;-(<span class="kw">t</span>(eps.hat)<span class="op">%*%</span>(eps.hat))<span class="op">/</span>(N<span class="op">-</span>length.x)<span class="co">###Calculate the estimate for the error variance</span></a>
+<a class="sourceLine" id="cb1-36" data-line-number="36"> cov&lt;-se[<span class="dv">1</span>]<span class="op">*</span><span class="kw">solve</span>(<span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>X)<span class="co">###Calculate the Covariance matrix</span></a>
+<a class="sourceLine" id="cb1-37" data-line-number="37"> d1&lt;-<span class="kw">sqrt</span>(<span class="kw">diag</span>(cov))<span class="co">###The standard errors for the parameters</span></a>
+<a class="sourceLine" id="cb1-38" data-line-number="38"><span class="co">####Below we calculate the f-statistic as the ratio of the variances###</span></a>
+<a class="sourceLine" id="cb1-39" data-line-number="39">f&lt;-(<span class="kw">sum</span>((y.hat<span class="op">-</span><span class="kw">mean</span>(y))<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(M<span class="op">+</span><span class="dv">1-1</span>))<span class="op">/</span>(<span class="kw">sum</span>((y<span class="op">-</span>y.hat)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(N<span class="op">-</span>M<span class="op">+</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb1-40" data-line-number="40">f.crit&lt;-<span class="kw">qf</span>(.<span class="dv">95</span>, <span class="dt">df1=</span>M, <span class="dt">df2=</span>N<span class="op">-</span>M)</a>
+<a class="sourceLine" id="cb1-41" data-line-number="41">result&lt;-f<span class="op">&gt;</span>f.crit</a></code></pre></div>
 </div>
 <div id="simulation-study-1" class="section level2">
 <h2><span class="header-section-number">11.2</span> Simulation Study</h2>
 <p>Write the code above into a function that returns a logical expression whether the Null was rejected. Repeat this calculation 1000 times and record your results in a vector. What is the expected number of rejected hypotheses in this scenario? Summarize and discuss your results.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">simu_data&lt;-<span class="cf">function</span>(N,Sigma,<span class="dt">het=</span><span class="dv">0</span>,beta.vec){</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">k1&lt;-<span class="kw">rep</span>(<span class="dv">1</span>, N)<span class="co">##generating the constant.</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># We will use the command mvrnorm to draw a matrix of variables </span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">mu &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">0</span>,M)</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">###We specify the correlation among the variables</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#Sigma &lt;- matrix(1.4, nrow=M, ncol=M) + diag(M)*.3</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">Sigma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">0</span>, <span class="dt">nrow=</span>M, <span class="dt">ncol=</span>M) <span class="op">+</span><span class="st"> </span><span class="kw">diag</span>(M)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">###We draw normally distributed variables from a joint normal distribution###</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">rawvars &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(N, <span class="dt">mu=</span>mu, <span class="dt">Sigma=</span>Sigma)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw">mean</span>(rawvars[,<span class="dv">1</span>]);<span class="kw">sd</span>(rawvars[,<span class="dv">1</span>]);<span class="kw">mean</span>(rawvars[,<span class="dv">2</span>]);<span class="kw">sd</span>(rawvars[,<span class="dv">2</span>])</a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">##Display the correlation matrix###</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw">cov</span>(rawvars);<span class="kw">cor</span>(rawvars)</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">Sigma </a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">X         &lt;-<span class="st"> </span><span class="kw">cbind</span>(k1,rawvars)</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="cf">if</span>(het<span class="op">==</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb2-16" data-line-number="16">{</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">  eps       &lt;-X[,<span class="dv">2</span>]<span class="op">*</span><span class="kw">rnorm</span>(N, <span class="dv">0</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb2-18" data-line-number="18">}<span class="cf">else</span>{ eps       &lt;-<span class="kw">rnorm</span>(N, <span class="dv">0</span>,<span class="dv">10</span>)}</a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">###generate the model####</span></a>
+<a class="sourceLine" id="cb2-20" data-line-number="20">y         &lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>beta.vec <span class="op">+</span><span class="st"> </span>eps</a>
+<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">##Solving for beta hat###</span></a>
+<a class="sourceLine" id="cb2-22" data-line-number="22">beta.hat &lt;-<span class="st"> </span><span class="kw">solve</span>(<span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>X) <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb2-23" data-line-number="23">beta.hat</a>
+<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">####Now, let&#39;s calculate the  value for the t-test####</span></a>
+<a class="sourceLine" id="cb2-25" data-line-number="25">xx&lt;-<span class="kw">dim</span>(X)</a>
+<a class="sourceLine" id="cb2-26" data-line-number="26">length.x&lt;-xx[<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb2-27" data-line-number="27">y.hat&lt;-<span class="st"> </span>X <span class="op">%*%</span><span class="st"> </span>beta.hat</a>
+<a class="sourceLine" id="cb2-28" data-line-number="28">eps.hat&lt;-y<span class="op">-</span>X <span class="op">%*%</span><span class="st"> </span>beta.hat</a>
+<a class="sourceLine" id="cb2-29" data-line-number="29">se&lt;-(<span class="kw">t</span>(eps.hat)<span class="op">%*%</span>(eps.hat))<span class="op">/</span>(N<span class="op">-</span>length.x)</a>
+<a class="sourceLine" id="cb2-30" data-line-number="30">cov&lt;-se[<span class="dv">1</span>]<span class="op">*</span><span class="kw">solve</span>(<span class="kw">t</span>(X) <span class="op">%*%</span><span class="st"> </span>X)</a>
+<a class="sourceLine" id="cb2-31" data-line-number="31">d1&lt;-<span class="kw">sqrt</span>(<span class="kw">diag</span>(cov))</a>
+<a class="sourceLine" id="cb2-32" data-line-number="32">f&lt;-(<span class="kw">sum</span>((y.hat<span class="op">-</span><span class="kw">mean</span>(y))<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(M<span class="op">+</span><span class="dv">1-1</span>))<span class="op">/</span>(<span class="kw">sum</span>((y<span class="op">-</span>y.hat)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span>(N<span class="op">-</span>M<span class="op">+</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb2-33" data-line-number="33">f.crit&lt;-<span class="kw">qf</span>(.<span class="dv">95</span>, <span class="dt">df1=</span>M, <span class="dt">df2=</span>N<span class="op">-</span>M)</a>
+<a class="sourceLine" id="cb2-34" data-line-number="34">result&lt;-f<span class="op">&gt;</span>f.crit</a>
+<a class="sourceLine" id="cb2-35" data-line-number="35"><span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb2-36" data-line-number="36">}</a>
+<a class="sourceLine" id="cb2-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb2-38" data-line-number="38"><span class="co">###Make this into a function################################################################</span></a>
+<a class="sourceLine" id="cb2-39" data-line-number="39">beta.vec&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb2-40" data-line-number="40"><span class="kw">simu_data</span>(N,Sigma,<span class="dt">het=</span><span class="dv">0</span>,beta.vec)</a>
+<a class="sourceLine" id="cb2-41" data-line-number="41"><span class="co">###make a vector that records the decision####################</span></a>
+<a class="sourceLine" id="cb2-42" data-line-number="42">result&lt;-<span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb2-43" data-line-number="43">reps&lt;-<span class="dv">100</span></a>
+<a class="sourceLine" id="cb2-44" data-line-number="44"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>reps)</a>
+<a class="sourceLine" id="cb2-45" data-line-number="45">{</a>
+<a class="sourceLine" id="cb2-46" data-line-number="46">    <span class="kw">set.seed</span>(i)</a>
+<a class="sourceLine" id="cb2-47" data-line-number="47">  result[i]=<span class="kw">simu_data</span>(N,Sigma,<span class="dt">het=</span><span class="dv">0</span>,beta.vec)</a>
+<a class="sourceLine" id="cb2-48" data-line-number="48">}</a>
+<a class="sourceLine" id="cb2-49" data-line-number="49"><span class="kw">sum</span>(result)</a></code></pre></div>
 </div>
 <div id="simulation-study-violating-model-assumptions" class="section level2">
 <h2><span class="header-section-number">11.3</span> Simulation study: Violating model assumptions</h2>
 <p>Re-write the function above to include the option for simulating heteroskedasticity. Come up with a suitable way to simulate heteroskedasticity in the model and run the simulation above again. What is your expectation?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">result_het&lt;-<span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">reps&lt;-<span class="dv">100</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>reps)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">{</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="kw">set.seed</span>(i)</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  result_het[i]=<span class="kw">simu_data</span>(N,Sigma,<span class="dt">het=</span><span class="dv">1</span>,beta.vec)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="kw">sum</span>(result_het)</a></code></pre></div>
 
 </div>
 </div>
