@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 15 Problem Set 5: Climate Week | Script Introduction to Data Analysis</title>
+  <title>Chapter 16 Problem Set 6: Bandwidth Selection | Script Introduction to Data Analysis</title>
   <meta name="description" content="Introduction to Data Analysis" />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 15 Problem Set 5: Climate Week | Script Introduction to Data Analysis" />
+  <meta property="og:title" content="Chapter 16 Problem Set 6: Bandwidth Selection | Script Introduction to Data Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 15 Problem Set 5: Climate Week | Script Introduction to Data Analysis" />
+  <meta name="twitter:title" content="Chapter 16 Problem Set 6: Bandwidth Selection | Script Introduction to Data Analysis" />
   
   <meta name="twitter:description" content="Introduction to Data Analysis" />
   
@@ -24,14 +24,14 @@
 <meta name="author" content="Lena Janys" />
 
 
-<meta name="date" content="2019-11-29" />
+<meta name="date" content="2019-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="problem-set-4-np-density-estimation.html"/>
+<link rel="prev" href="problem-set-5-climate-week.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -157,6 +157,10 @@
 <li class="chapter" data-level="15.2" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#tools-1"><i class="fa fa-check"></i><b>15.2</b> Tools</a></li>
 <li class="chapter" data-level="15.3" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#analysis"><i class="fa fa-check"></i><b>15.3</b> Analysis</a></li>
 </ul></li>
+<li class="chapter" data-level="16" data-path="problem-set-6-bandwidth-selection.html"><a href="problem-set-6-bandwidth-selection.html"><i class="fa fa-check"></i><b>16</b> Problem Set 6: Bandwidth Selection</a><ul>
+<li class="chapter" data-level="16.1" data-path="problem-set-6-bandwidth-selection.html"><a href="problem-set-6-bandwidth-selection.html#least-squares-cross-validation"><i class="fa fa-check"></i><b>16.1</b> Least-Squares Cross-validation</a></li>
+<li class="chapter" data-level="16.2" data-path="problem-set-6-bandwidth-selection.html"><a href="problem-set-6-bandwidth-selection.html#silvermans-rule-of-thumb"><i class="fa fa-check"></i><b>16.2</b> Silverman’s rule of Thumb</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -177,28 +181,33 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="problem-set-5-climate-week" class="section level1">
-<h1><span class="header-section-number">Chapter 15</span> Problem Set 5: Climate Week</h1>
-<p>The goal of this mini-project is to explore some “real” data and to analyze weather data from the German Weather Data is compatible with a climate change hypothesis.</p>
-<div id="data-1" class="section level2">
-<h2><span class="header-section-number">15.1</span> Data</h2>
-<p>The data can be obtained at
-<a href="https://www.dwd.de/EN/climate_environment/cdc/cdc_node.html" class="uri">https://www.dwd.de/EN/climate_environment/cdc/cdc_node.html</a></p>
-<p>and can be downloaded as a csv file.</p>
-</div>
-<div id="tools-1" class="section level2">
-<h2><span class="header-section-number">15.2</span> Tools</h2>
+<div id="problem-set-6-bandwidth-selection" class="section level1">
+<h1><span class="header-section-number">Chapter 16</span> Problem Set 6: Bandwidth Selection</h1>
+<div id="least-squares-cross-validation" class="section level2">
+<h2><span class="header-section-number">16.1</span> Least-Squares Cross-validation</h2>
+<p>The LSCV-Criterion has the form
+<span class="math display">\[
+LSCV(h)=\frac{1}{n^2 h}\sum_{i=1}^n \sum_{j=1}^n \bar{k}\left(\frac{x_i-x_j}{h} \right)-\frac{2}{n(n-1)h}\sum_{i=1}^n \underset{j\neq i}{\sum_{j=1}^n} {k}\left(\frac{x_i-x_j}{h} \right)
+\]</span></p>
+<p>where where <span class="math inline">\(\bar{k}\)</span> is a convolution kernel. We will use the Gaussian Kernel for <span class="math inline">\(k\)</span> which implies the following convolution kernel:</p>
+<p><span class="math display">\[\bar{k}(v)=\frac{exp(\frac{-v^2}{4})}{\sqrt{4 \pi}}\]</span>
+- Write a function <span class="math inline">\(LSCV(h)\)</span> and simulate a data set with one univariate random variable with <span class="math inline">\(x_i \sim \mathcal{N}(0,1)\)</span> and <span class="math inline">\(n=100.\)</span></p>
 <ul>
-<li>read csv files into R: read.csv(“my_data.csv”)</li>
-<li>plot(x,y), line(x,y), abline(a,b).</li>
-<li>three dimensional plots: persp(x,y,z)</li>
-<li>fancy plots: <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a></li>
+<li><p>Find the value <span class="math inline">\(h_{min}\)</span> that minimizes <span class="math inline">\(LSCV(h)\)</span>. Use an appropriate <span class="math inline">\(h_{grid}\)</span> comprised of 50 equidistant points.</p></li>
+<li><p>Simulate and repeat the exercise from 1. and 2. 50 times and save the respective minimizing bandwidth in a vector <span class="math inline">\(h_{min, \, all}\)</span>.</p></li>
+<li><p>Calculate the standard deviation and the mean of <span class="math inline">\(h_{min, \, all}\)</span>. Plot the kernel density estimator for the smallest and the largest value of <span class="math inline">\(h_{min, \, all}\)</span> and compare the resulting function. What can you say about the “reliability” of the LSCV method for bandwidth selection?</p></li>
+<li><p>Repeat the simulation for <span class="math inline">\(n=1000\)</span> and compare your results to those from 4. How do your results compare to the theoretical results regarding the relationship between the bandwidth and the asymptotic bias and variance?</p></li>
 </ul>
 </div>
-<div id="analysis" class="section level2">
-<h2><span class="header-section-number">15.3</span> Analysis</h2>
-<p>When analyzing the data using hypothesis testing, linear regression, plots etc. remember the assumptions about the data structure etc.</p>
-<p>A good data workflow involves plotting and visualizing the data prior to analyzing the data.</p>
+<div id="silvermans-rule-of-thumb" class="section level2">
+<h2><span class="header-section-number">16.2</span> Silverman’s rule of Thumb</h2>
+<p>Another bandwidth selection tool is Silverman’s rule of thumb.  the underlying density is normal, then Silverman’s rule returns the bandwidth that minimizes the MSE.</p>
+<p><span class="math display">\[h_s = \left(\frac{4\hat{\sigma}^5}{3n}\right)^{\frac{1}{5}} \approx 1.06 \hat{\sigma} n^{-1/5},\]</span> where <span class="math inline">\(\hat{\sigma}\)</span> is the estimated standard deviation of the sample.</p>
+<ul>
+<li>Write a function simulating and returning a bimodal Gaussian mixture with <span class="math inline">\(\mu_1, \mu_2, \sigma_1, \sigma_2\)</span> for <span class="math inline">\(n\)</span> observations with on average of <span class="math inline">\(n/2\)</span> observations in each distribution.</li>
+<li>Generate a bandwidth grid on <span class="math inline">\([0.1,3]\)</span> with 30, equidistant values.</li>
+<li>Plot three plots with the estimated density function keeping <span class="math inline">\(\mu_1=0, \sigma_1=1, \sigma_2=1\)</span> with <span class="math inline">\(h_{LSCV}\)</span> and <span class="math inline">\(h_s\)</span> for <span class="math inline">\(\mu_2=20, \mu_2=10, \mu_2=1\)</span>.</li>
+</ul>
 
 </div>
 </div>
@@ -207,7 +216,7 @@
           </div>
         </div>
       </div>
-<a href="problem-set-4-np-density-estimation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="problem-set-5-climate-week.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -240,7 +249,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/14-ProblemSet5.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/15-ProblemSet6.Rmd",
 "text": "Edit"
 },
 "history": {

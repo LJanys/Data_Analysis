@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 15 Problem Set 5: Climate Week | Script Introduction to Data Analysis</title>
+  <title>Chapter 15 Gaussian Kernel | Script Introduction to Data Analysis</title>
   <meta name="description" content="Introduction to Data Analysis" />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 15 Problem Set 5: Climate Week | Script Introduction to Data Analysis" />
+  <meta property="og:title" content="Chapter 15 Gaussian Kernel | Script Introduction to Data Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 15 Problem Set 5: Climate Week | Script Introduction to Data Analysis" />
+  <meta name="twitter:title" content="Chapter 15 Gaussian Kernel | Script Introduction to Data Analysis" />
   
   <meta name="twitter:description" content="Introduction to Data Analysis" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Lena Janys" />
 
 
-<meta name="date" content="2019-11-29" />
+<meta name="date" content="2019-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="problem-set-4-np-density-estimation.html"/>
-
+<link rel="next" href="problem-set-5-climate-week.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -152,10 +152,15 @@
 <li class="chapter" data-level="14" data-path="problem-set-4-np-density-estimation.html"><a href="problem-set-4-np-density-estimation.html"><i class="fa fa-check"></i><b>14</b> Problem Set 4: NP-Density estimation</a><ul>
 <li class="chapter" data-level="14.1" data-path="problem-set-4-np-density-estimation.html"><a href="problem-set-4-np-density-estimation.html#generate-a-sample-of-100-points-from-a-distribution-of-your-choice-and-program-by-hand-the-kernel-density-estimator"><i class="fa fa-check"></i><b>14.1</b> Generate a sample of 100 points from a distribution of your choice and program (by hand) the kernel density estimator</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html"><i class="fa fa-check"></i><b>15</b> Problem Set 5: Climate Week</a><ul>
-<li class="chapter" data-level="15.1" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#data-1"><i class="fa fa-check"></i><b>15.1</b> Data</a></li>
-<li class="chapter" data-level="15.2" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#tools-1"><i class="fa fa-check"></i><b>15.2</b> Tools</a></li>
-<li class="chapter" data-level="15.3" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#analysis"><i class="fa fa-check"></i><b>15.3</b> Analysis</a></li>
+<li class="chapter" data-level="15" data-path="gaussian-kernel.html"><a href="gaussian-kernel.html"><i class="fa fa-check"></i><b>15</b> Gaussian Kernel</a></li>
+<li class="chapter" data-level="16" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html"><i class="fa fa-check"></i><b>16</b> Problem Set 5: Climate Week</a><ul>
+<li class="chapter" data-level="16.1" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#data-1"><i class="fa fa-check"></i><b>16.1</b> Data</a></li>
+<li class="chapter" data-level="16.2" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#tools-1"><i class="fa fa-check"></i><b>16.2</b> Tools</a></li>
+<li class="chapter" data-level="16.3" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#analysis"><i class="fa fa-check"></i><b>16.3</b> Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="problem-set-6-bandwidth-selection.html"><a href="problem-set-6-bandwidth-selection.html"><i class="fa fa-check"></i><b>17</b> Problem Set 6: Bandwidth Selection</a><ul>
+<li class="chapter" data-level="17.1" data-path="problem-set-6-bandwidth-selection.html"><a href="problem-set-6-bandwidth-selection.html#least-squares-cross-validation"><i class="fa fa-check"></i><b>17.1</b> Least-Squares Cross-validation</a></li>
+<li class="chapter" data-level="17.2" data-path="problem-set-6-bandwidth-selection.html"><a href="problem-set-6-bandwidth-selection.html#silvermans-rule-of-thumb"><i class="fa fa-check"></i><b>17.2</b> Silverman’s rule of Thumb</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -177,28 +182,106 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="problem-set-5-climate-week" class="section level1">
-<h1><span class="header-section-number">Chapter 15</span> Problem Set 5: Climate Week</h1>
-<p>The goal of this mini-project is to explore some “real” data and to analyze weather data from the German Weather Data is compatible with a climate change hypothesis.</p>
-<div id="data-1" class="section level2">
-<h2><span class="header-section-number">15.1</span> Data</h2>
-<p>The data can be obtained at
-<a href="https://www.dwd.de/EN/climate_environment/cdc/cdc_node.html" class="uri">https://www.dwd.de/EN/climate_environment/cdc/cdc_node.html</a></p>
-<p>and can be downloaded as a csv file.</p>
-</div>
-<div id="tools-1" class="section level2">
-<h2><span class="header-section-number">15.2</span> Tools</h2>
-<ul>
-<li>read csv files into R: read.csv(“my_data.csv”)</li>
-<li>plot(x,y), line(x,y), abline(a,b).</li>
-<li>three dimensional plots: persp(x,y,z)</li>
-<li>fancy plots: <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a></li>
-</ul>
-</div>
-<div id="analysis" class="section level2">
-<h2><span class="header-section-number">15.3</span> Analysis</h2>
-<p>When analyzing the data using hypothesis testing, linear regression, plots etc. remember the assumptions about the data structure etc.</p>
-<p>A good data workflow involves plotting and visualizing the data prior to analyzing the data.</p>
+<div id="gaussian-kernel" class="section level1">
+<h1><span class="header-section-number">Chapter 15</span> Gaussian Kernel</h1>
+<div id="section" class="section level35">
+<p><span class="header-section-number">15.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1</span> </p>
+<p>kern1&lt;-function(x)
+{
+kern1&lt;-(2<em>pi)<sup>(-1/2)* exp(-x</sup>2/2)
+return(kern1)
+}
+###Or: Gaussian Kernel
+###################################
+Gauss.kernel &lt;- function(phi,…) {
+dnorm(phi)
+}
+# Epanechnikov Kernel:
+#############################
+kern2&lt;-function(x)
+{
+kern2&lt;-c()
+for(i in 1:length(x))
+{
+if(abs(x[i])&lt;=1)
+{
+kern2[i]&lt;-3/4</em>(1-x[i]^2)
+}
+else{kern2=0}
+}
+return(kern2)
+}
+##Or:
+# Epanechnikov Kernel:
+#############################
+Epan.kernel &lt;- function(phi,…) {
+0.75<em>(1-phi^2)</em>(abs(phi)&lt;=1)
+}</p>
+<p>z&lt;-seq(-1,1,length.out=100)
+###Plot the Kernel functions over the same x-values###
+plot(z,kern2(z),lty=1,type=“l”,col=“springgreen4”,lwd=2 , ylab=&quot;“)
+lines(z,kern1(z),lty=2,type=”l“,col=”navy“,lwd=2)
+legend(x=”bottomleft“, y=0.95, legend=c(”Epanechnikov Kernel“,”Gaussian Kernel“),col=c(”springgreen4“,”navy&quot;), lty=1:2, cex=1)</p>
+<p>####The density estimator###
+N.grid &lt;- 100
+N.sam &lt;- 100
+#——————
+QUANT.LOW &lt;- 0.05
+QUANT.HIGH &lt;- 0.95</p>
+<p>x.grid &lt;- seq(qnorm(QUANT.LOW),qnorm(QUANT.HIGH),length.out=N.grid)</p>
+<p>#Generate a function for the true density
+dens.true &lt;- function(x,…){
+dens &lt;- (qnorm(QUANT.LOW)&lt;=x)<em>(x&lt;=qnorm(QUANT.HIGH))</em>dnorm(x)/(QUANT.HIGH-QUANT.LOW)
+}
+####Plot the true density##############
+curve(dens.true,from=-2,to=2)
+dens.grid &lt;- dens.true(x.grid)
+# Generate a sample of 100 points
+########################################################
+set.seed(1048)
+x.sample &lt;- vector(“double”,length=N.sam)
+count &lt;- 1
+while(count &lt;= length(x.sample)){
+temp &lt;- rnorm(1)
+if(temp&lt;qnorm(QUANT.LOW)|temp&gt;qnorm(QUANT.HIGH)){
+count &lt;- count ##we draw from a standard normal distribution, create a temporary variable and see whether it is within our grid interval. If not we draw again. If yes, we move to the next draw.
+}
+else{
+x.sample[count] &lt;- temp
+count &lt;- count + 1
+}
+}</p>
+<p>####——————–The actual density estimator——##
+dens.estim &lt;- function(x.grid,x.data,h,Kern=Epan.kernel,…){
+# Number of sample observations
+N &lt;- length(x.data)
+# Number of points at which to evaluate
+n.grid &lt;- length(x.grid)
+dens.est &lt;- vector(“double”,length=n.grid)
+for(i in 1:length(x.grid)){
+phi &lt;- (x.data - x.grid[i])/h<br />
+dens.est[i] &lt;- mean(1/h*Kern(phi))<br />
+}
+return(dens.est)
+}</p>
+<p>##Calculate the estimator for different bandwidths#####
+reps=30
+h.grid&lt;-seq(0.01,0.5,le=reps)###Consider Bandwidths between 0.01 and 0.5
+res&lt;-matrix(NA,length(x.sample),reps)
+for(i in 1:reps)
+{
+res[,i]&lt;- dens.estim(x.grid=x.grid,x.data=x.sample,h=h.grid[i],Kern=Epan.kernel)
+}</p>
+<p>res.df&lt;-as.data.frame(cbind(as.factor(x.grid),res))
+names(res.df)&lt;-c(“x.grid”, sprintf(“%s”,round(h.grid,2)))
+library(“reshape2”)
+library(“ggplot2”)</p>
+<p>test_data_long &lt;- melt(res.df, id=“x.grid”)
+names(test_data_long)=c(“x”,“Bandwidth”,“Density”)
+plot=ggplot(data=test_data_long,
+aes(x=x, y=Density, colour=Bandwidth)) +geom_line()
+plot+ scale_colour_grey(start = 0.8, end = 0.2)+theme(legend.position = “none”)+ theme_bw()
+```</p>
 
 </div>
 </div>
@@ -207,8 +290,8 @@
           </div>
         </div>
       </div>
-<a href="problem-set-4-np-density-estimation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="problem-set-4-np-density-estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="problem-set-5-climate-week.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -240,7 +323,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/14-ProblemSet5.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/13-ProblemSet4.Rmd",
 "text": "Edit"
 },
 "history": {
