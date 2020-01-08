@@ -251,14 +251,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>where <span class="math display">\[\begin{equation}
 \pi_i=\frac{exp\{ \mathbf{x}_i&#39;\boldsymbol{\beta} \}}{1+exp\{ \mathbf{\mathbf{x}}_i&#39;\boldsymbol{\beta} \}}
 \end{equation}\]</span></p>
-<p>%<span class="math display">\[\pi_i=F(\mathbf{x}_i&#39; \boldsymbol{\beta})=\Phi(\mathbf{x}_i&#39;\boldsymbol{\beta})\]</span> und <span class="math inline">\(\Phi(\mathbf{x}_i\boldsymbol{\beta})\)</span> ist die Verteilungsfunktion der Standardnormalverteilung.</p>
-<p>Simulate this model with the probabilities as described above with the following values:</p>
+<ol style="list-style-type: decimal">
+<li>Simulate this model with the probabilities as described above with the following values:</li>
+</ol>
 <ul>
 <li><span class="math inline">\(n =1000\)</span></li>
 <li><span class="math inline">\(\beta_0=-2, \, \beta_1=0.1,\, \beta2=1\)</span>.</li>
 <li><span class="math inline">\(x_{0i}=1 \, \forall \,i\)</span> , <span class="math inline">\(x_{1i}\sim \mathcal{U}(18,60), \, x_{2i}\sim \mathcal{B}(0.5)\)</span>.</li>
 </ul>
-<p>Estimate <span class="math inline">\(\beta_0, \beta_1, \beta_2\)</span> via maximum likelihood and calculate the standard errors.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Estimate <span class="math inline">\(\beta_0, \beta_1, \beta_2\)</span> via maximum likelihood and calculate the standard errors.</p></li>
+<li><p>Propose and calculate a suitable method for the interpretation of the coefficients as discussed in the lecture.</p></li>
+</ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">##The logit transformation#</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="co">####Generate a vector of probabilities########</span></a>
@@ -286,7 +290,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb2-13" data-line-number="13">estim&lt;-<span class="kw">maxBFGS</span>(loglike,<span class="dt">finalHessian=</span><span class="ot">TRUE</span>,<span class="dt">start=</span><span class="kw">c</span>(.,.))<span class="co">###initialize the optimization, </span></a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#pass on starting values and store the results in estim</span></a>
 <a class="sourceLine" id="cb2-15" data-line-number="15">estim.par&lt;-estim<span class="op">$</span>estimate <span class="co">### store the paramter estimates in a variable &quot;estim.par&quot;</span></a></code></pre></div>
-<p>Propose and calculate a suitable method for the interpretation of the coefficients as discussed in the lecture.</p>
 
 </div>
             </section>
