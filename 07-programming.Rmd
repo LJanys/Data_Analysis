@@ -1,0 +1,131 @@
+# Simple programming
+
+Very often we want to repeat a particular operation many times: either over different elements of a given data structure (columns of a matrix, individual elements of a vector), or perform an operation until a satisfactory result is reached (run an algorithm until the the value converges to a prespecified level). As well, we sometimes have to check whether a condition about the data is fulfilled, e.g. are elements of a vector equal to 0 and perform different operations depending on the result.
+
+## Using for-loops
+
+A for-loop is a procedure in which a variable repeats a particular routine, changing its value according to the values of a given data set (usually numeric).
+```{r, error = TRUE,eval=T }
+x=0
+for (i in 1:3) { 
+  x
+  print(i)
+   x=x+i}
+x
+```
+  
+We create a scalar x with the value 0 and then begin a for loop where the variable i passes through the values 1, 2 and 3. In the run of the first loop, i has the value 1, i. x is overwritten and is given the value 1 = 0 + 1. In the run of the second loop, i the value 2, i. x is overwritten and has the value 3 = 1 + 2. In the run of the third loop, i the value 3, i. x is overwritten and has the value 6 = 3 + 3.
+  
+```{r, error = TRUE,eval=T }
+x=0
+for (i in 1:3)
+   {
+     x=x+i
+     z=x*i
+     }
+z
+```
+
+ 
+ In the next example, we carry out a simulation study on the law of large numbers. This means that "large" deviations of the sample mean from the expectation for increasing sample size become increasingly improbable. We are now repeating samples from a Bernoulli distribution, that is, from $\mathcal{B}(1.0.5)$-distribution that simulates the tossing of a fair coin. The sample mean, which results from zeros and ones, corresponds in this case to the relative proportion of the ones. This relative fraction would converge stochastically to 0.5, the expectation value of a $\mathcal{B}(1.0.5)$ distribution for larger samples.
+ 
+ 
+```{r, error = TRUE,eval=F }
+#Simulationsstudy: law of large numbers
+
+# Example: Law of large numbers
+ RelAnteil=c() ###we initialize an "empty vector"
+ N=500#Number of draws
+ for (n in 1:N)#initialize the loop
+   {
+     Stichprobe=rbinom(n,1,0.5)#draw a vector with sample size n
+     RelAnteil[n]=mean(Stichprobe)#calculate the proportion of the ones
+     }
+plot(1:N,RelAnteil,#plot the results of all samples
+        main="B(1,0.5)-Distribution: Law of the large numbers",
+        xlab="n",ylab="Relative proportion",pch=16,
+        cex.axis=1.5,cex.lab=1.5,cex.main=1.5)
+ abline(h=0.5,lwd=2,col=2)#We add a line for the expected value
+```
+ 
+## The if-Condition
+
+Within a for-loop, it may be useful to perform arithmetic operations only under certain conditions. The basic syntax for this is
+```{r, error = TRUE,eval=F }
+ if (condition){
+     statement  
+     } 
+ else{
+     alternative
+     }
+```
+where else can remain unspecified. 
+ 
+```{r, error = TRUE,eval=F }
+###If-condition###
+y<-c(1,4,5,2,7,8,2,4)
+N <- length(y)
+1:N
+## 
+y.sq <- numeric(N)#creates an empty numeric vector of length N
+
+for(i in 1:N){ #initializing the for-loop
+  y.sq[i] <- y[i]^2#every element of y.sq is replaced by the respective squared value.
+  #if(i == N){#only when this condition is met, i.e. in the last iteration of the loop 
+    print(y.sq)#is the vector printed
+  #}
+}
+```
+ 
+ 
+In shorter form the ifelse() command is an alternative. 
+```{r, error = TRUE,eval=F }
+ifelse(test, yes, no)
+```
+ 
+
+ 
+ 
+## The while-loop
+ 
+ The while-loop performs a program ("statement") as long as certain data conditions ("test expression") are met. The basic syntax is
+ 
+```{r, error = TRUE,eval=F }
+ while (testexpression)
+{
+   #increment (i+1);
+    statement
+}
+```
+
+Here, test_expression is evaluated and the body of the loop is entered if the result is TRUE.
+
+
+```{r, error = TRUE,eval=T }
+i <- 2
+results<-c()
+while (i < 6) {
+   print(i)
+  x=i
+  results[i]<-i
+   i = i+1
+}
+x
+results
+```
+
+
+In the above example, i is initially initialized to 1.
+
+Here, the test_expression is i < 6 which evaluates to TRUE since 1 is less than 6. So, the body of the loop is entered and i is printed and incremented.
+
+Incrementing i is important as this will eventually meet the exit condition. Failing to do so will result into an infinite loop.
+
+In the next iteration, the value of i is 2 and the loop continues.
+
+This will continue until i takes the value 6. The condition 6 < 6 will give FALSE and the while loop finally exits.
+ 
+
+There is one other loop that can be used in R: repeat. 
+ 
+

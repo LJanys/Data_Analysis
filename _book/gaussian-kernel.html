@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 15 Gaussian Kernel | Script Introduction to Data Analysis</title>
+  <meta name="description" content="Introduction to Data Analysis" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 15 Gaussian Kernel | Script Introduction to Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to Data Analysis" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 15 Gaussian Kernel | Script Introduction to Data Analysis" />
+  
+  <meta name="twitter:description" content="Introduction to Data Analysis" />
+  
+
+<meta name="author" content="Lena Janys" />
+
+
+<meta name="date" content="2019-12-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="problem-set-4-np-density-estimation.html"/>
+<link rel="next" href="problem-set-5-climate-week.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Hello World ;)</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Course Overview</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#list"><i class="fa fa-check"></i><b>2.1</b> List of Topics</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#method"><i class="fa fa-check"></i><b>2.2</b> Methods</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="intro.html"><a href="intro.html#data"><i class="fa fa-check"></i><b>2.2.1</b> Data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="intro.html"><a href="intro.html#tools"><i class="fa fa-check"></i><b>2.2.2</b> Tools</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#exam"><i class="fa fa-check"></i><b>2.3</b> Exam</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#timetable"><i class="fa fa-check"></i><b>2.4</b> Timetable</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>3</b> Introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-r-principle"><i class="fa fa-check"></i><b>3.1</b> The R-Principle</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assigments"><i class="fa fa-check"></i><b>3.2</b> Assigments</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-and-removing-objects"><i class="fa fa-check"></i><b>3.3</b> Saving and removing objects</a></li>
+<li class="chapter" data-level="3.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-help"><i class="fa fa-check"></i><b>3.4</b> R Help</a></li>
+<li class="chapter" data-level="3.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#using-the-editor"><i class="fa fa-check"></i><b>3.5</b> Using the editor</a></li>
+<li class="chapter" data-level="3.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#working-directory"><i class="fa fa-check"></i><b>3.6</b> Working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="operators.html"><a href="operators.html"><i class="fa fa-check"></i><b>4</b> Operators</a></li>
+<li class="chapter" data-level="5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html"><i class="fa fa-check"></i><b>5</b> Data structures: vectors, matrices, lists</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#numerical-and-non-numeric-objects"><i class="fa fa-check"></i><b>5.1</b> Numerical and non-numeric objects</a></li>
+<li class="chapter" data-level="5.2" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#vectors"><i class="fa fa-check"></i><b>5.2</b> Vectors</a></li>
+<li class="chapter" data-level="5.3" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#matrices"><i class="fa fa-check"></i><b>5.3</b> Matrices</a></li>
+<li class="chapter" data-level="5.4" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#lists"><i class="fa fa-check"></i><b>5.4</b> Lists</a></li>
+<li class="chapter" data-level="5.5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#data-frames"><i class="fa fa-check"></i><b>5.5</b> Data Frames</a></li>
+<li class="chapter" data-level="5.6" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#working-with-logical-operators"><i class="fa fa-check"></i><b>5.6</b> Working with logical operators</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html"><i class="fa fa-check"></i><b>6</b> Exercises: Simple Data structures</a><ul>
+<li class="chapter" data-level="6.1" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html#r-as-a-calculator"><i class="fa fa-check"></i><b>6.1</b> R as a calculator</a></li>
+<li class="chapter" data-level="6.2" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html#numerical-and-nonnumerical-objects"><i class="fa fa-check"></i><b>6.2</b> Numerical and Nonnumerical Objects</a></li>
+<li class="chapter" data-level="6.3" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html#vectors-1"><i class="fa fa-check"></i><b>6.3</b> Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="statistical-functions.html"><a href="statistical-functions.html"><i class="fa fa-check"></i><b>7</b> Statistical functions</a><ul>
+<li class="chapter" data-level="7.1" data-path="statistical-functions.html"><a href="statistical-functions.html#sums-and-frequencies"><i class="fa fa-check"></i><b>7.1</b> Sums and frequencies</a></li>
+<li class="chapter" data-level="7.2" data-path="statistical-functions.html"><a href="statistical-functions.html#frequencies"><i class="fa fa-check"></i><b>7.2</b> Frequencies</a></li>
+<li class="chapter" data-level="7.3" data-path="statistical-functions.html"><a href="statistical-functions.html#statistical-distributions"><i class="fa fa-check"></i><b>7.3</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="statistical-functions.html"><a href="statistical-functions.html#normal-distribution"><i class="fa fa-check"></i><b>7.3.1</b> Normal distribution</a></li>
+<li class="chapter" data-level="7.3.2" data-path="statistical-functions.html"><a href="statistical-functions.html#binomial-distribution"><i class="fa fa-check"></i><b>7.3.2</b> Binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="statistical-functions.html"><a href="statistical-functions.html#multiplication-of-a-random-variable-with-a-constant"><i class="fa fa-check"></i><b>7.4</b> Multiplication of a random variable with a constant</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="simple-programming.html"><a href="simple-programming.html"><i class="fa fa-check"></i><b>8</b> Simple programming</a><ul>
+<li class="chapter" data-level="8.1" data-path="simple-programming.html"><a href="simple-programming.html#using-for-loops"><i class="fa fa-check"></i><b>8.1</b> Using for-loops</a></li>
+<li class="chapter" data-level="8.2" data-path="simple-programming.html"><a href="simple-programming.html#the-if-condition"><i class="fa fa-check"></i><b>8.2</b> The if-Condition</a></li>
+<li class="chapter" data-level="8.3" data-path="simple-programming.html"><a href="simple-programming.html#the-while-loop"><i class="fa fa-check"></i><b>8.3</b> The while-loop</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="construction-of-functions.html"><a href="construction-of-functions.html"><i class="fa fa-check"></i><b>9</b> Construction of functions</a><ul>
+<li class="chapter" data-level="9.1" data-path="construction-of-functions.html"><a href="construction-of-functions.html#simple-functions"><i class="fa fa-check"></i><b>9.1</b> Simple functions</a></li>
+<li class="chapter" data-level="9.2" data-path="construction-of-functions.html"><a href="construction-of-functions.html#functions-with-multiple-output-objects"><i class="fa fa-check"></i><b>9.2</b> Functions with multiple output objects</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="r-exercises.html"><a href="r-exercises.html"><i class="fa fa-check"></i><b>10</b> R Exercises</a><ul>
+<li class="chapter" data-level="10.1" data-path="r-exercises.html"><a href="r-exercises.html#matrices-1"><i class="fa fa-check"></i><b>10.1</b> Matrices</a></li>
+<li class="chapter" data-level="10.2" data-path="r-exercises.html"><a href="r-exercises.html#sums-and-frequencies-1"><i class="fa fa-check"></i><b>10.2</b> Sums and frequencies</a></li>
+<li class="chapter" data-level="10.3" data-path="r-exercises.html"><a href="r-exercises.html#logical-operators"><i class="fa fa-check"></i><b>10.3</b> Logical Operators</a></li>
+<li class="chapter" data-level="10.4" data-path="r-exercises.html"><a href="r-exercises.html#statistical-distributions-1"><i class="fa fa-check"></i><b>10.4</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="r-exercises.html"><a href="r-exercises.html#exercise-1"><i class="fa fa-check"></i><b>10.4.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="10.4.2" data-path="r-exercises.html"><a href="r-exercises.html#exercise-2"><i class="fa fa-check"></i><b>10.4.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="10.4.3" data-path="r-exercises.html"><a href="r-exercises.html#exercise-3"><i class="fa fa-check"></i><b>10.4.3</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="r-exercises.html"><a href="r-exercises.html#loops-and-functions"><i class="fa fa-check"></i><b>10.5</b> Loops and functions</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="r-exercises.html"><a href="r-exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>10.5.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="10.5.2" data-path="r-exercises.html"><a href="r-exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>10.5.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="10.5.3" data-path="r-exercises.html"><a href="r-exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>10.5.3</b> Exercise 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="problem-set-1.html"><a href="problem-set-1.html"><i class="fa fa-check"></i><b>11</b> Problem Set 1</a><ul>
+<li class="chapter" data-level="11.1" data-path="problem-set-1.html"><a href="problem-set-1.html#estimating-model-parameters"><i class="fa fa-check"></i><b>11.1</b> Estimating model parameters</a></li>
+<li class="chapter" data-level="11.2" data-path="problem-set-1.html"><a href="problem-set-1.html#estimate-r2-and-barr2"><i class="fa fa-check"></i><b>11.2</b> Estimate <span class="math inline">\(R^2\)</span> and <span class="math inline">\(\bar{R^2}\)</span></a></li>
+<li class="chapter" data-level="11.3" data-path="problem-set-1.html"><a href="problem-set-1.html#simulation-study"><i class="fa fa-check"></i><b>11.3</b> Simulation study</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="problem-set-2.html"><a href="problem-set-2.html"><i class="fa fa-check"></i><b>12</b> Problem Set 2</a><ul>
+<li class="chapter" data-level="12.1" data-path="problem-set-2.html"><a href="problem-set-2.html#implementing-the-f-statistic"><i class="fa fa-check"></i><b>12.1</b> Implementing the F-statistic</a></li>
+<li class="chapter" data-level="12.2" data-path="problem-set-2.html"><a href="problem-set-2.html#simulation-study-1"><i class="fa fa-check"></i><b>12.2</b> Simulation Study</a></li>
+<li class="chapter" data-level="12.3" data-path="problem-set-2.html"><a href="problem-set-2.html#simulation-study-violating-model-assumptions"><i class="fa fa-check"></i><b>12.3</b> Simulation study: Violating model assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="problem-set-3-power-and-size.html"><a href="problem-set-3-power-and-size.html"><i class="fa fa-check"></i><b>13</b> Problem Set 3: Power and Size</a><ul>
+<li class="chapter" data-level="13.1" data-path="problem-set-3-power-and-size.html"><a href="problem-set-3-power-and-size.html#size"><i class="fa fa-check"></i><b>13.1</b> Size</a></li>
+<li class="chapter" data-level="13.2" data-path="problem-set-3-power-and-size.html"><a href="problem-set-3-power-and-size.html#simulation-study-size"><i class="fa fa-check"></i><b>13.2</b> Simulation Study: Size</a></li>
+<li class="chapter" data-level="13.3" data-path="problem-set-3-power-and-size.html"><a href="problem-set-3-power-and-size.html#simulation-study-power"><i class="fa fa-check"></i><b>13.3</b> Simulation study: Power</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="problem-set-4-np-density-estimation.html"><a href="problem-set-4-np-density-estimation.html"><i class="fa fa-check"></i><b>14</b> Problem Set 4: NP-Density estimation</a><ul>
+<li class="chapter" data-level="14.1" data-path="problem-set-4-np-density-estimation.html"><a href="problem-set-4-np-density-estimation.html#generate-a-sample-of-100-points-from-a-distribution-of-your-choice-and-program-by-hand-the-kernel-density-estimator"><i class="fa fa-check"></i><b>14.1</b> Generate a sample of 100 points from a distribution of your choice and program (by hand) the kernel density estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="gaussian-kernel.html"><a href="gaussian-kernel.html"><i class="fa fa-check"></i><b>15</b> Gaussian Kernel</a></li>
+<li class="chapter" data-level="16" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html"><i class="fa fa-check"></i><b>16</b> Problem Set 5: Climate Week</a><ul>
+<li class="chapter" data-level="16.1" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#data-1"><i class="fa fa-check"></i><b>16.1</b> Data</a></li>
+<li class="chapter" data-level="16.2" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#tools-1"><i class="fa fa-check"></i><b>16.2</b> Tools</a></li>
+<li class="chapter" data-level="16.3" data-path="problem-set-5-climate-week.html"><a href="problem-set-5-climate-week.html#analysis"><i class="fa fa-check"></i><b>16.3</b> Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="problem-set-6-bandwidth-selection.html"><a href="problem-set-6-bandwidth-selection.html"><i class="fa fa-check"></i><b>17</b> Problem Set 6: Bandwidth Selection</a><ul>
+<li class="chapter" data-level="17.1" data-path="problem-set-6-bandwidth-selection.html"><a href="problem-set-6-bandwidth-selection.html#least-squares-cross-validation"><i class="fa fa-check"></i><b>17.1</b> Least-Squares Cross-validation</a></li>
+<li class="chapter" data-level="17.2" data-path="problem-set-6-bandwidth-selection.html"><a href="problem-set-6-bandwidth-selection.html#silvermans-rule-of-thumb"><i class="fa fa-check"></i><b>17.2</b> Silverman’s rule of Thumb</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Script Introduction to Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gaussian-kernel" class="section level1">
+<h1><span class="header-section-number">Chapter 15</span> Gaussian Kernel</h1>
+<div id="section" class="section level35">
+<p><span class="header-section-number">15.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1</span> </p>
+<p>kern1&lt;-function(x)
+{
+kern1&lt;-(2<em>pi)<sup>(-1/2)* exp(-x</sup>2/2)
+return(kern1)
+}
+###Or: Gaussian Kernel
+###################################
+Gauss.kernel &lt;- function(phi,…) {
+dnorm(phi)
+}
+# Epanechnikov Kernel:
+#############################
+kern2&lt;-function(x)
+{
+kern2&lt;-c()
+for(i in 1:length(x))
+{
+if(abs(x[i])&lt;=1)
+{
+kern2[i]&lt;-3/4</em>(1-x[i]^2)
+}
+else{kern2=0}
+}
+return(kern2)
+}
+##Or:
+# Epanechnikov Kernel:
+#############################
+Epan.kernel &lt;- function(phi,…) {
+0.75<em>(1-phi^2)</em>(abs(phi)&lt;=1)
+}</p>
+<p>z&lt;-seq(-1,1,length.out=100)
+###Plot the Kernel functions over the same x-values###
+plot(z,kern2(z),lty=1,type=“l”,col=“springgreen4”,lwd=2 , ylab=&quot;“)
+lines(z,kern1(z),lty=2,type=”l“,col=”navy“,lwd=2)
+legend(x=”bottomleft“, y=0.95, legend=c(”Epanechnikov Kernel“,”Gaussian Kernel“),col=c(”springgreen4“,”navy&quot;), lty=1:2, cex=1)</p>
+<p>####The density estimator###
+N.grid &lt;- 100
+N.sam &lt;- 100
+#——————
+QUANT.LOW &lt;- 0.05
+QUANT.HIGH &lt;- 0.95</p>
+<p>x.grid &lt;- seq(qnorm(QUANT.LOW),qnorm(QUANT.HIGH),length.out=N.grid)</p>
+<p>#Generate a function for the true density
+dens.true &lt;- function(x,…){
+dens &lt;- (qnorm(QUANT.LOW)&lt;=x)<em>(x&lt;=qnorm(QUANT.HIGH))</em>dnorm(x)/(QUANT.HIGH-QUANT.LOW)
+}
+####Plot the true density##############
+curve(dens.true,from=-2,to=2)
+dens.grid &lt;- dens.true(x.grid)
+# Generate a sample of 100 points
+########################################################
+set.seed(1048)
+x.sample &lt;- vector(“double”,length=N.sam)
+count &lt;- 1
+while(count &lt;= length(x.sample)){
+temp &lt;- rnorm(1)
+if(temp&lt;qnorm(QUANT.LOW)|temp&gt;qnorm(QUANT.HIGH)){
+count &lt;- count ##we draw from a standard normal distribution, create a temporary variable and see whether it is within our grid interval. If not we draw again. If yes, we move to the next draw.
+}
+else{
+x.sample[count] &lt;- temp
+count &lt;- count + 1
+}
+}</p>
+<p>####——————–The actual density estimator——##
+dens.estim &lt;- function(x.grid,x.data,h,Kern=Epan.kernel,…){
+# Number of sample observations
+N &lt;- length(x.data)
+# Number of points at which to evaluate
+n.grid &lt;- length(x.grid)
+dens.est &lt;- vector(“double”,length=n.grid)
+for(i in 1:length(x.grid)){
+phi &lt;- (x.data - x.grid[i])/h<br />
+dens.est[i] &lt;- mean(1/h*Kern(phi))<br />
+}
+return(dens.est)
+}</p>
+<p>##Calculate the estimator for different bandwidths#####
+reps=30
+h.grid&lt;-seq(0.01,0.5,le=reps)###Consider Bandwidths between 0.01 and 0.5
+res&lt;-matrix(NA,length(x.sample),reps)
+for(i in 1:reps)
+{
+res[,i]&lt;- dens.estim(x.grid=x.grid,x.data=x.sample,h=h.grid[i],Kern=Epan.kernel)
+}</p>
+<p>res.df&lt;-as.data.frame(cbind(as.factor(x.grid),res))
+names(res.df)&lt;-c(“x.grid”, sprintf(“%s”,round(h.grid,2)))
+library(“reshape2”)
+library(“ggplot2”)</p>
+<p>test_data_long &lt;- melt(res.df, id=“x.grid”)
+names(test_data_long)=c(“x”,“Bandwidth”,“Density”)
+plot=ggplot(data=test_data_long,
+aes(x=x, y=Density, colour=Bandwidth)) +geom_line()
+plot+ scale_colour_grey(start = 0.8, end = 0.2)+theme(legend.position = “none”)+ theme_bw()
+```</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="problem-set-4-np-density-estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="problem-set-5-climate-week.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/13-ProblemSet4.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

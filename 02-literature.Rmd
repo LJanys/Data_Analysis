@@ -1,0 +1,165 @@
+# Introduction to R
+
+## The R-Principle
+The program window of R is very simple (but also clear). In the inner part
+the R console (or Command window) is located for command input. All
+commands to perform statistical calculations and to generate graphics
+we will enter here for now. Later we will have longer programs in a text editor
+whose content is "loaded" into the Command window.  The toolbar is largely self-explanatory.
+The focus of R is thus on the programming plane. This makes a crucial 
+difference to commercial software like Excel or SPSS, where most
+computational and graphical operations are "menu-oriented" or operate with the help of "graphical
+user interfaces "(click on icons  etc.).
+The approach of R, namely to enter everything via commands, seems at first cumbersome. In the long term, however, this will pay off. The user now remains master of the situation. Thus she can perform statistical calculations according to her
+individual needs and remains completely flexible in the design of
+graphics. For the user, the software is no longer a black box. All programs and "preprogrammed" commands are in R
+and can be traced (at least theoretically) down to the last detail. I hold the view in any case that someone should only use the results of a statistical analysis that they (at least theoretically) can also calculate "by hand". Let's get started!
+
+If we type into the command window after the prompt and then press enter, we get
+```{r}
+ 1+1
+```
+
+i.e. the result of the calculation (s) is returned. Additionally, we get another prompt.
+
+Entering 
+```{r, error = TRUE }
+1+2+3+
+```
+
+
+Entering new commands, can only be processed after the prompt. This occurs only when the preceding command was entered correctly. 
+
+```{r, error = TRUE }
+1+2+3+4
+```
+
+A similar thing happens when parantheses are not closed. 
+
+
+```{r, error = TRUE }
+ 2*(2+3
+```
+
+
+
+R is waiting for us close the parentheses
+```{r, error = TRUE }
++ )
+```
+and we get the desired result.
+
+
+## Assigments
+
+```{r, error = TRUE }
+ x=0.5
+print(x)
+x<-1
+x
+x+1
+```
+
+We can assign values to objects/names by using = or ->. In this case, we initially assign the value of 0.5 to x. The value will be returned by entering x. We can also do calculations involving x, R will always use the most recent value assigned to x. If we change the value, the old value will be discarded without warning! 
+
+
+## Saving and removing objects
+
+Entering ls() returns a list of names of all objects that we have created. In this case
+
+ 
+```{r, error = TRUE }
+ls()
+```
+
+```{r, error = TRUE }
+y=2
+```
+
+```{r, error = TRUE }
+ls()
+```
+
+the operation returns
+
+```{r, error = TRUE }
+ x+y
+```
+
+Entering the following
+```{r, error = TRUE }
+z=c(1,2,3)
+z
+```
+
+
+The object z is a vector containing multiple values. ls() now returns
+
+```{r, error = TRUE }
+ls()
+```
+
+From this we cannot distinguish scalar- and vector objects. 
+
+
+To close R, we will get asked whether to "save Workspace". If we answer "no", all objects created in that session will be deleted. 
+
+To remove objects, use 
+```{r, error = TRUE }
+rm(list=ls())
+```
+
+This command removes all objects in memory, but it is of course possible to remove single objects.
+
+
+## R Help
+
+
+There are help files for all commands in R. 
+
+We create a vector x and use the command sum() 
+```{r, error = TRUE }
+ x=c(1,2,3,4,5)
+ x
+sum(x)
+```
+
+The help file for  sum() is called with
+```{r, error = TRUE }
+?sum
+```
+
+The help file usually contains the categories: Description, Usage, Arguments, Details, Value, References
+
+
+After the general description follows the the syntax of the command. This usually indicates which (optional) arguments the command allows. Then follows  na.rm., which indicates whether missing values (na) will be removed (rm). The default is False.
+
+
+```{r, error = TRUE }
+ x<-c(1,2,NA,4,5)
+ x
+sum(x)
+sum(x,na.rm=T)
+```
+
+Details describes the exact calculation (trivial in this case), and some command specific characteristics. Value describes what is returned, in the case of sum() it is obviously a sum of numbers, given that numeric data was used as an input. 
+
+
+## Using the editor
+
+We could continue using the command window, but when writing more complex programs we want to save everything in one place, so as a rule we only work in the editor window. We can mark parts of the code and click on the "run" icon. If we want to only run one line of code, we can also let the cursor hover at the end of the code line.
+
+
+
+We can save the code file by clicking on the disk icon at the top, or by pressing ctrl+s (command+s).
+
+## Working directory
+
+You can tell R to establish a working directory where all files created and saved from the code should be stored. The command is
+
+```{r, error = TRUE,eval=F }
+setwd("~/YourPath/YourFileName")
+```
+
+
+

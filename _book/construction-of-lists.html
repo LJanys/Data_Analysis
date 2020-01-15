@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Construction of Lists | Script Introduction to Data Analysis</title>
+  <meta name="description" content="Introduction to Data Analysis" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Construction of Lists | Script Introduction to Data Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Introduction to Data Analysis" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Construction of Lists | Script Introduction to Data Analysis" />
+  
+  <meta name="twitter:description" content="Introduction to Data Analysis" />
+  
+
+<meta name="author" content="Lena Janys" />
+
+
+<meta name="date" content="2019-11-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="construction-of-matrices.html"/>
+<link rel="next" href="statistical-functions.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Course Overview</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#list"><i class="fa fa-check"></i><b>1.1</b> List of Topics</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#method"><i class="fa fa-check"></i><b>1.2</b> Methods</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#data"><i class="fa fa-check"></i><b>1.2.1</b> Data</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#tools"><i class="fa fa-check"></i><b>1.2.2</b> Tools</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#exam"><i class="fa fa-check"></i><b>1.3</b> Exam</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#timetable"><i class="fa fa-check"></i><b>1.4</b> Timetable</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>2</b> Introduction to R</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-r.html"><a href="introduction-to-r.html#the-r-principle"><i class="fa fa-check"></i><b>2.1</b> The R-Principle</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-r.html"><a href="introduction-to-r.html#assigments"><i class="fa fa-check"></i><b>2.2</b> Assigments</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-r.html"><a href="introduction-to-r.html#saving-and-removing-objects"><i class="fa fa-check"></i><b>2.3</b> Saving and removing objects</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-r.html"><a href="introduction-to-r.html#r-help"><i class="fa fa-check"></i><b>2.4</b> R Help</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-r.html"><a href="introduction-to-r.html#using-the-editor"><i class="fa fa-check"></i><b>2.5</b> Using the editor</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-r.html"><a href="introduction-to-r.html#working-directory"><i class="fa fa-check"></i><b>2.6</b> Working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="operators.html"><a href="operators.html"><i class="fa fa-check"></i><b>3</b> Operators</a></li>
+<li class="chapter" data-level="4" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html"><i class="fa fa-check"></i><b>4</b> Data structures: vectors, matrices, lists</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#numerical-and-non-numeric-objects"><i class="fa fa-check"></i><b>4.1</b> Numerical and non-numeric objects</a></li>
+<li class="chapter" data-level="4.2" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#vectors"><i class="fa fa-check"></i><b>4.2</b> Vectors</a></li>
+<li class="chapter" data-level="4.3" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#matrices"><i class="fa fa-check"></i><b>4.3</b> Matrices</a></li>
+<li class="chapter" data-level="4.4" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#lists"><i class="fa fa-check"></i><b>4.4</b> Lists</a></li>
+<li class="chapter" data-level="4.5" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#data-frames"><i class="fa fa-check"></i><b>4.5</b> Data Frames</a></li>
+<li class="chapter" data-level="4.6" data-path="data-structures-vectors-matrices-lists.html"><a href="data-structures-vectors-matrices-lists.html#working-with-logical-operators"><i class="fa fa-check"></i><b>4.6</b> Working with logical operators</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html"><i class="fa fa-check"></i><b>5</b> Exercises: Simple Data structures</a><ul>
+<li class="chapter" data-level="5.1" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html#r-as-a-calculator"><i class="fa fa-check"></i><b>5.1</b> R as a calculator</a></li>
+<li class="chapter" data-level="5.2" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html#numerical-and-nonnumerical-objects"><i class="fa fa-check"></i><b>5.2</b> Numerical and Nonnumerical Objects</a></li>
+<li class="chapter" data-level="5.3" data-path="exercises-simple-data-structures.html"><a href="exercises-simple-data-structures.html#vectors-1"><i class="fa fa-check"></i><b>5.3</b> Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="construction-of-matrices.html"><a href="construction-of-matrices.html"><i class="fa fa-check"></i><b>6</b> Construction of matrices</a></li>
+<li class="chapter" data-level="7" data-path="construction-of-lists.html"><a href="construction-of-lists.html"><i class="fa fa-check"></i><b>7</b> Construction of Lists</a></li>
+<li class="chapter" data-level="8" data-path="statistical-functions.html"><a href="statistical-functions.html"><i class="fa fa-check"></i><b>8</b> Statistical functions</a><ul>
+<li class="chapter" data-level="8.1" data-path="statistical-functions.html"><a href="statistical-functions.html#sums-and-frequencies"><i class="fa fa-check"></i><b>8.1</b> Sums and frequencies</a></li>
+<li class="chapter" data-level="8.2" data-path="statistical-functions.html"><a href="statistical-functions.html#frequencies"><i class="fa fa-check"></i><b>8.2</b> Frequencies</a></li>
+<li class="chapter" data-level="8.3" data-path="statistical-functions.html"><a href="statistical-functions.html#statistical-distributions"><i class="fa fa-check"></i><b>8.3</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="statistical-functions.html"><a href="statistical-functions.html#normal-distribution"><i class="fa fa-check"></i><b>8.3.1</b> Normal distribution</a></li>
+<li class="chapter" data-level="8.3.2" data-path="statistical-functions.html"><a href="statistical-functions.html#binomial-distribution"><i class="fa fa-check"></i><b>8.3.2</b> Binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="statistical-functions.html"><a href="statistical-functions.html#multiplication-of-a-random-variable-with-a-constant"><i class="fa fa-check"></i><b>8.4</b> Multiplication of a random variable with a constant</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="simple-programming.html"><a href="simple-programming.html"><i class="fa fa-check"></i><b>9</b> Simple programming</a><ul>
+<li class="chapter" data-level="9.1" data-path="simple-programming.html"><a href="simple-programming.html#using-for-loops"><i class="fa fa-check"></i><b>9.1</b> Using for-loops</a></li>
+<li class="chapter" data-level="9.2" data-path="simple-programming.html"><a href="simple-programming.html#the-if-condition"><i class="fa fa-check"></i><b>9.2</b> The if-Condition</a></li>
+<li class="chapter" data-level="9.3" data-path="simple-programming.html"><a href="simple-programming.html#the-while-loop"><i class="fa fa-check"></i><b>9.3</b> The while-loop</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="construction-of-functions.html"><a href="construction-of-functions.html"><i class="fa fa-check"></i><b>10</b> Construction of functions</a><ul>
+<li class="chapter" data-level="10.1" data-path="construction-of-functions.html"><a href="construction-of-functions.html#simple-functions"><i class="fa fa-check"></i><b>10.1</b> Simple functions</a></li>
+<li class="chapter" data-level="10.2" data-path="construction-of-functions.html"><a href="construction-of-functions.html#functions-with-multiple-output-objects"><i class="fa fa-check"></i><b>10.2</b> Functions with multiple output objects</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="r-exercises.html"><a href="r-exercises.html"><i class="fa fa-check"></i><b>11</b> R Exercises</a><ul>
+<li class="chapter" data-level="11.1" data-path="r-exercises.html"><a href="r-exercises.html#matrices-1"><i class="fa fa-check"></i><b>11.1</b> Matrices</a></li>
+<li class="chapter" data-level="11.2" data-path="r-exercises.html"><a href="r-exercises.html#sums-and-frequencies-1"><i class="fa fa-check"></i><b>11.2</b> Sums and frequencies</a></li>
+<li class="chapter" data-level="11.3" data-path="r-exercises.html"><a href="r-exercises.html#logical-operators"><i class="fa fa-check"></i><b>11.3</b> Logical Operators</a></li>
+<li class="chapter" data-level="11.4" data-path="r-exercises.html"><a href="r-exercises.html#statistical-distributions-1"><i class="fa fa-check"></i><b>11.4</b> Statistical Distributions</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="r-exercises.html"><a href="r-exercises.html#exercise-1"><i class="fa fa-check"></i><b>11.4.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="11.4.2" data-path="r-exercises.html"><a href="r-exercises.html#exercise-2"><i class="fa fa-check"></i><b>11.4.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="11.4.3" data-path="r-exercises.html"><a href="r-exercises.html#exercise-3"><i class="fa fa-check"></i><b>11.4.3</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="r-exercises.html"><a href="r-exercises.html#loops-and-functions"><i class="fa fa-check"></i><b>11.5</b> Loops and functions</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="r-exercises.html"><a href="r-exercises.html#exercise-1-1"><i class="fa fa-check"></i><b>11.5.1</b> Exercise 1</a></li>
+<li class="chapter" data-level="11.5.2" data-path="r-exercises.html"><a href="r-exercises.html#exercise-2-1"><i class="fa fa-check"></i><b>11.5.2</b> Exercise 2</a></li>
+<li class="chapter" data-level="11.5.3" data-path="r-exercises.html"><a href="r-exercises.html#exercise-3-1"><i class="fa fa-check"></i><b>11.5.3</b> Exercise 3</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="problem-set-1.html"><a href="problem-set-1.html"><i class="fa fa-check"></i><b>12</b> Problem Set 1</a><ul>
+<li class="chapter" data-level="12.1" data-path="problem-set-1.html"><a href="problem-set-1.html#estimating-model-parameters"><i class="fa fa-check"></i><b>12.1</b> Estimating model parameters</a></li>
+<li class="chapter" data-level="12.2" data-path="problem-set-1.html"><a href="problem-set-1.html#estimate-r2-and-barr2"><i class="fa fa-check"></i><b>12.2</b> Estimate <span class="math inline">\(R^2\)</span> and <span class="math inline">\(\bar{R^2}\)</span></a></li>
+<li class="chapter" data-level="12.3" data-path="problem-set-1.html"><a href="problem-set-1.html#simulation-study"><i class="fa fa-check"></i><b>12.3</b> Simulation study</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="problem-set-2.html"><a href="problem-set-2.html"><i class="fa fa-check"></i><b>13</b> Problem Set 2</a><ul>
+<li class="chapter" data-level="13.1" data-path="problem-set-2.html"><a href="problem-set-2.html#implementing-the-f-statistic"><i class="fa fa-check"></i><b>13.1</b> Implementing the F-statistic</a></li>
+<li class="chapter" data-level="13.2" data-path="problem-set-2.html"><a href="problem-set-2.html#simulation-study-1"><i class="fa fa-check"></i><b>13.2</b> Simulation Study</a></li>
+<li class="chapter" data-level="13.3" data-path="problem-set-2.html"><a href="problem-set-2.html#simulation-study-violating-model-assumptions"><i class="fa fa-check"></i><b>13.3</b> Simulation study: Violating model assumptions</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="problem-set-3-power-and-size.html"><a href="problem-set-3-power-and-size.html"><i class="fa fa-check"></i><b>14</b> Problem Set 3: Power and Size</a><ul>
+<li class="chapter" data-level="14.1" data-path="problem-set-3-power-and-size.html"><a href="problem-set-3-power-and-size.html#size"><i class="fa fa-check"></i><b>14.1</b> Size</a></li>
+<li class="chapter" data-level="14.2" data-path="problem-set-3-power-and-size.html"><a href="problem-set-3-power-and-size.html#simulation-study-size"><i class="fa fa-check"></i><b>14.2</b> Simulation Study: Size</a></li>
+<li class="chapter" data-level="14.3" data-path="problem-set-3-power-and-size.html"><a href="problem-set-3-power-and-size.html#simulation-study-power"><i class="fa fa-check"></i><b>14.3</b> Simulation study: Power</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Script Introduction to Data Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="construction-of-lists" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Construction of Lists</h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">v=<span class="kw">c</span>(<span class="st">&quot;Hallo&quot;</span>,<span class="st">&quot;Tag&quot;</span>,<span class="st">&quot;Hi&quot;</span>,<span class="st">&quot;Guten Tag&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">m=<span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">v</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">m</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">objekte=<span class="kw">list</span>(v,m)</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">objekte</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#Accessing list components</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">objekte[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">objekte[[<span class="dv">2</span>]]</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw">length</span>(objekte)</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">objekte[[<span class="dv">1</span>]][<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">objekte[[<span class="dv">2</span>]][,<span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13">objekte=<span class="kw">list</span>(<span class="dt">Begruessungen=</span>v,<span class="dt">Zahlenmatrix=</span>m)</a>
+<a class="sourceLine" id="cb5-14" data-line-number="14">objekte<span class="op">$</span>Begruessungen</a>
+<a class="sourceLine" id="cb5-15" data-line-number="15">objekte<span class="op">$</span>Zahlenmatrix</a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="kw">names</span>(objekte)</a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#Data Frames</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18">Name </a>
+<a class="sourceLine" id="cb5-19" data-line-number="19">Geschlecht</a>
+<a class="sourceLine" id="cb5-20" data-line-number="20">Groesse</a>
+<a class="sourceLine" id="cb5-21" data-line-number="21">Gewicht</a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="kw">cbind</span>(Name, Geschlecht, Groesse, Gewicht)</a>
+<a class="sourceLine" id="cb5-23" data-line-number="23">Personen=<span class="kw">data.frame</span>(Name, Geschlecht, Groesse, Gewicht)</a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="kw">summary</span>(Personen)</a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#Accessing data frame coomponents</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="kw">length</span>(Personen)</a>
+<a class="sourceLine" id="cb5-28" data-line-number="28">Personen[[<span class="dv">1</span>]]</a>
+<a class="sourceLine" id="cb5-29" data-line-number="29">Personen[[<span class="dv">4</span>]]</a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="kw">names</span>(Personen)</a>
+<a class="sourceLine" id="cb5-31" data-line-number="31">Personen<span class="op">$</span>Name</a>
+<a class="sourceLine" id="cb5-32" data-line-number="32">Personen<span class="op">$</span>Gewicht</a>
+<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="kw">dim</span>(Personen)</a>
+<a class="sourceLine" id="cb5-34" data-line-number="34">Personen[<span class="dv">1</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb5-35" data-line-number="35">Personen[<span class="dv">5</span>,<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb5-36" data-line-number="36">Personen[<span class="dv">1</span>,<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb5-37" data-line-number="37">Personen[<span class="dv">5</span>,<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb5-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#Logical Expressions</span></a>
+<a class="sourceLine" id="cb5-40" data-line-number="40">x=<span class="kw">c</span>(<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">6</span>,<span class="dv">9</span>,<span class="dv">7</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb5-41" data-line-number="41">c=x<span class="op">&lt;</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb5-42" data-line-number="42">x<span class="op">&gt;</span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb5-43" data-line-number="43">x<span class="op">==</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb5-44" data-line-number="44">x<span class="op">!=</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb5-45" data-line-number="45"><span class="dv">2</span><span class="op">&lt;</span>x<span class="op">&amp;</span>x<span class="op">&lt;</span><span class="dv">8</span></a>
+<a class="sourceLine" id="cb5-46" data-line-number="46">x<span class="op">&lt;</span><span class="dv">4</span><span class="op">|</span>x<span class="op">&gt;</span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb5-47" data-line-number="47"><span class="kw">sum</span>(x<span class="op">&gt;</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb5-48" data-line-number="48"><span class="kw">sum</span>(x<span class="op">&lt;</span><span class="dv">4</span><span class="op">|</span>x<span class="op">&gt;</span><span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb5-49" data-line-number="49">x[]<span class="op">&gt;</span><span class="dv">2</span><span class="co">###Returns a logical vector</span></a>
+<a class="sourceLine" id="cb5-50" data-line-number="50"><span class="co">## </span></a>
+<a class="sourceLine" id="cb5-51" data-line-number="51">y&lt;-<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">8</span>,<span class="dt">by=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb5-52" data-line-number="52">y[x<span class="op">&gt;</span><span class="dv">4</span>]<span class="co">#returns all elements for which a logical expression is fulfilled</span></a>
+<a class="sourceLine" id="cb5-53" data-line-number="53"><span class="co">#Subsetting data frames</span></a>
+<a class="sourceLine" id="cb5-54" data-line-number="54">Personen</a>
+<a class="sourceLine" id="cb5-55" data-line-number="55"><span class="kw">subset</span>(Personen,Geschlecht<span class="op">==</span><span class="st">&quot;m&quot;</span>)</a>
+<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="kw">subset</span>(Personen,Groesse<span class="op">&gt;</span><span class="dv">180</span>)</a>
+<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="kw">subset</span>(Personen,Geschlecht<span class="op">==</span><span class="st">&quot;m&quot;</span>,<span class="dt">select=</span>Name)</a>
+<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="kw">subset</span>(Personen,Groesse<span class="op">&gt;</span><span class="dv">180</span>,<span class="dt">select=</span><span class="kw">c</span>(Groesse,Gewicht))</a>
+<a class="sourceLine" id="cb5-59" data-line-number="59">Maenner=<span class="kw">subset</span>(Personen,Geschlecht<span class="op">==</span><span class="st">&quot;m&quot;</span>)</a>
+<a class="sourceLine" id="cb5-60" data-line-number="60"></a>
+<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#Ordering data</span></a>
+<a class="sourceLine" id="cb5-62" data-line-number="62">x=<span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb5-63" data-line-number="63">x</a>
+<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="kw">sort</span>(x)</a>
+<a class="sourceLine" id="cb5-65" data-line-number="65">x</a>
+<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="kw">sort</span>(x,<span class="dt">decreasing=</span>T)</a>
+<a class="sourceLine" id="cb5-67" data-line-number="67"><span class="kw">rank</span>(x)</a>
+<a class="sourceLine" id="cb5-68" data-line-number="68"><span class="kw">order</span>(x)</a>
+<a class="sourceLine" id="cb5-69" data-line-number="69"></a>
+<a class="sourceLine" id="cb5-70" data-line-number="70"></a>
+<a class="sourceLine" id="cb5-71" data-line-number="71"><span class="co">#Summing data</span></a>
+<a class="sourceLine" id="cb5-72" data-line-number="72">x=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb5-73" data-line-number="73">n=<span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb5-74" data-line-number="74">n</a>
+<a class="sourceLine" id="cb5-75" data-line-number="75">Y&lt;-<span class="kw">cbind</span>(<span class="kw">rep</span>(<span class="dv">1</span>,n),x)</a>
+<a class="sourceLine" id="cb5-76" data-line-number="76"><span class="kw">sum</span>(x)</a>
+<a class="sourceLine" id="cb5-77" data-line-number="77"><span class="kw">cumsum</span>(x)</a>
+<a class="sourceLine" id="cb5-78" data-line-number="78"><span class="kw">colSums</span> (Y)</a>
+<a class="sourceLine" id="cb5-79" data-line-number="79"><span class="kw">rowSums</span> (Y)</a>
+<a class="sourceLine" id="cb5-80" data-line-number="80"><span class="kw">colMeans</span>(Y)</a>
+<a class="sourceLine" id="cb5-81" data-line-number="81"><span class="kw">rowMeans</span>(Y)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co">#Frequencies - onedimensional</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">table</span>(x)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">x</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">table</span>(x)<span class="op">/</span>n</a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">klassen=<span class="kw">hist</span>(x,<span class="dt">breaks=</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">10</span>)))</a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">klassen<span class="op">$</span>counts</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">klassen<span class="op">$</span>counts<span class="op">/</span>n</a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#Mehrdimensional</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"> x=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"> y=<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-11" data-line-number="11"> z=<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>)</a>
+<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="kw">data.frame</span>(x,y,z)</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="kw">table</span>(x,y)</a>
+<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="kw">table</span>(x,y,z)<span class="co">## two-dimensional frequency table</span></a>
+<a class="sourceLine" id="cb6-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb6-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb6-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb6-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">##Conditional frequencies </span></a>
+<a class="sourceLine" id="cb6-20" data-line-number="20">m=<span class="kw">table</span>(x,y)</a>
+<a class="sourceLine" id="cb6-21" data-line-number="21">m</a>
+<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#Calculates row frequencies</span></a>
+<a class="sourceLine" id="cb6-23" data-line-number="23"><span class="kw">prop.table</span>(m,<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-24" data-line-number="24"><span class="co">#Calculates column frequencies</span></a>
+<a class="sourceLine" id="cb6-25" data-line-number="25"><span class="kw">prop.table</span>(m,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-26" data-line-number="26"><span class="co">##Statistical distribution </span></a>
+<a class="sourceLine" id="cb6-27" data-line-number="27"><span class="co">#Normal distribution </span></a>
+<a class="sourceLine" id="cb6-28" data-line-number="28">x=<span class="kw">seq</span>(<span class="op">-</span><span class="dv">5</span>,<span class="dv">4</span>,<span class="dt">le=</span><span class="dv">1000</span>)</a>
+<a class="sourceLine" id="cb6-29" data-line-number="29">y=<span class="kw">dnorm</span>(x)</a>
+<a class="sourceLine" id="cb6-30" data-line-number="30"><span class="kw">plot</span>(x,y)</a>
+<a class="sourceLine" id="cb6-31" data-line-number="31"><span class="kw">plot</span>(x,y,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</a>
+<a class="sourceLine" id="cb6-32" data-line-number="32">z=<span class="kw">dnorm</span>(x,<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-33" data-line-number="33"><span class="kw">plot</span>(x,z,<span class="dt">type=</span><span class="st">&quot;l&quot;</span>)</a>
+<a class="sourceLine" id="cb6-34" data-line-number="34"><span class="kw">pnorm</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb6-35" data-line-number="35"><span class="kw">pnorm</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-36" data-line-number="36"><span class="kw">pnorm</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-37" data-line-number="37"><span class="co">##Calculations</span></a>
+<a class="sourceLine" id="cb6-38" data-line-number="38"><span class="kw">pnorm</span>(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)<span class="op">-</span><span class="kw">pnorm</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-39" data-line-number="39"><span class="kw">qnorm</span>(<span class="fl">0.6</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-40" data-line-number="40">x=<span class="kw">rnorm</span>(<span class="dv">1000</span>,<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-41" data-line-number="41"><span class="kw">hist</span>(x,<span class="dt">prob=</span>T)</a>
+<a class="sourceLine" id="cb6-42" data-line-number="42"><span class="co">##Binomial distribution</span></a>
+<a class="sourceLine" id="cb6-43" data-line-number="43"><span class="kw">dbinom</span>(<span class="dv">8</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-44" data-line-number="44"><span class="kw">pbinom</span>(<span class="dv">6</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)<span class="op">-</span><span class="kw">pbinom</span>(<span class="dv">2</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-45" data-line-number="45"><span class="kw">qbinom</span>(<span class="kw">c</span>(<span class="fl">0.25</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span>),<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-46" data-line-number="46"><span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">1</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-47" data-line-number="47">x=<span class="dv">0</span><span class="op">:</span><span class="dv">20</span></a>
+<a class="sourceLine" id="cb6-48" data-line-number="48">y=<span class="kw">dbinom</span>(x,<span class="dv">20</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-49" data-line-number="49"><span class="kw">plot</span>(x,y,<span class="dt">type=</span><span class="st">&quot;h&quot;</span>)</a>
+<a class="sourceLine" id="cb6-50" data-line-number="50"><span class="co">#Repeated random draws#</span></a>
+<a class="sourceLine" id="cb6-51" data-line-number="51"><span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-52" data-line-number="52"><span class="kw">set.seed</span>(<span class="dv">32323</span>)</a>
+<a class="sourceLine" id="cb6-53" data-line-number="53"><span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-54" data-line-number="54"><span class="kw">set.seed</span>(<span class="dv">32323</span>)</a>
+<a class="sourceLine" id="cb6-55" data-line-number="55"><span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-56" data-line-number="56"><span class="kw">set.seed</span>(<span class="dv">32323</span>)</a>
+<a class="sourceLine" id="cb6-57" data-line-number="57"><span class="kw">rbinom</span>(<span class="dv">20</span>,<span class="dv">10</span>,<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-58" data-line-number="58"></a>
+<a class="sourceLine" id="cb6-59" data-line-number="59"><span class="co">#For-Loops</span></a>
+<a class="sourceLine" id="cb6-60" data-line-number="60"><span class="co">#Example 1</span></a>
+<a class="sourceLine" id="cb6-61" data-line-number="61">x=<span class="dv">0</span></a>
+<a class="sourceLine" id="cb6-62" data-line-number="62"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) { x=x<span class="op">+</span>i }</a>
+<a class="sourceLine" id="cb6-63" data-line-number="63">x</a>
+<a class="sourceLine" id="cb6-64" data-line-number="64"></a>
+<a class="sourceLine" id="cb6-65" data-line-number="65"><span class="co"># Example 2</span></a>
+<a class="sourceLine" id="cb6-66" data-line-number="66"> x=<span class="dv">0</span></a>
+<a class="sourceLine" id="cb6-67" data-line-number="67"> <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb6-68" data-line-number="68">   {</a>
+<a class="sourceLine" id="cb6-69" data-line-number="69">     x=x<span class="op">+</span>i</a>
+<a class="sourceLine" id="cb6-70" data-line-number="70">     z=x<span class="op">*</span>i</a>
+<a class="sourceLine" id="cb6-71" data-line-number="71">     }</a>
+<a class="sourceLine" id="cb6-72" data-line-number="72">z</a>
+<a class="sourceLine" id="cb6-73" data-line-number="73"></a>
+<a class="sourceLine" id="cb6-74" data-line-number="74"><span class="co">#Simulationstudy: Law of large numbers</span></a>
+<a class="sourceLine" id="cb6-75" data-line-number="75"></a>
+<a class="sourceLine" id="cb6-76" data-line-number="76"><span class="co"># </span></a>
+<a class="sourceLine" id="cb6-77" data-line-number="77"> RelShare=<span class="kw">c</span>() <span class="co">###initialize an empty vector&quot;</span></a>
+<a class="sourceLine" id="cb6-78" data-line-number="78"> N=<span class="dv">500</span><span class="co">#Number of draws</span></a>
+<a class="sourceLine" id="cb6-79" data-line-number="79"> <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)<span class="co">#initialize the loop</span></a>
+<a class="sourceLine" id="cb6-80" data-line-number="80">   {</a>
+<a class="sourceLine" id="cb6-81" data-line-number="81">     Sample=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,<span class="fl">0.5</span>)<span class="co">#draw a vector with </span></a>
+<a class="sourceLine" id="cb6-82" data-line-number="82">     RelShare[n]=<span class="kw">mean</span>(Sample)<span class="co">#calculate the number of ones</span></a>
+<a class="sourceLine" id="cb6-83" data-line-number="83">     }</a>
+<a class="sourceLine" id="cb6-84" data-line-number="84"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>N,RelShare,<span class="co">#plot the results</span></a>
+<a class="sourceLine" id="cb6-85" data-line-number="85">        <span class="dt">main=</span><span class="st">&quot;B(1,0.5)-Distribution-Law of large numbers&quot;</span>,</a>
+<a class="sourceLine" id="cb6-86" data-line-number="86">        <span class="dt">xlab=</span><span class="st">&quot;n&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Relative Share&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb6-87" data-line-number="87">        <span class="dt">cex.axis=</span><span class="dv">1</span>,<span class="dt">cex.lab=</span><span class="dv">1</span>,<span class="dt">cex.main=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-88" data-line-number="88"> <span class="kw">abline</span>(<span class="dt">h=</span><span class="fl">0.5</span>,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)<span class="co">#We add a line with the expected value</span></a>
+<a class="sourceLine" id="cb6-89" data-line-number="89"></a>
+<a class="sourceLine" id="cb6-90" data-line-number="90"><span class="co">###If-condition###</span></a>
+<a class="sourceLine" id="cb6-91" data-line-number="91">y&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb6-92" data-line-number="92">N &lt;-<span class="st"> </span><span class="kw">length</span>(y)</a>
+<a class="sourceLine" id="cb6-93" data-line-number="93"><span class="dv">1</span><span class="op">:</span>N</a>
+<a class="sourceLine" id="cb6-94" data-line-number="94"><span class="co">## </span></a>
+<a class="sourceLine" id="cb6-95" data-line-number="95">y.sq &lt;-<span class="st"> </span><span class="kw">numeric</span>(N)<span class="co">#initialize an empty vector of length N</span></a>
+<a class="sourceLine" id="cb6-96" data-line-number="96">y.sq<span class="co">#print</span></a>
+<a class="sourceLine" id="cb6-97" data-line-number="97"><span class="co">## </span></a>
+<a class="sourceLine" id="cb6-98" data-line-number="98"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N){ <span class="co"># initialize the for-loop</span></a>
+<a class="sourceLine" id="cb6-99" data-line-number="99">  y.sq[i] &lt;-<span class="st"> </span>y[i]<span class="op">^</span><span class="dv">2</span><span class="co">#every element of y is squared and replaces the i&#39;th element in the empty vector with the result</span></a>
+<a class="sourceLine" id="cb6-100" data-line-number="100">  <span class="cf">if</span>(i <span class="op">==</span><span class="st"> </span>N){<span class="co"># only when condition is fulfilled , i.e. only in the last run of the loop</span></a>
+<a class="sourceLine" id="cb6-101" data-line-number="101">    <span class="kw">print</span>(y.sq)<span class="co">#print y.sq in the console</span></a>
+<a class="sourceLine" id="cb6-102" data-line-number="102">  }</a>
+<a class="sourceLine" id="cb6-103" data-line-number="103">}</a>
+<a class="sourceLine" id="cb6-104" data-line-number="104"></a>
+<a class="sourceLine" id="cb6-105" data-line-number="105"><span class="co">##Variation###</span></a>
+<a class="sourceLine" id="cb6-106" data-line-number="106">y&lt;-<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">2</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb6-107" data-line-number="107">N &lt;-<span class="st"> </span><span class="kw">length</span>(y)</a>
+<a class="sourceLine" id="cb6-108" data-line-number="108"><span class="dv">1</span><span class="op">:</span>N</a>
+<a class="sourceLine" id="cb6-109" data-line-number="109"><span class="co">## </span></a>
+<a class="sourceLine" id="cb6-110" data-line-number="110">y.sq &lt;-<span class="st"> </span><span class="kw">numeric</span>(N)<span class="co">#initialize an empty vector of length N</span></a>
+<a class="sourceLine" id="cb6-111" data-line-number="111">y.sq<span class="co">#print</span></a>
+<a class="sourceLine" id="cb6-112" data-line-number="112"><span class="co">## </span></a>
+<a class="sourceLine" id="cb6-113" data-line-number="113"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N){ <span class="co"># # initialize the for-loop</span></a>
+<a class="sourceLine" id="cb6-114" data-line-number="114">  <span class="cf">if</span>(y[i] <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>){ <span class="co">##if condition is fulfilled, i.e. if y[i] is larger than 4</span></a>
+<a class="sourceLine" id="cb6-115" data-line-number="115">  y.sq[i] &lt;-<span class="st"> </span>y[i]<span class="op">^</span><span class="dv">2</span><span class="co">#every element of y is squared and replaces the i&#39;th element in the empty vector with the result</span></a>
+<a class="sourceLine" id="cb6-116" data-line-number="116">  }</a>
+<a class="sourceLine" id="cb6-117" data-line-number="117"><span class="cf">else</span>{ <span class="co">##if elements of y are smaller or equal to 4: </span></a>
+<a class="sourceLine" id="cb6-118" data-line-number="118">  y.sq[i]&lt;-<span class="dv">0</span><span class="co">## replace the elements with zero</span></a>
+<a class="sourceLine" id="cb6-119" data-line-number="119">}</a>
+<a class="sourceLine" id="cb6-120" data-line-number="120">  }</a>
+<a class="sourceLine" id="cb6-121" data-line-number="121">y.sq</a>
+<a class="sourceLine" id="cb6-122" data-line-number="122"></a>
+<a class="sourceLine" id="cb6-123" data-line-number="123"></a>
+<a class="sourceLine" id="cb6-124" data-line-number="124"></a>
+<a class="sourceLine" id="cb6-125" data-line-number="125"><span class="co">#Functions: write a function that calculates the (biased) variance</span></a>
+<a class="sourceLine" id="cb6-126" data-line-number="126">vartilde=<span class="cf">function</span>(x)</a>
+<a class="sourceLine" id="cb6-127" data-line-number="127">{</a>
+<a class="sourceLine" id="cb6-128" data-line-number="128">  <span class="kw">mean</span>(x<span class="op">^</span><span class="dv">2</span>)<span class="op">-</span><span class="kw">mean</span>(x)<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb6-129" data-line-number="129">}</a>
+<a class="sourceLine" id="cb6-130" data-line-number="130"></a>
+<a class="sourceLine" id="cb6-131" data-line-number="131"></a>
+<a class="sourceLine" id="cb6-132" data-line-number="132">y&lt;-<span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb6-133" data-line-number="133"><span class="kw">vartilde</span>(<span class="dt">x=</span>y)<span class="co">#Call the function vartilde</span></a>
+<a class="sourceLine" id="cb6-134" data-line-number="134"><span class="kw">var</span>(y)</a>
+<a class="sourceLine" id="cb6-135" data-line-number="135"></a>
+<a class="sourceLine" id="cb6-136" data-line-number="136"><span class="co">##functions with many arguments</span></a>
+<a class="sourceLine" id="cb6-137" data-line-number="137"></a>
+<a class="sourceLine" id="cb6-138" data-line-number="138">GGZGraph=<span class="cf">function</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb6-139" data-line-number="139">{</a>
+<a class="sourceLine" id="cb6-140" data-line-number="140">  RelShare=<span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb6-141" data-line-number="141">  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)</a>
+<a class="sourceLine" id="cb6-142" data-line-number="142">  {</a>
+<a class="sourceLine" id="cb6-143" data-line-number="143">    Sample=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,pi)</a>
+<a class="sourceLine" id="cb6-144" data-line-number="144">    RelShare[n]=<span class="kw">mean</span>(Sample)</a>
+<a class="sourceLine" id="cb6-145" data-line-number="145">  }</a>
+<a class="sourceLine" id="cb6-146" data-line-number="146">  <span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span>N, RelShare,</a>
+<a class="sourceLine" id="cb6-147" data-line-number="147">       <span class="dt">main=</span><span class="st">&quot;LLN&quot;</span>,</a>
+<a class="sourceLine" id="cb6-148" data-line-number="148">       <span class="dt">xlab=</span><span class="st">&quot;n&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Relative Share&quot;</span>,<span class="dt">pch=</span><span class="dv">16</span>,</a>
+<a class="sourceLine" id="cb6-149" data-line-number="149">       <span class="dt">cex.axis=</span><span class="dv">1</span>,<span class="dt">cex.lab=</span><span class="dv">1</span>,<span class="dt">cex.main=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb6-150" data-line-number="150">  <span class="kw">abline</span>(<span class="dt">h=</span>pi,<span class="dt">lwd=</span><span class="dv">2</span>,<span class="dt">col=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb6-151" data-line-number="151">}</a>
+<a class="sourceLine" id="cb6-152" data-line-number="152"><span class="kw">GGZGraph</span>()</a>
+<a class="sourceLine" id="cb6-153" data-line-number="153"></a>
+<a class="sourceLine" id="cb6-154" data-line-number="154"><span class="co">#Simulation </span></a>
+<a class="sourceLine" id="cb6-155" data-line-number="155"><span class="kw">GGZGraph</span>(<span class="dv">100</span>,<span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb6-156" data-line-number="156"><span class="kw">GGZGraph</span>(<span class="dv">1000</span>,<span class="fl">0.4</span>)</a>
+<a class="sourceLine" id="cb6-157" data-line-number="157"></a>
+<a class="sourceLine" id="cb6-158" data-line-number="158"><span class="co">##Return of several values</span></a>
+<a class="sourceLine" id="cb6-159" data-line-number="159">GGZSim=<span class="cf">function</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,a,b)</a>
+<a class="sourceLine" id="cb6-160" data-line-number="160">{</a>
+<a class="sourceLine" id="cb6-161" data-line-number="161">   RelShare=<span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb6-162" data-line-number="162">  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)</a>
+<a class="sourceLine" id="cb6-163" data-line-number="163">  {</a>
+<a class="sourceLine" id="cb6-164" data-line-number="164">    Sample=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,pi)</a>
+<a class="sourceLine" id="cb6-165" data-line-number="165">     RelShare[n]=<span class="kw">mean</span>(Sample)</a>
+<a class="sourceLine" id="cb6-166" data-line-number="166">  }</a>
+<a class="sourceLine" id="cb6-167" data-line-number="167">  IntervallAnt=<span class="kw">sum</span>(a<span class="op">&lt;</span><span class="st"> </span>RelShare<span class="op">&amp;</span><span class="st"> </span>RelShare<span class="op">&lt;</span>b)<span class="op">/</span>N</a>
+<a class="sourceLine" id="cb6-168" data-line-number="168">  <span class="kw">list</span>( RelShare,IntervallAnt)</a>
+<a class="sourceLine" id="cb6-169" data-line-number="169">}</a>
+<a class="sourceLine" id="cb6-170" data-line-number="170"></a>
+<a class="sourceLine" id="cb6-171" data-line-number="171">result=<span class="kw">GGZSim</span>(<span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,<span class="dt">a=</span><span class="fl">0.4</span>,<span class="dt">b=</span><span class="fl">0.6</span>)</a>
+<a class="sourceLine" id="cb6-172" data-line-number="172">result[[<span class="dv">2</span>]]</a>
+<a class="sourceLine" id="cb6-173" data-line-number="173"></a>
+<a class="sourceLine" id="cb6-174" data-line-number="174"><span class="co">###Or###</span></a>
+<a class="sourceLine" id="cb6-175" data-line-number="175">GGZSim2=<span class="cf">function</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,a,b)</a>
+<a class="sourceLine" id="cb6-176" data-line-number="176">{</a>
+<a class="sourceLine" id="cb6-177" data-line-number="177">  RelShare=<span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb6-178" data-line-number="178">  <span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>N)</a>
+<a class="sourceLine" id="cb6-179" data-line-number="179">  {</a>
+<a class="sourceLine" id="cb6-180" data-line-number="180">    Sample=<span class="kw">rbinom</span>(n,<span class="dv">1</span>,pi)</a>
+<a class="sourceLine" id="cb6-181" data-line-number="181">    RelShare[n]=<span class="kw">mean</span>(Sample)</a>
+<a class="sourceLine" id="cb6-182" data-line-number="182">  }</a>
+<a class="sourceLine" id="cb6-183" data-line-number="183">  IntervallAnt=<span class="kw">sum</span>(a<span class="op">&lt;</span>RelShare<span class="op">&amp;</span>RelShare<span class="op">&lt;</span>b)<span class="op">/</span>N</a>
+<a class="sourceLine" id="cb6-184" data-line-number="184">  return=<span class="kw">list</span>(<span class="dt">RelShare=</span>RelShare,<span class="dt">IntervallAnt=</span>IntervallAnt)</a>
+<a class="sourceLine" id="cb6-185" data-line-number="185">}</a>
+<a class="sourceLine" id="cb6-186" data-line-number="186">result2=<span class="kw">GGZSim2</span>(<span class="dt">N=</span><span class="dv">100</span>,<span class="dt">pi=</span><span class="fl">0.5</span>,<span class="dt">a=</span><span class="fl">0.4</span>,<span class="fl">0.6</span>)</a>
+<a class="sourceLine" id="cb6-187" data-line-number="187">result2<span class="op">$</span>IntervallAnt</a></code></pre></div>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="construction-of-matrices.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistical-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-summary.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

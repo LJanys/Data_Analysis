@@ -1,0 +1,189 @@
+# Statistical functions
+## Sums and frequencies
+
+The simple sum is given by sum(x) and the cumulative sum is calculated with cumsum.
+
+```{r, error = TRUE,eval=F }
+#Sum functions
+x=c(1,1,5,2,1,5,2,3,10,2)
+n=length(x)
+n
+Y<-cbind(rep(1,n),x)
+sum(x)
+cumsum(x)
+colSums (Y)##calculates collumn sums
+rowSums (Y)##calculates row sums
+colMeans(Y)##calculates collumn means
+rowMeans(Y)##calculates row means
+```
+
+## Frequencies
+Frequency counts (absolute and relative) can be made using the functions
+```{r, error = TRUE,eval=F }
+table() und hist()
+```
+
+
+```{r, error = TRUE,eval=F }
+#Frequencies- one-dimensional
+table(x)
+x
+table(x)/n
+klassen=hist(x,breaks=(c(0,2,5,10)))
+klassen$counts
+klassen$counts/n
+```
+
+table() can also be used for analyzing multi-dimensional frequencies.%kann auch zur Analyse von mehrdimensionalen Häufigkeiten verwendet werden. 
+```{r, error = TRUE,eval=F }
+x=c(1,1,1,2,1,3,3,2,1,3)
+ y=c(0,0,0,1,0,0,1,1,0,1)
+ z=c("a","b","b","a","b","b","a","b","a","a")
+data.frame(x,y,z)
+table(x,y)
+table(x,y,z)## generates two-dimensional tables for x and y, seperated for values of z.  %erzeugt zweidimensional K.tabelle fuer x und y 
+%##getrennt nach Auspraegungen von z
+```
+
+prop.table() generates tables with the conditional distribution in the collumns/rows. %erstellt Kontingenztabellen mit den bedingten Verteilungen in den Spalten bzw. Zeilen.
+
+```{r, error = TRUE,eval=F }
+##Conditional Frequencies
+m=table(x,y)
+m
+#calculates row 
+prop.table(m,1)
+#Berechnet die Spaltenverteilung
+prop.table(m,2)
+```
+
+## Statistical Distributions
+ 
+In the context of statistical distributions of discrete or continuous random variables, four types of calculations/procedures are of particular interest, namely
+ 
+
+- the calculation of values of the probability function or density function,
+- the calculation of probabilities for certain events,
+- the calculation of quantiles,
+- Simulation, i.e. Drawing random numbers from a given distribution.
+
+ 
+In principle, the command syntax in R is uniformly regulated, i.e. they are similar for all distributions.
+ 
+### Normal distribution
+The commands for the above calculation types and simulation for the normal distribution are
+ 
+```{r, error = TRUE,eval=F }
+dnorm(), pnorm() qnorm() und rnorm().
+```
+ 
+Where the "d" is the density and calculates values of the density function at a specified location, the "p" for probability and calculates the distribution function, and "q" for quantile and calculates values of the quantile function. "r" stands for random and draws random numbers from the normal distribution.
+ 
+ $\mathcal{N}(1,4)$
+```{r, error = TRUE,eval=T }
+x=seq(-2,4,le=100)
+z=dnorm(x,1,2)
+plot(x,z,type="l")
+```
+
+ 
+
+
+Due to the symmetry of the normal distribution, the value of the distribution function at the expected value is always 0.5:
+
+```{r, error = TRUE,eval=T }
+ pnorm(0)
+pnorm(0,1,2)
+pnorm(1,1,2)
+```
+
+How to calculate the probability for the interval $[2,3]$ for a $\mathcal{N}(1,4)$- distributed random variable X, i.e. the probability $P(2\leq X \leq 3 )$? 
+
+```{r, error = TRUE,eval=T }
+pnorm(3,1,2)-pnorm(2,1,2)
+```
+What is the 0.6 quantile of the $\mathcal{N}(1,4)$ distribution?
+```{r, error = TRUE,eval=T }
+ qnorm(0.6,1,2)
+```
+  
+What are the 0.25, 0.5, and 0.75 quantiles of the standard normal distribution?
+```{r, error = TRUE,eval=F }
+qnorm(c(0.25,0.5,0.75))
+```
+  
+Suppose we want to draw 1000 random numbers from $\mathcal{N}(1,4)$ and visualize the resulting density in a histogram:
+```{r, error = TRUE,eval=T }
+x=rnorm(1000,1,2)
+hist(x,prob=T)
+```  
+
+### Binomial distribution
+The basic commands are
+```{r, error = TRUE,eval=F }
+dbinom(), pbinom(), qbinom() und rbinom().
+```
+
+Let $X$ be binomial distributed with $N = 10$ and $\pi = 0.5$. We know this just corresponds to throwing a fair coin 10 times. The random variable X specifies the number of "head" ("number") in 10 throws.
+
+\bigskip
+
+What is the probability for "exactly 8 times head", i.e. $P(X=8)$?
+```{r, error = TRUE,eval=T }
+dbinom(8,10,0.5)
+```
+
+What is the probability for $P(2<X\leq 6)$?
+```{r, error = TRUE,eval=T }
+pbinom(10,10,0.5)-pbinom(3,10,0.5)
+``` 
+In this case we have to differentiate between $<$ und $\leq$. Why?
+What are the 0.25- ,0.5- and the 0.75-quantiles of the  $\mathcal{B}(10,0.5)$-distribution?
+```{r, error = TRUE,eval=T }
+qbinom(c(0.25,0.5,0.75),10,0.5)
+```
+How can we simulate a 20-time coin toss?
+```{r, error = TRUE,eval=T }
+rbinom(20,1,0.5)
+```
+ This corresponds to the 20-fold repetition of a Bernoulli experiment, i.e. the 20-time draw from a $\mathcal{B}(1.0.5)$ distribution. The number of zeros/ones is then $\mathcal{B}(20,0.5)$-distributed. The probability function of this distribution can be represented over
+ 
+```{r, error = TRUE,eval=T}
+x=0:20
+y=dbinom(x,20,0.5)
+plot(x,y,type="h")
+```
+ 
+In R, there are similar commands for many other distributions, e.g. dgamma(), dexp(), dpois(), dunif() etc. 
+
+ 
+## Multiplication of a random variable with a constant
+ 
+
+ 
+ For a random variable X with $\mathbb{E}[X] <\infty$ and $\mathbb{E}[X^2] <\infty$, the mean value, and the variance exist, all $c \in \mathbb{R}: \mathbb{E}[c\cdot X]=c \cdot  \mathbb{E}[X]$ $Var[c\cdot X]=c^2\cdot Var[X]$.
+ 
+ Usually the "random generator" of R for each given sample draws new numbers, that is, usually the results are slightly different in the repetition of a draw.
+```{r, error = TRUE,eval=T }
+  rbinom(20,10,0.5)
+ rbinom(20,10,0.5)
+ rbinom(20,10,0.5)
+```
+ 
+With the command set.seed () the "location" at which the random generator starts to simulate can be manipulated so that a particular sample can be replicated.
+ 
+```{r, error = TRUE,eval=F }
+  set.seed(32323)
+ rbinom(20,10,0.5)
+  set.seed(32323)
+ rbinom(20,10,0.5)
+ set.seed(32323)
+ rbinom(20,10,0.5)
+```
+ But: this is different than: 
+```{r, error = TRUE,eval=F }
+  set.seed(32323)
+  rbinom(20,10,0.5)
+   rbinom(20,10,0.5)
+   rbinom(20,10,0.5)
+```
