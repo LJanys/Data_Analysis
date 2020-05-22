@@ -1,0 +1,3 @@
+category,subcategory,name,value,note,source
+infection_prob,meet_close,,0.4,,
+infection_prob,meet_distant,,0.00,,
